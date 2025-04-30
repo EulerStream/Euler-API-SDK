@@ -1,0 +1,24 @@
+# ISignTikTokUrlBody
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**url** | **string** |  | [default to undefined]
+**userAgent** | **string** |  | [optional] [default to undefined]
+**method** | **string** |  | [optional] [default to undefined]
+
+## Example
+
+```typescript
+import { ISignTikTokUrlBody } from './api';
+
+const instance: ISignTikTokUrlBody = {
+    url,
+    userAgent,
+    method,
+};
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
