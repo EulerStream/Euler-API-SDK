@@ -36,8 +36,12 @@ Getting started is super simple! Remember to check out the OpenAPI Spec on the E
 
 For your convenience, we have included a hello-world example using this SDK:
 
+1. Install the package with `npm i @eulerstream/euler-api-sdk`
+2. Run the script below:
+
+
 ```ts
-import EulerStreamApiClient, {IListAlertsResponse, IPipResponse} from "../src";
+import EulerStreamApiClient, {IListAlertsResponse, IPipResponse} from "@eulerstream/euler-api-sdk";
 import {AxiosResponse} from "axios";
 
 // Initialize the client
