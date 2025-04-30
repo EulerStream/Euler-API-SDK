@@ -1,4 +1,4 @@
-import { Configuration } from "@/sdk";
+import { Configuration } from "./sdk";
 export type ClientConfiguration = Configuration & {
     apiKey?: string;
 };

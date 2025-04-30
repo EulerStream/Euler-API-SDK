@@ -14,8 +14,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const sdk_1 = require("@/sdk");
-const utils_1 = require("@/utils");
+const sdk_1 = require("./sdk");
+const utils_1 = require("./utils");
 // Exports
 __exportStar(require("./sdk"), exports);
 __exportStar(require("./utils"), exports);

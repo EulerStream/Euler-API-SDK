@@ -1,5 +1,5 @@
-import { AccountsApi, AlertsApi, AnalyticsApi, AuthenticationApi, TikTokApi, WebcastApi } from "@/sdk";
-import { ClientConfiguration } from "@/utils";
+import { AccountsApi, AlertsApi, AnalyticsApi, AuthenticationApi, TikTokApi, WebcastApi } from "./sdk";
+import { ClientConfiguration } from "./utils";
 export * from './sdk';
 export * from './utils';
 export default class EulerStreamApiClient {

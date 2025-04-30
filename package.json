@@ -13,7 +13,7 @@
   "scripts": {
     "test": "tsx ./test/test.ts",
     "format": "prettier --write src/**/*.js",
-    "build": "tsc"
+    "build": "sh build.sh && tsc && tsc-alias"
   },
   "repository": {
     "type": "git",
@@ -51,6 +51,7 @@
     "@types/node": "^22.15.3",
     "prettier": "2.5.1",
     "typescript": "^4.8.2",
-    "dotenv": "^16.5.0"
+    "dotenv": "^16.5.0",
+    "tsc-alias": "^1.8.15"
   }
 }
