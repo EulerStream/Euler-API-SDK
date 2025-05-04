@@ -944,15 +944,43 @@ export interface ISignTikTokUrlBody {
      * @memberof ISignTikTokUrlBody
      */
     'method'?: ISignTikTokUrlBodyMethodEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof ISignTikTokUrlBody
+     */
+    'sessionId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ISignTikTokUrlBody
+     */
+    'payload'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ISignTikTokUrlBody
+     */
+    'type'?: ISignTikTokUrlBodyTypeEnum;
 }
 
 export const ISignTikTokUrlBodyMethodEnum = {
     Get: 'GET',
     Post: 'POST',
-    Options: 'OPTIONS'
+    Options: 'OPTIONS',
+    Put: 'PUT',
+    Delete: 'DELETE',
+    Patch: 'PATCH',
+    Head: 'HEAD'
 } as const;
 
 export type ISignTikTokUrlBodyMethodEnum = typeof ISignTikTokUrlBodyMethodEnum[keyof typeof ISignTikTokUrlBodyMethodEnum];
+export const ISignTikTokUrlBodyTypeEnum = {
+    Fetch: 'fetch',
+    Xhr: 'xhr'
+} as const;
+
+export type ISignTikTokUrlBodyTypeEnum = typeof ISignTikTokUrlBodyTypeEnum[keyof typeof ISignTikTokUrlBodyTypeEnum];
 
 /**
  * 
@@ -974,10 +1002,10 @@ export interface ISignTikTokUrlResponse {
     'message'?: string;
     /**
      * 
-     * @type {PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringString}
+     * @type {PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString}
      * @memberof ISignTikTokUrlResponse
      */
-    'response'?: PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringString;
+    'response'?: PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString;
 }
 /**
  * 
@@ -1251,39 +1279,45 @@ export interface PartialAvatarUrlStringNicknameStringSecUidStringNumericUidStrin
 /**
  * Make all properties in T optional
  * @export
- * @interface PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringString
+ * @interface PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString
  */
-export interface PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringString {
+export interface PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString {
     /**
      * 
      * @type {string}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringString
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString
      */
     'signedUrl'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringString
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString
      */
     'userAgent'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringString
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString
      */
     'browserName'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringString
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString
      */
     'browserVersion'?: string;
     /**
      * Construct a type with a set of properties K of type T
      * @type {{ [key: string]: string; }}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringString
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString
      */
     'tokens'?: { [key: string]: string; };
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: string; }}
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString
+     */
+    'requestHeaders'?: { [key: string]: string; };
 }
 /**
  * Make all properties in T optional
@@ -1427,10 +1461,10 @@ export interface SignWebcastUrl200Response {
     'message'?: string;
     /**
      * 
-     * @type {PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringString}
+     * @type {PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString}
      * @memberof SignWebcastUrl200Response
      */
-    'response'?: PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringString;
+    'response'?: PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString;
 }
 /**
  * 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **number** |  | [default to undefined]
 **message** | **string** |  | [optional] [default to undefined]
-**response** | [**PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringString**](PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringString.md) |  | [optional] [default to undefined]
+**response** | [**PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString**](PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString.md) |  | [optional] [default to undefined]
 
 ## Example
 

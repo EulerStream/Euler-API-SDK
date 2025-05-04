@@ -8,6 +8,9 @@ Name | Type | Description | Notes
 **url** | **string** |  | [default to undefined]
 **userAgent** | **string** |  | [optional] [default to undefined]
 **method** | **string** |  | [optional] [default to undefined]
+**sessionId** | **string** |  | [optional] [default to undefined]
+**payload** | **string** |  | [optional] [default to undefined]
+**type** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -18,6 +21,9 @@ const instance: ISignTikTokUrlBody = {
     url,
     userAgent,
     method,
+    sessionId,
+    payload,
+    type,
 };
 ```
 
