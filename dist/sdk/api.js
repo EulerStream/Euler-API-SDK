@@ -16,7 +16,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WebcastApi = exports.WebcastApiFactory = exports.WebcastApiFp = exports.WebcastApiAxiosParamCreator = exports.TikTokApi = exports.TikTokApiFactory = exports.TikTokApiFp = exports.TikTokApiAxiosParamCreator = exports.UpdateKeyUpdateByEnum = exports.GetKeyRetrieveByEnum = exports.DeleteKeyDeleteByEnum = exports.AuthenticationApi = exports.AuthenticationApiFactory = exports.AuthenticationApiFp = exports.AuthenticationApiAxiosParamCreator = exports.AnalyticsApi = exports.AnalyticsApiFactory = exports.AnalyticsApiFp = exports.AnalyticsApiAxiosParamCreator = exports.AlertsApi = exports.AlertsApiFactory = exports.AlertsApiFp = exports.AlertsApiAxiosParamCreator = exports.AlertTargetsApi = exports.AlertTargetsApiFactory = exports.AlertTargetsApiFp = exports.AlertTargetsApiAxiosParamCreator = exports.RetrieveAggregateUsagePeriodEnum = exports.AccountsApi = exports.AccountsApiFactory = exports.AccountsApiFp = exports.AccountsApiAxiosParamCreator = exports.LogRequestMethod = exports.LiveClient = exports.ISignTikTokUrlBodyMethodEnum = exports.IAlertTargetStatus = exports.IAlertTargetFormat = exports.ApiRoutes = void 0;
+exports.WebcastApi = exports.WebcastApiFactory = exports.WebcastApiFp = exports.WebcastApiAxiosParamCreator = exports.TikTokApi = exports.TikTokApiFactory = exports.TikTokApiFp = exports.TikTokApiAxiosParamCreator = exports.UpdateKeyUpdateByEnum = exports.GetKeyRetrieveByEnum = exports.DeleteKeyDeleteByEnum = exports.AuthenticationApi = exports.AuthenticationApiFactory = exports.AuthenticationApiFp = exports.AuthenticationApiAxiosParamCreator = exports.AnalyticsApi = exports.AnalyticsApiFactory = exports.AnalyticsApiFp = exports.AnalyticsApiAxiosParamCreator = exports.AlertsApi = exports.AlertsApiFactory = exports.AlertsApiFp = exports.AlertsApiAxiosParamCreator = exports.AlertTargetsApi = exports.AlertTargetsApiFactory = exports.AlertTargetsApiFp = exports.AlertTargetsApiAxiosParamCreator = exports.RetrieveAggregateUsagePeriodEnum = exports.AccountsApi = exports.AccountsApiFactory = exports.AccountsApiFp = exports.AccountsApiAxiosParamCreator = exports.LogRequestMethod = exports.LiveClient = exports.ISignTikTokUrlBodyTypeEnum = exports.ISignTikTokUrlBodyMethodEnum = exports.IAlertTargetStatus = exports.IAlertTargetFormat = exports.ApiRoutes = void 0;
 const axios_1 = __importDefault(require("axios"));
 // Some imports not used depending on template conditions
 // @ts-ignore
@@ -54,7 +54,15 @@ exports.IAlertTargetStatus = {
 exports.ISignTikTokUrlBodyMethodEnum = {
     Get: 'GET',
     Post: 'POST',
-    Options: 'OPTIONS'
+    Options: 'OPTIONS',
+    Put: 'PUT',
+    Delete: 'DELETE',
+    Patch: 'PATCH',
+    Head: 'HEAD'
+};
+exports.ISignTikTokUrlBodyTypeEnum = {
+    Fetch: 'fetch',
+    Xhr: 'xhr'
 };
 /**
  *
