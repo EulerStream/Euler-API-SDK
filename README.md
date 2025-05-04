@@ -7,7 +7,7 @@ With this API you can access any Euler Stream public endpoint.
 [![Patrons](https://www.eulerstream.com/api/pips/patrons?v=002)](https://www.eulerstream.com/)
 ![Connections](https://tiktok.eulerstream.com/analytics/pips/1)
 ![Downloads](https://img.shields.io/npm/dy/@eulerstream/euler-api-sdk)
-![Stars](https://img.shields.io/github/stars/EulerStream/EulerApiSdk?style=flat&color=0274b5)
+![Stars](https://img.shields.io/github/stars/EulerStream/EulerApiSdk?style=flat&color=0274b5&alt=1)
 ![Issues](https://img.shields.io/github/issues/EulerStream/EulerApiSdk)
 
 
