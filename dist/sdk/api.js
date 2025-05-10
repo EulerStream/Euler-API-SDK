@@ -2033,6 +2033,39 @@ const WebcastApiAxiosParamCreator = function (configuration) {
             };
         },
         /**
+         * Fetch Room Info for a given uniqueId. This is a premium endpoint that bypasses TikTok captchas. It is counted towards your request quota.
+         * @param {IWebcastRoomChatPayload} iWebcastRoomChatPayload The payload configuration for sending a chat
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sendRoomChat: async (iWebcastRoomChatPayload, options = {}) => {
+            // verify required parameter 'iWebcastRoomChatPayload' is not null or undefined
+            (0, common_1.assertParamExists)('sendRoomChat', 'iWebcastRoomChatPayload', iWebcastRoomChatPayload);
+            const localVarPath = `/webcast/chat`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_key_query required
+            await (0, common_1.setApiKeyToObject)(localVarQueryParameter, "apiKey", configuration);
+            // authentication api_key_header required
+            await (0, common_1.setApiKeyToObject)(localVarHeaderParameter, "x-api-key", configuration);
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(iWebcastRoomChatPayload, localVarRequestOptions, configuration);
+            return {
+                url: (0, common_1.toPathString)(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          *
          * @param {ISignTikTokUrlBody} iSignTikTokUrlBody
          * @param {string} [preferredAgentId]
@@ -2133,6 +2166,18 @@ const WebcastApiFp = function (configuration) {
             return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Fetch Room Info for a given uniqueId. This is a premium endpoint that bypasses TikTok captchas. It is counted towards your request quota.
+         * @param {IWebcastRoomChatPayload} iWebcastRoomChatPayload The payload configuration for sending a chat
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async sendRoomChat(iWebcastRoomChatPayload, options) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.sendRoomChat(iWebcastRoomChatPayload, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = base_1.operationServerMap['WebcastApi.sendRoomChat']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          *
          * @param {ISignTikTokUrlBody} iSignTikTokUrlBody
          * @param {string} [preferredAgentId]
@@ -2195,6 +2240,15 @@ const WebcastApiFactory = function (configuration, basePath, axios) {
          */
         retrieveRoomInfo(uniqueId, options) {
             return localVarFp.retrieveRoomInfo(uniqueId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch Room Info for a given uniqueId. This is a premium endpoint that bypasses TikTok captchas. It is counted towards your request quota.
+         * @param {IWebcastRoomChatPayload} iWebcastRoomChatPayload The payload configuration for sending a chat
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sendRoomChat(iWebcastRoomChatPayload, options) {
+            return localVarFp.sendRoomChat(iWebcastRoomChatPayload, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -2260,6 +2314,16 @@ class WebcastApi extends base_1.BaseAPI {
      */
     retrieveRoomInfo(uniqueId, options) {
         return (0, exports.WebcastApiFp)(this.configuration).retrieveRoomInfo(uniqueId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Fetch Room Info for a given uniqueId. This is a premium endpoint that bypasses TikTok captchas. It is counted towards your request quota.
+     * @param {IWebcastRoomChatPayload} iWebcastRoomChatPayload The payload configuration for sending a chat
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebcastApi
+     */
+    sendRoomChat(iWebcastRoomChatPayload, options) {
+        return (0, exports.WebcastApiFp)(this.configuration).sendRoomChat(iWebcastRoomChatPayload, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *

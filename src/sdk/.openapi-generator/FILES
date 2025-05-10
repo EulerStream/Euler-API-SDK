@@ -46,6 +46,8 @@ docs/ISignTikTokUrlBody.md
 docs/ISignTikTokUrlResponse.md
 docs/ITestAlertTargetResponse.md
 docs/IUpdateKeyResponse.md
+docs/IWebcastRoomChatPayload.md
+docs/IWebcastRoomChatRouteResponse.md
 docs/IWebcastRoomIdRouteResponse.md
 docs/IWebcastRoomInfoRouteResponse.md
 docs/JWTCreateConfig.md

@@ -1043,6 +1043,56 @@ export interface IUpdateKeyResponse {
 /**
  *
  * @export
+ * @interface IWebcastRoomChatPayload
+ */
+export interface IWebcastRoomChatPayload {
+    /**
+     *
+     * @type {string}
+     * @memberof IWebcastRoomChatPayload
+     */
+    'content': string;
+    /**
+     *
+     * @type {string}
+     * @memberof IWebcastRoomChatPayload
+     */
+    'sessionId': string;
+    /**
+     *
+     * @type {string}
+     * @memberof IWebcastRoomChatPayload
+     */
+    'roomId': string;
+}
+/**
+ *
+ * @export
+ * @interface IWebcastRoomChatRouteResponse
+ */
+export interface IWebcastRoomChatRouteResponse {
+    /**
+     *
+     * @type {number}
+     * @memberof IWebcastRoomChatRouteResponse
+     */
+    'code': number;
+    /**
+     *
+     * @type {string}
+     * @memberof IWebcastRoomChatRouteResponse
+     */
+    'message'?: string;
+    /**
+     *
+     * @type {any}
+     * @memberof IWebcastRoomChatRouteResponse
+     */
+    'data'?: any;
+}
+/**
+ *
+ * @export
  * @interface IWebcastRoomIdRouteResponse
  */
 export interface IWebcastRoomIdRouteResponse {
@@ -2465,6 +2515,13 @@ export declare const WebcastApiAxiosParamCreator: (configuration?: Configuration
      */
     retrieveRoomInfo: (uniqueId: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
+     * Fetch Room Info for a given uniqueId. This is a premium endpoint that bypasses TikTok captchas. It is counted towards your request quota.
+     * @param {IWebcastRoomChatPayload} iWebcastRoomChatPayload The payload configuration for sending a chat
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    sendRoomChat: (iWebcastRoomChatPayload: IWebcastRoomChatPayload, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
      *
      * @param {ISignTikTokUrlBody} iSignTikTokUrlBody
      * @param {string} [preferredAgentId]
@@ -2512,6 +2569,13 @@ export declare const WebcastApiFp: (configuration?: Configuration) => {
      */
     retrieveRoomInfo(uniqueId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IWebcastRoomInfoRouteResponse>>;
     /**
+     * Fetch Room Info for a given uniqueId. This is a premium endpoint that bypasses TikTok captchas. It is counted towards your request quota.
+     * @param {IWebcastRoomChatPayload} iWebcastRoomChatPayload The payload configuration for sending a chat
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    sendRoomChat(iWebcastRoomChatPayload: IWebcastRoomChatPayload, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IWebcastRoomChatRouteResponse>>;
+    /**
      *
      * @param {ISignTikTokUrlBody} iSignTikTokUrlBody
      * @param {string} [preferredAgentId]
@@ -2558,6 +2622,13 @@ export declare const WebcastApiFactory: (configuration?: Configuration, basePath
      * @throws {RequiredError}
      */
     retrieveRoomInfo(uniqueId: string, options?: RawAxiosRequestConfig): AxiosPromise<IWebcastRoomInfoRouteResponse>;
+    /**
+     * Fetch Room Info for a given uniqueId. This is a premium endpoint that bypasses TikTok captchas. It is counted towards your request quota.
+     * @param {IWebcastRoomChatPayload} iWebcastRoomChatPayload The payload configuration for sending a chat
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    sendRoomChat(iWebcastRoomChatPayload: IWebcastRoomChatPayload, options?: RawAxiosRequestConfig): AxiosPromise<IWebcastRoomChatRouteResponse>;
     /**
      *
      * @param {ISignTikTokUrlBody} iSignTikTokUrlBody
@@ -2611,6 +2682,14 @@ export declare class WebcastApi extends BaseAPI {
      * @memberof WebcastApi
      */
     retrieveRoomInfo(uniqueId: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<IWebcastRoomInfoRouteResponse, any>>;
+    /**
+     * Fetch Room Info for a given uniqueId. This is a premium endpoint that bypasses TikTok captchas. It is counted towards your request quota.
+     * @param {IWebcastRoomChatPayload} iWebcastRoomChatPayload The payload configuration for sending a chat
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebcastApi
+     */
+    sendRoomChat(iWebcastRoomChatPayload: IWebcastRoomChatPayload, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<IWebcastRoomChatRouteResponse, any>>;
     /**
      *
      * @param {ISignTikTokUrlBody} iSignTikTokUrlBody

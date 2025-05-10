@@ -8,6 +8,7 @@ All URIs are relative to *https://tiktok.eulerstream.com*
 |[**getRateLimits**](#getratelimits) | **GET** /webcast/rate_limits | |
 |[**retrieveRoomId**](#retrieveroomid) | **GET** /webcast/room_id | |
 |[**retrieveRoomInfo**](#retrieveroominfo) | **GET** /webcast/room_info | |
+|[**sendRoomChat**](#sendroomchat) | **POST** /webcast/chat | |
 |[**signWebcastUrl**](#signwebcasturl) | **POST** /webcast/sign_url | |
 
 # **fetchWebcastURL**
@@ -215,6 +216,58 @@ const { status, data } = await apiInstance.retrieveRoomInfo(
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Ok |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **sendRoomChat**
+> IWebcastRoomChatRouteResponse sendRoomChat(iWebcastRoomChatPayload)
+
+Fetch Room Info for a given uniqueId. This is a premium endpoint that bypasses TikTok captchas. It is counted towards your request quota.
+
+### Example
+
+```typescript
+import {
+    WebcastApi,
+    Configuration,
+    IWebcastRoomChatPayload
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new WebcastApi(configuration);
+
+let iWebcastRoomChatPayload: IWebcastRoomChatPayload; //The payload configuration for sending a chat
+
+const { status, data } = await apiInstance.sendRoomChat(
+    iWebcastRoomChatPayload
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **iWebcastRoomChatPayload** | **IWebcastRoomChatPayload**| The payload configuration for sending a chat | |
+
+
+### Return type
+
+**IWebcastRoomChatRouteResponse**
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
