@@ -34,6 +34,7 @@ let cursor: string; //The cursor to fetch the webcast URL for (optional) (defaul
 let sessionId: string; //The session ID used to fetch a privileged WS connection (optional) (default to undefined)
 let userAgent: string; //Override the user agent used in the signature (optional) (default to undefined)
 let preferredAgentIds: string; //The preferred agent ID (optional) (default to undefined)
+let ttTargetIdc: string; //The target IDC to use for the request (optional) (default to undefined)
 
 const { status, data } = await apiInstance.fetchWebcastURL(
     client,
@@ -42,7 +43,8 @@ const { status, data } = await apiInstance.fetchWebcastURL(
     cursor,
     sessionId,
     userAgent,
-    preferredAgentIds
+    preferredAgentIds,
+    ttTargetIdc
 );
 ```
 
@@ -57,6 +59,7 @@ const { status, data } = await apiInstance.fetchWebcastURL(
 | **sessionId** | [**string**] | The session ID used to fetch a privileged WS connection | (optional) defaults to undefined|
 | **userAgent** | [**string**] | Override the user agent used in the signature | (optional) defaults to undefined|
 | **preferredAgentIds** | [**string**] | The preferred agent ID | (optional) defaults to undefined|
+| **ttTargetIdc** | [**string**] | The target IDC to use for the request | (optional) defaults to undefined|
 
 
 ### Return type

@@ -9,8 +9,11 @@ Name | Type | Description | Notes
 **userAgent** | **string** |  | [optional] [default to undefined]
 **method** | **string** |  | [optional] [default to undefined]
 **sessionId** | **string** |  | [optional] [default to undefined]
+**ttTargetIdc** | **string** |  | [optional] [default to undefined]
 **payload** | **string** |  | [optional] [default to undefined]
 **type** | **string** |  | [optional] [default to undefined]
+**includeBrowserParams** | **boolean** |  | [optional] [default to undefined]
+**includeVerifyFp** | **boolean** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -22,8 +25,11 @@ const instance: ISignTikTokUrlBody = {
     userAgent,
     method,
     sessionId,
+    ttTargetIdc,
     payload,
     type,
+    includeBrowserParams,
+    includeVerifyFp,
 };
 ```
 

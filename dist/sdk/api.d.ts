@@ -787,13 +787,11 @@ export interface IRetrieveAggregateUsageResponse {
     'message'?: string;
     /**
      * Construct a type with a set of properties K of type T
-     * @type {{ [key: string]: { [key: string]: any; }; }}
+     * @type {{ [key: string]: object; }}
      * @memberof IRetrieveAggregateUsageResponse
      */
     'usage'?: {
-        [key: string]: {
-            [key: string]: any;
-        };
+        [key: string]: object;
     };
 }
 /**
@@ -820,6 +818,43 @@ export interface IRetrieveAlertResponse {
      * @memberof IRetrieveAlertResponse
      */
     'alert'?: IAlert;
+    /**
+     *
+     * @type {IRetrieveAlertResponseCreator}
+     * @memberof IRetrieveAlertResponse
+     */
+    'creator'?: IRetrieveAlertResponseCreator;
+}
+/**
+ *
+ * @export
+ * @interface IRetrieveAlertResponseCreator
+ */
+export interface IRetrieveAlertResponseCreator {
+    /**
+     *
+     * @type {string}
+     * @memberof IRetrieveAlertResponseCreator
+     */
+    'room_id': string | null;
+    /**
+     *
+     * @type {string}
+     * @memberof IRetrieveAlertResponseCreator
+     */
+    'state_label': string;
+    /**
+     *
+     * @type {number}
+     * @memberof IRetrieveAlertResponseCreator
+     */
+    'state': number;
+    /**
+     *
+     * @type {string}
+     * @memberof IRetrieveAlertResponseCreator
+     */
+    'unique_id': string;
 }
 /**
  *
@@ -936,6 +971,12 @@ export interface ISignTikTokUrlBody {
      * @type {string}
      * @memberof ISignTikTokUrlBody
      */
+    'ttTargetIdc'?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ISignTikTokUrlBody
+     */
     'payload'?: string;
     /**
      *
@@ -943,6 +984,18 @@ export interface ISignTikTokUrlBody {
      * @memberof ISignTikTokUrlBody
      */
     'type'?: ISignTikTokUrlBodyTypeEnum;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ISignTikTokUrlBody
+     */
+    'includeBrowserParams'?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ISignTikTokUrlBody
+     */
+    'includeVerifyFp'?: boolean;
 }
 export declare const ISignTikTokUrlBodyMethodEnum: {
     readonly Get: "GET";
@@ -979,10 +1032,10 @@ export interface ISignTikTokUrlResponse {
     'message'?: string;
     /**
      *
-     * @type {PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString}
+     * @type {PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray}
      * @memberof ISignTikTokUrlResponse
      */
-    'response'?: PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString;
+    'response'?: PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray;
 }
 /**
  *
@@ -1058,6 +1111,12 @@ export interface IWebcastRoomChatPayload {
      * @memberof IWebcastRoomChatPayload
      */
     'sessionId': string;
+    /**
+     *
+     * @type {string}
+     * @memberof IWebcastRoomChatPayload
+     */
+    'ttTargetIdc': string;
     /**
      *
      * @type {string}
@@ -1296,37 +1355,37 @@ export interface PartialAvatarUrlStringNicknameStringSecUidStringNumericUidStrin
 /**
  * Make all properties in T optional
  * @export
- * @interface PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString
+ * @interface PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
  */
-export interface PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString {
+export interface PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray {
     /**
      *
      * @type {string}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
      */
     'signedUrl'?: string;
     /**
      *
      * @type {string}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
      */
     'userAgent'?: string;
     /**
      *
      * @type {string}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
      */
     'browserName'?: string;
     /**
      *
      * @type {string}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
      */
     'browserVersion'?: string;
     /**
      * Construct a type with a set of properties K of type T
      * @type {{ [key: string]: string; }}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
      */
     'tokens'?: {
         [key: string]: string;
@@ -1334,11 +1393,17 @@ export interface PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVe
     /**
      * Construct a type with a set of properties K of type T
      * @type {{ [key: string]: string; }}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
      */
     'requestHeaders'?: {
         [key: string]: string;
     };
+    /**
+     *
+     * @type {Array<object>}
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
+     */
+    'cookies'?: Array<object>;
 }
 /**
  * Make all properties in T optional
@@ -1482,10 +1547,10 @@ export interface SignWebcastUrl200Response {
     'message'?: string;
     /**
      *
-     * @type {PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString}
+     * @type {PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray}
      * @memberof SignWebcastUrl200Response
      */
-    'response'?: PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringString;
+    'response'?: PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray;
 }
 /**
  *
@@ -1495,12 +1560,10 @@ export interface SignWebcastUrl200Response {
 export interface TikTokLiveUser {
     /**
      * Construct a type with a set of properties K of type T
-     * @type {{ [key: string]: any; }}
+     * @type {object}
      * @memberof TikTokLiveUser
      */
-    'raw': {
-        [key: string]: any;
-    };
+    'raw': object;
     /**
      *
      * @type {PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString}
@@ -2490,10 +2553,11 @@ export declare const WebcastApiAxiosParamCreator: (configuration?: Configuration
      * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
      * @param {string} [userAgent] Override the user agent used in the signature
      * @param {string} [preferredAgentIds] The preferred agent ID
+     * @param {string} [ttTargetIdc] The target IDC to use for the request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    fetchWebcastURL: (client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, preferredAgentIds?: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    fetchWebcastURL: (client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, preferredAgentIds?: string, ttTargetIdc?: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      * Retrieve the rate limits for the provided API key (or the unauthenticated limits if no key is provided)
      * @param {*} [options] Override http request option.
@@ -2544,10 +2608,11 @@ export declare const WebcastApiFp: (configuration?: Configuration) => {
      * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
      * @param {string} [userAgent] Override the user agent used in the signature
      * @param {string} [preferredAgentIds] The preferred agent ID
+     * @param {string} [ttTargetIdc] The target IDC to use for the request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, preferredAgentIds?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, preferredAgentIds?: string, ttTargetIdc?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
     /**
      * Retrieve the rate limits for the provided API key (or the unauthenticated limits if no key is provided)
      * @param {*} [options] Override http request option.
@@ -2598,10 +2663,11 @@ export declare const WebcastApiFactory: (configuration?: Configuration, basePath
      * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
      * @param {string} [userAgent] Override the user agent used in the signature
      * @param {string} [preferredAgentIds] The preferred agent ID
+     * @param {string} [ttTargetIdc] The target IDC to use for the request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, preferredAgentIds?: string, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, preferredAgentIds?: string, ttTargetIdc?: string, options?: RawAxiosRequestConfig): AxiosPromise<void>;
     /**
      * Retrieve the rate limits for the provided API key (or the unauthenticated limits if no key is provided)
      * @param {*} [options] Override http request option.
@@ -2654,11 +2720,12 @@ export declare class WebcastApi extends BaseAPI {
      * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
      * @param {string} [userAgent] Override the user agent used in the signature
      * @param {string} [preferredAgentIds] The preferred agent ID
+     * @param {string} [ttTargetIdc] The target IDC to use for the request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebcastApi
      */
-    fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, preferredAgentIds?: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<void, any>>;
+    fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, preferredAgentIds?: string, ttTargetIdc?: string, options?: RawAxiosRequestConfig): Promise<globalAxios.AxiosResponse<void, any>>;
     /**
      * Retrieve the rate limits for the provided API key (or the unauthenticated limits if no key is provided)
      * @param {*} [options] Override http request option.

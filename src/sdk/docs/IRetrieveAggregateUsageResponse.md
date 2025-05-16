@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **number** |  | [default to undefined]
 **message** | **string** |  | [optional] [default to undefined]
-**usage** | **{ [key: string]: { [key: string]: any; }; }** | Construct a type with a set of properties K of type T | [optional] [default to undefined]
+**usage** | **{ [key: string]: object; }** | Construct a type with a set of properties K of type T | [optional] [default to undefined]
 
 ## Example
 

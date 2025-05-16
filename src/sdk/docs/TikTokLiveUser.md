@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**raw** | **{ [key: string]: any; }** | Construct a type with a set of properties K of type T | [default to undefined]
+**raw** | **object** | Construct a type with a set of properties K of type T | [default to undefined]
 **room_info** | [**PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString**](PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString.md) |  | [optional] [default to undefined]
 **user** | [**TikTokLiveUserUser**](TikTokLiveUserUser.md) |  | [optional] [default to undefined]
 **unique_id** | **string** |  | [default to undefined]

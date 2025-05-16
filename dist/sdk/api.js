@@ -1883,10 +1883,11 @@ const WebcastApiAxiosParamCreator = function (configuration) {
          * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
          * @param {string} [userAgent] Override the user agent used in the signature
          * @param {string} [preferredAgentIds] The preferred agent ID
+         * @param {string} [ttTargetIdc] The target IDC to use for the request
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchWebcastURL: async (client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, options = {}) => {
+        fetchWebcastURL: async (client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, ttTargetIdc, options = {}) => {
             // verify required parameter 'client' is not null or undefined
             (0, common_1.assertParamExists)('fetchWebcastURL', 'client', client);
             const localVarPath = `/webcast/fetch`;
@@ -1925,6 +1926,9 @@ const WebcastApiAxiosParamCreator = function (configuration) {
             }
             if (preferredAgentIds !== undefined) {
                 localVarQueryParameter['preferred_agent_ids'] = preferredAgentIds;
+            }
+            if (ttTargetIdc !== undefined) {
+                localVarQueryParameter['tt_target_idc'] = ttTargetIdc;
             }
             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2121,11 +2125,12 @@ const WebcastApiFp = function (configuration) {
          * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
          * @param {string} [userAgent] Override the user agent used in the signature
          * @param {string} [preferredAgentIds] The preferred agent ID
+         * @param {string} [ttTargetIdc] The target IDC to use for the request
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, options) {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, options);
+        async fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, ttTargetIdc, options) {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, ttTargetIdc, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = base_1.operationServerMap['WebcastApi.fetchWebcastURL']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -2209,11 +2214,12 @@ const WebcastApiFactory = function (configuration, basePath, axios) {
          * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
          * @param {string} [userAgent] Override the user agent used in the signature
          * @param {string} [preferredAgentIds] The preferred agent ID
+         * @param {string} [ttTargetIdc] The target IDC to use for the request
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, options) {
-            return localVarFp.fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, options).then((request) => request(axios, basePath));
+        fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, ttTargetIdc, options) {
+            return localVarFp.fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, ttTargetIdc, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve the rate limits for the provided API key (or the unauthenticated limits if no key is provided)
@@ -2279,12 +2285,13 @@ class WebcastApi extends base_1.BaseAPI {
      * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
      * @param {string} [userAgent] Override the user agent used in the signature
      * @param {string} [preferredAgentIds] The preferred agent ID
+     * @param {string} [ttTargetIdc] The target IDC to use for the request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebcastApi
      */
-    fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, options) {
-        return (0, exports.WebcastApiFp)(this.configuration).fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, options).then((request) => request(this.axios, this.basePath));
+    fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, ttTargetIdc, options) {
+        return (0, exports.WebcastApiFp)(this.configuration).fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, ttTargetIdc, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Retrieve the rate limits for the provided API key (or the unauthenticated limits if no key is provided)
