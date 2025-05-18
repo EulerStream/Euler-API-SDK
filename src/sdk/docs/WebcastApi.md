@@ -5,6 +5,7 @@ All URIs are relative to *https://tiktok.eulerstream.com*
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
 |[**fetchWebcastURL**](#fetchwebcasturl) | **GET** /webcast/fetch | |
+|[**getConnectedWebSockets**](#getconnectedwebsockets) | **GET** /webcast/websockets | |
 |[**getRateLimits**](#getratelimits) | **GET** /webcast/rate_limits | |
 |[**retrieveRoomId**](#retrieveroomid) | **GET** /webcast/room_id | |
 |[**retrieveRoomInfo**](#retrieveroominfo) | **GET** /webcast/room_info | |
@@ -80,6 +81,50 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**204** | No content |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getConnectedWebSockets**
+> IRetrievedCloudWebSocketsRouteResponse getConnectedWebSockets()
+
+Retrieve the currently connected WebSocket clients for your account. Only for paid plans.
+
+### Example
+
+```typescript
+import {
+    WebcastApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new WebcastApi(configuration);
+
+const { status, data } = await apiInstance.getConnectedWebSockets();
+```
+
+### Parameters
+This endpoint does not have any parameters.
+
+
+### Return type
+
+**IRetrievedCloudWebSocketsRouteResponse**
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Ok |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

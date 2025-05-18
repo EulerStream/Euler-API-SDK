@@ -5,8 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**limits** | [**JWTCreateConfigLimits**](JWTCreateConfigLimits.md) |  | [default to undefined]
+**limits** | [**IAccountRequestLimits**](IAccountRequestLimits.md) |  | [optional] [default to undefined]
+**websockets** | [**WebSocketJWTLimits**](WebSocketJWTLimits.md) |  | [optional] [default to undefined]
 **expireAfter** | **number** |  | [default to undefined]
+**name** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -15,7 +17,9 @@ import { JWTCreateConfig } from './api';
 
 const instance: JWTCreateConfig = {
     limits,
+    websockets,
     expireAfter,
+    name,
 };
 ```
 

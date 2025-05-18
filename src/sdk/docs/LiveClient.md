@@ -9,9 +9,13 @@
 
 * `TtlivePython` (value: `'ttlive-python'`)
 
+* `TtliveNet` (value: `'ttlive-net'`)
+
 * `TtliveRust` (value: `'ttlive-rust'`)
 
-* `TtliveGo` (value: `'ttlive-go'`)
+* `GotiktokLive` (value: `'gotiktok_live'`)
+
+* `TtliveCloudflare` (value: `'ttlive-cloudflare'`)
 
 * `TtliveOther` (value: `'ttlive-other'`)
 

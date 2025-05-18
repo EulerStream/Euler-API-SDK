@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **code** | **number** |  | [default to undefined]
 **message** | **string** |  | [optional] [default to undefined]
 **room_id** | **string** |  | [optional] [default to undefined]
+**is_live** | **boolean** |  | [optional] [default to undefined]
 **ok** | **boolean** |  | [default to undefined]
 **routes_attempted** | **Array&lt;string&gt;** |  | [default to undefined]
-**is_live** | **boolean** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -21,9 +21,9 @@ const instance: IWebcastRoomIdRouteResponse = {
     code,
     message,
     room_id,
+    is_live,
     ok,
     routes_attempted,
-    is_live,
 };
 ```
 

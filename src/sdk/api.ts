@@ -40,6 +40,31 @@ export type ApiRoutes = typeof ApiRoutes[keyof typeof ApiRoutes];
 /**
  * 
  * @export
+ * @interface IAccountRequestLimits
+ */
+export interface IAccountRequestLimits {
+    /**
+     * 
+     * @type {number}
+     * @memberof IAccountRequestLimits
+     */
+    'day': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IAccountRequestLimits
+     */
+    'minute': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IAccountRequestLimits
+     */
+    'hour': number;
+}
+/**
+ * 
+ * @export
  * @interface IAlert
  */
 export interface IAlert {
@@ -366,6 +391,12 @@ export interface ICreateJWTResponse {
      * @memberof ICreateJWTResponse
      */
     'token'?: string;
+    /**
+     * 
+     * @type {JWTConfig}
+     * @memberof ICreateJWTResponse
+     */
+    'config'?: JWTConfig;
 }
 /**
  * 
@@ -810,10 +841,10 @@ export interface IRetrieveAggregateUsageResponse {
     'message'?: string;
     /**
      * Construct a type with a set of properties K of type T
-     * @type {{ [key: string]: object; }}
+     * @type {{ [key: string]: { [key: string]: any; }; }}
      * @memberof IRetrieveAggregateUsageResponse
      */
-    'usage'?: { [key: string]: object; };
+    'usage'?: { [key: string]: { [key: string]: any; }; };
 }
 /**
  * 
@@ -901,6 +932,37 @@ export interface IRetrieveKeyResponse {
      * @memberof IRetrieveKeyResponse
      */
     'key'?: IApiKey;
+}
+/**
+ * 
+ * @export
+ * @interface IRetrievedCloudWebSocketsRouteResponse
+ */
+export interface IRetrievedCloudWebSocketsRouteResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof IRetrievedCloudWebSocketsRouteResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof IRetrievedCloudWebSocketsRouteResponse
+     */
+    'message'?: string;
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: WebSocketStateItem; }}
+     * @memberof IRetrievedCloudWebSocketsRouteResponse
+     */
+    'state'?: { [key: string]: WebSocketStateItem; };
+    /**
+     * 
+     * @type {number}
+     * @memberof IRetrievedCloudWebSocketsRouteResponse
+     */
+    'connections'?: number;
 }
 /**
  * 
@@ -1205,6 +1267,12 @@ export interface IWebcastRoomIdRouteResponse {
      * @type {boolean}
      * @memberof IWebcastRoomIdRouteResponse
      */
+    'is_live'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof IWebcastRoomIdRouteResponse
+     */
     'ok': boolean;
     /**
      * 
@@ -1212,12 +1280,6 @@ export interface IWebcastRoomIdRouteResponse {
      * @memberof IWebcastRoomIdRouteResponse
      */
     'routes_attempted': Array<string>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IWebcastRoomIdRouteResponse
-     */
-    'is_live'?: boolean;
 }
 /**
  * 
@@ -1259,46 +1321,126 @@ export interface IWebcastRoomInfoRouteResponse {
 /**
  * 
  * @export
+ * @interface JWTConfig
+ */
+export interface JWTConfig {
+    /**
+     * 
+     * @type {string}
+     * @memberof JWTConfig
+     */
+    'id': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof JWTConfig
+     */
+    'expiresAt': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof JWTConfig
+     */
+    'ttl': number;
+    /**
+     * 
+     * @type {JWTConfigAccountData}
+     * @memberof JWTConfig
+     */
+    'accountData': JWTConfigAccountData;
+    /**
+     * 
+     * @type {JWTConfigApiKeyData}
+     * @memberof JWTConfig
+     */
+    'apiKeyData': JWTConfigApiKeyData;
+    /**
+     * 
+     * @type {WebSocketJWTLimits}
+     * @memberof JWTConfig
+     */
+    'webSocketData': WebSocketJWTLimits;
+    /**
+     * 
+     * @type {string}
+     * @memberof JWTConfig
+     */
+    'name': string | null;
+}
+/**
+ * 
+ * @export
+ * @interface JWTConfigAccountData
+ */
+export interface JWTConfigAccountData {
+    /**
+     * 
+     * @type {number}
+     * @memberof JWTConfigAccountData
+     */
+    'day': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof JWTConfigAccountData
+     */
+    'minute': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof JWTConfigAccountData
+     */
+    'hour': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof JWTConfigAccountData
+     */
+    'id': number;
+}
+/**
+ * 
+ * @export
+ * @interface JWTConfigApiKeyData
+ */
+export interface JWTConfigApiKeyData {
+    /**
+     * 
+     * @type {number}
+     * @memberof JWTConfigApiKeyData
+     */
+    'id': number;
+}
+/**
+ * 
+ * @export
  * @interface JWTCreateConfig
  */
 export interface JWTCreateConfig {
     /**
      * 
-     * @type {JWTCreateConfigLimits}
+     * @type {IAccountRequestLimits}
      * @memberof JWTCreateConfig
      */
-    'limits': JWTCreateConfigLimits;
+    'limits'?: IAccountRequestLimits | null;
+    /**
+     * 
+     * @type {WebSocketJWTLimits}
+     * @memberof JWTCreateConfig
+     */
+    'websockets'?: WebSocketJWTLimits | null;
     /**
      * 
      * @type {number}
      * @memberof JWTCreateConfig
      */
     'expireAfter': number;
-}
-/**
- * 
- * @export
- * @interface JWTCreateConfigLimits
- */
-export interface JWTCreateConfigLimits {
     /**
      * 
-     * @type {number}
-     * @memberof JWTCreateConfigLimits
+     * @type {string}
+     * @memberof JWTCreateConfig
      */
-    'minute': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof JWTCreateConfigLimits
-     */
-    'hour': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof JWTCreateConfigLimits
-     */
-    'day': number;
+    'name'?: string;
 }
 /**
  * 
@@ -1310,8 +1452,10 @@ export const LiveClient = {
     TtliveJava: 'ttlive-java',
     TtliveNode: 'ttlive-node',
     TtlivePython: 'ttlive-python',
+    TtliveNet: 'ttlive-net',
     TtliveRust: 'ttlive-rust',
-    TtliveGo: 'ttlive-go',
+    GotiktokLive: 'gotiktok_live',
+    TtliveCloudflare: 'ttlive-cloudflare',
     TtliveOther: 'ttlive-other'
 } as const;
 
@@ -1431,10 +1575,10 @@ export interface PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVe
     'requestHeaders'?: { [key: string]: string; };
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<{ [key: string]: any; }>}
      * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
      */
-    'cookies'?: Array<object>;
+    'cookies'?: Array<{ [key: string]: any; }>;
 }
 /**
  * Make all properties in T optional
@@ -1591,10 +1735,10 @@ export interface SignWebcastUrl200Response {
 export interface TikTokLiveUser {
     /**
      * Construct a type with a set of properties K of type T
-     * @type {object}
+     * @type {{ [key: string]: any; }}
      * @memberof TikTokLiveUser
      */
-    'raw': object;
+    'raw': { [key: string]: any; };
     /**
      * 
      * @type {PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString}
@@ -1674,6 +1818,50 @@ export interface TikTokLiveUserUser {
      * @memberof TikTokLiveUserUser
      */
     'unique_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface WebSocketJWTLimits
+ */
+export interface WebSocketJWTLimits {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof WebSocketJWTLimits
+     */
+    'allowedCreators': Array<string> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebSocketJWTLimits
+     */
+    'maxWebSockets': number;
+}
+/**
+ * 
+ * @export
+ * @interface WebSocketStateItem
+ */
+export interface WebSocketStateItem {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebSocketStateItem
+     */
+    'jwtName': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebSocketStateItem
+     */
+    'jwtId': string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebSocketStateItem
+     */
+    'heartbeat': number;
 }
 
 /**
@@ -3747,6 +3935,41 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * Retrieve the currently connected WebSocket clients for your account. Only for paid plans.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConnectedWebSockets: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/webcast/websockets`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "apiKey", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve the rate limits for the provided API key (or the unauthenticated limits if no key is provided)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3985,6 +4208,17 @@ export const WebcastApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Retrieve the currently connected WebSocket clients for your account. Only for paid plans.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getConnectedWebSockets(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IRetrievedCloudWebSocketsRouteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getConnectedWebSockets(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebcastApi.getConnectedWebSockets']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Retrieve the rate limits for the provided API key (or the unauthenticated limits if no key is provided)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4071,6 +4305,14 @@ export const WebcastApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, ttTargetIdc, options).then((request) => request(axios, basePath));
         },
         /**
+         * Retrieve the currently connected WebSocket clients for your account. Only for paid plans.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConnectedWebSockets(options?: RawAxiosRequestConfig): AxiosPromise<IRetrievedCloudWebSocketsRouteResponse> {
+            return localVarFp.getConnectedWebSockets(options).then((request) => request(axios, basePath));
+        },
+        /**
          * Retrieve the rate limits for the provided API key (or the unauthenticated limits if no key is provided)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4141,6 +4383,16 @@ export class WebcastApi extends BaseAPI {
      */
     public fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, preferredAgentIds?: string, ttTargetIdc?: string, options?: RawAxiosRequestConfig) {
         return WebcastApiFp(this.configuration).fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, ttTargetIdc, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve the currently connected WebSocket clients for your account. Only for paid plans.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebcastApi
+     */
+    public getConnectedWebSockets(options?: RawAxiosRequestConfig) {
+        return WebcastApiFp(this.configuration).getConnectedWebSockets(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -1,4 +1,4 @@
-# ICreateJWTResponse
+# IRetrievedCloudWebSocketsRouteResponse
 
 
 ## Properties
@@ -7,19 +7,19 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **number** |  | [default to undefined]
 **message** | **string** |  | [optional] [default to undefined]
-**token** | **string** |  | [optional] [default to undefined]
-**config** | [**JWTConfig**](JWTConfig.md) |  | [optional] [default to undefined]
+**state** | [**{ [key: string]: WebSocketStateItem; }**](WebSocketStateItem.md) | Construct a type with a set of properties K of type T | [optional] [default to undefined]
+**connections** | **number** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import { ICreateJWTResponse } from './api';
+import { IRetrievedCloudWebSocketsRouteResponse } from './api';
 
-const instance: ICreateJWTResponse = {
+const instance: IRetrievedCloudWebSocketsRouteResponse = {
     code,
     message,
-    token,
-    config,
+    state,
+    connections,
 };
 ```
 

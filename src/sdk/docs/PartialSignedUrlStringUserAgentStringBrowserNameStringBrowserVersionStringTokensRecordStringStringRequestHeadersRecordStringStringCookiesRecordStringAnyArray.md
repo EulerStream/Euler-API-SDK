@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **browserVersion** | **string** |  | [optional] [default to undefined]
 **tokens** | **{ [key: string]: string; }** | Construct a type with a set of properties K of type T | [optional] [default to undefined]
 **requestHeaders** | **{ [key: string]: string; }** | Construct a type with a set of properties K of type T | [optional] [default to undefined]
-**cookies** | **Array&lt;object&gt;** |  | [optional] [default to undefined]
+**cookies** | **Array&lt;{ [key: string]: any; }&gt;** |  | [optional] [default to undefined]
 
 ## Example
 

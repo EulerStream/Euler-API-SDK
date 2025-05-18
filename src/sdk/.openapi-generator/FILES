@@ -10,6 +10,7 @@ docs/AlertsApi.md
 docs/AnalyticsApi.md
 docs/ApiRoutes.md
 docs/AuthenticationApi.md
+docs/IAccountRequestLimits.md
 docs/IAlert.md
 docs/IAlertConfigBase.md
 docs/IAlertTarget.md
@@ -42,6 +43,7 @@ docs/IRetrieveAggregateUsageResponse.md
 docs/IRetrieveAlertResponse.md
 docs/IRetrieveAlertResponseCreator.md
 docs/IRetrieveKeyResponse.md
+docs/IRetrievedCloudWebSocketsRouteResponse.md
 docs/ISignLogPublic.md
 docs/ISignTikTokUrlBody.md
 docs/ISignTikTokUrlResponse.md
@@ -51,8 +53,10 @@ docs/IWebcastRoomChatPayload.md
 docs/IWebcastRoomChatRouteResponse.md
 docs/IWebcastRoomIdRouteResponse.md
 docs/IWebcastRoomInfoRouteResponse.md
+docs/JWTConfig.md
+docs/JWTConfigAccountData.md
+docs/JWTConfigApiKeyData.md
 docs/JWTCreateConfig.md
-docs/JWTCreateConfigLimits.md
 docs/LiveClient.md
 docs/LogRequestMethod.md
 docs/PartialAvatarUrlStringNicknameStringSecUidStringNumericUidStringSignatureStringIsVerifiedBooleanFollowingNumberFollowersNumber.md
@@ -63,6 +67,8 @@ docs/SignWebcastUrl200Response.md
 docs/TikTokApi.md
 docs/TikTokLiveUser.md
 docs/TikTokLiveUserUser.md
+docs/WebSocketJWTLimits.md
+docs/WebSocketStateItem.md
 docs/WebcastApi.md
 git_push.sh
 index.ts
