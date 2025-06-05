@@ -1,6 +1,6 @@
 {
   "name": "@eulerstream/euler-api-sdk",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Node.js module for interacting with the Euler Stream signature service.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
