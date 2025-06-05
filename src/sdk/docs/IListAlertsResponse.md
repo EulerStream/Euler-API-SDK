@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **number** |  | [default to undefined]
 **message** | **string** |  | [optional] [default to undefined]
-**alerts** | [**Array&lt;IAlert&gt;**](IAlert.md) |  | [optional] [default to undefined]
+**alerts** | [**Array&lt;IAlertWithRoomInfo&gt;**](IAlertWithRoomInfo.md) |  | [optional] [default to undefined]
 
 ## Example
 

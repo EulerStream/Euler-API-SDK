@@ -7,8 +7,10 @@ All URIs are relative to *https://tiktok.eulerstream.com*
 |[**fetchWebcastURL**](#fetchwebcasturl) | **GET** /webcast/fetch | |
 |[**getConnectedWebSockets**](#getconnectedwebsockets) | **GET** /webcast/websockets | |
 |[**getRateLimits**](#getratelimits) | **GET** /webcast/rate_limits | |
+|[**retrieveRoomCover**](#retrieveroomcover) | **GET** /webcast/room_cover | |
 |[**retrieveRoomId**](#retrieveroomid) | **GET** /webcast/room_id | |
 |[**retrieveRoomInfo**](#retrieveroominfo) | **GET** /webcast/room_info | |
+|[**retrieveRoomVideo**](#retrieveroomvideo) | **GET** /webcast/room_video | |
 |[**sendRoomChat**](#sendroomchat) | **POST** /webcast/chat | |
 |[**signWebcastUrl**](#signwebcasturl) | **POST** /webcast/sign_url | |
 
@@ -36,6 +38,7 @@ let sessionId: string; //The session ID used to fetch a privileged WS connection
 let userAgent: string; //Override the user agent used in the signature (optional) (default to undefined)
 let preferredAgentIds: string; //The preferred agent ID (optional) (default to undefined)
 let ttTargetIdc: string; //The target IDC to use for the request (optional) (default to undefined)
+let clientEnter: boolean; //Whether the client is entering the room (optional) (default to undefined)
 
 const { status, data } = await apiInstance.fetchWebcastURL(
     client,
@@ -45,7 +48,8 @@ const { status, data } = await apiInstance.fetchWebcastURL(
     sessionId,
     userAgent,
     preferredAgentIds,
-    ttTargetIdc
+    ttTargetIdc,
+    clientEnter
 );
 ```
 
@@ -61,6 +65,7 @@ const { status, data } = await apiInstance.fetchWebcastURL(
 | **userAgent** | [**string**] | Override the user agent used in the signature | (optional) defaults to undefined|
 | **preferredAgentIds** | [**string**] | The preferred agent ID | (optional) defaults to undefined|
 | **ttTargetIdc** | [**string**] | The target IDC to use for the request | (optional) defaults to undefined|
+| **clientEnter** | [**boolean**] | Whether the client is entering the room | (optional) defaults to undefined|
 
 
 ### Return type
@@ -157,6 +162,57 @@ This endpoint does not have any parameters.
 
 ### Authorization
 
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Ok |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **retrieveRoomCover**
+> IJSONResponse retrieveRoomCover()
+
+Fetch TikTok LIVE Stream Cover URL given a uniqueId.
+
+### Example
+
+```typescript
+import {
+    WebcastApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new WebcastApi(configuration);
+
+let uniqueId: string; //The unique ID of the TikTok to fetch the cover for. (default to undefined)
+
+const { status, data } = await apiInstance.retrieveRoomCover(
+    uniqueId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **uniqueId** | [**string**] | The unique ID of the TikTok to fetch the cover for. | defaults to undefined|
+
+
+### Return type
+
+**IJSONResponse**
+
+### Authorization
+
 [api_key_query](../README.md#api_key_query), [jwt_key_header](../README.md#jwt_key_header), [api_key_header](../README.md#api_key_header)
 
 ### HTTP request headers
@@ -208,7 +264,7 @@ const { status, data } = await apiInstance.retrieveRoomId(
 
 ### Authorization
 
-[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+[api_key_query](../README.md#api_key_query), [jwt_key_header](../README.md#jwt_key_header), [api_key_header](../README.md#api_key_header)
 
 ### HTTP request headers
 
@@ -274,10 +330,64 @@ const { status, data } = await apiInstance.retrieveRoomInfo(
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **retrieveRoomVideo**
+> IJSONResponse retrieveRoomVideo()
+
+Fetch TikTok LIVE Stream video given a uniqueId.
+
+### Example
+
+```typescript
+import {
+    WebcastApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new WebcastApi(configuration);
+
+let uniqueId: string; //The unique ID of the TikTok to fetch the data for. (default to undefined)
+let streamType: StreamType; //The type of video stream to fetch. Default is HLS_SD. (optional) (default to undefined)
+
+const { status, data } = await apiInstance.retrieveRoomVideo(
+    uniqueId,
+    streamType
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **uniqueId** | [**string**] | The unique ID of the TikTok to fetch the data for. | defaults to undefined|
+| **streamType** | **StreamType** | The type of video stream to fetch. Default is HLS_SD. | (optional) defaults to undefined|
+
+
+### Return type
+
+**IJSONResponse**
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [jwt_key_header](../README.md#jwt_key_header), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Ok |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **sendRoomChat**
 > IWebcastRoomChatRouteResponse sendRoomChat(iWebcastRoomChatPayload)
 
-Fetch Room Info for a given uniqueId. This is a premium endpoint that bypasses TikTok captchas. It is counted towards your request quota.
+Send a chat to a TikTok LIVE room.
 
 ### Example
 

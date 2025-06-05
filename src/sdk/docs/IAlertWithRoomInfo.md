@@ -1,4 +1,4 @@
-# IAlert
+# IAlertWithRoomInfo
 
 
 ## Properties
@@ -12,13 +12,14 @@ Name | Type | Description | Notes
 **created_at** | **string** |  | [default to undefined]
 **alert_creator_username** | **string** |  | [default to undefined]
 **read_only** | **boolean** |  | [default to undefined]
+**room_info** | [**TikTokLiveRoomInfo**](TikTokLiveRoomInfo.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import { IAlert } from './api';
+import { IAlertWithRoomInfo } from './api';
 
-const instance: IAlert = {
+const instance: IAlertWithRoomInfo = {
     unique_id,
     account_id,
     alert_creator_id,
@@ -26,6 +27,7 @@ const instance: IAlert = {
     created_at,
     alert_creator_username,
     read_only,
+    room_info,
 };
 ```
 

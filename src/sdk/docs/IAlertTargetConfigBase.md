@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **url** | **string** |  | [default to undefined]
+**metadata** | **{ [key: string]: any; }** | Construct a type with a set of properties K of type T | [optional] [default to undefined]
 
 ## Example
 
@@ -14,6 +15,7 @@ import { IAlertTargetConfigBase } from './api';
 
 const instance: IAlertTargetConfigBase = {
     url,
+    metadata,
 };
 ```
 

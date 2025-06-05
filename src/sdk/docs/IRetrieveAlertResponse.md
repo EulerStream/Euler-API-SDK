@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **message** | **string** |  | [optional] [default to undefined]
 **alert** | [**IAlert**](IAlert.md) |  | [optional] [default to undefined]
 **creator** | [**IRetrieveAlertResponseCreator**](IRetrieveAlertResponseCreator.md) |  | [optional] [default to undefined]
+**room_info** | [**TikTokLiveRoomInfo**](TikTokLiveRoomInfo.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -20,6 +21,7 @@ const instance: IRetrieveAlertResponse = {
     message,
     alert,
     creator,
+    room_info,
 };
 ```
 

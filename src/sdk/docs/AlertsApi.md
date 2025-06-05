@@ -79,9 +79,11 @@ const configuration = new Configuration();
 const apiInstance = new AlertsApi(configuration);
 
 let accountId: number; // (default to undefined)
+let includeRoomInfo: boolean; // (optional) (default to false)
 
 const { status, data } = await apiInstance.listAlerts(
-    accountId
+    accountId,
+    includeRoomInfo
 );
 ```
 
@@ -90,6 +92,7 @@ const { status, data } = await apiInstance.listAlerts(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | [**number**] |  | defaults to undefined|
+| **includeRoomInfo** | [**boolean**] |  | (optional) defaults to false|
 
 
 ### Return type
@@ -131,10 +134,12 @@ const apiInstance = new AlertsApi(configuration);
 
 let accountId: number; //The account that the alert belongs to (default to undefined)
 let alertId: number; //The ID of the alert to retrieve (default to undefined)
+let includeRoomInfo: boolean; //Whether to include room information in the response (optional) (default to false)
 
 const { status, data } = await apiInstance.retrieveAlert(
     accountId,
-    alertId
+    alertId,
+    includeRoomInfo
 );
 ```
 
@@ -144,6 +149,7 @@ const { status, data } = await apiInstance.retrieveAlert(
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | [**number**] | The account that the alert belongs to | defaults to undefined|
 | **alertId** | [**number**] | The ID of the alert to retrieve | defaults to undefined|
+| **includeRoomInfo** | [**boolean**] | Whether to include room information in the response | (optional) defaults to false|
 
 
 ### Return type

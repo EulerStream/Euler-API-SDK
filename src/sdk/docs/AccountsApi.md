@@ -53,7 +53,7 @@ const { status, data } = await apiInstance.countSignUsage(
 
 ### Authorization
 
-[api_key_query](../README.md#api_key_query), [jwt_key_header](../README.md#jwt_key_header), [api_key_header](../README.md#api_key_header)
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
 
 ### HTTP request headers
 
@@ -116,7 +116,7 @@ const { status, data } = await apiInstance.getSignUsage(
 
 ### Authorization
 
-[api_key_query](../README.md#api_key_query), [jwt_key_header](../README.md#jwt_key_header), [api_key_header](../README.md#api_key_header)
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
 
 ### HTTP request headers
 
@@ -173,7 +173,7 @@ const { status, data } = await apiInstance.retrieveAggregateUsage(
 
 ### Authorization
 
-[api_key_query](../README.md#api_key_query), [jwt_key_header](../README.md#jwt_key_header), [api_key_header](../README.md#api_key_header)
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
 
 ### HTTP request headers
 

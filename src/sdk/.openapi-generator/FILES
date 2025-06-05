@@ -17,6 +17,7 @@ docs/IAlertTarget.md
 docs/IAlertTargetConfigBase.md
 docs/IAlertTargetFormat.md
 docs/IAlertTargetStatus.md
+docs/IAlertWithRoomInfo.md
 docs/IApiKey.md
 docs/IApiKeyConfig.md
 docs/IApiKeyConfigBase.md
@@ -64,11 +65,11 @@ docs/PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringT
 docs/PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString.md
 docs/Pips200Response.md
 docs/SignWebcastUrl200Response.md
-docs/TikTokApi.md
-docs/TikTokLiveUser.md
-docs/TikTokLiveUserUser.md
+docs/StreamType.md
+docs/TikTokLiveRoomInfo.md
+docs/TikTokLiveRoomInfoUser.md
 docs/WebSocketJWTLimits.md
-docs/WebSocketStateItem.md
+docs/WebSocketState.md
 docs/WebcastApi.md
 git_push.sh
 index.ts

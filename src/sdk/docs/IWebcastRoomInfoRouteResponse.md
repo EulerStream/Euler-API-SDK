@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **number** |  | [default to undefined]
 **message** | **string** |  | [optional] [default to undefined]
-**data** | [**TikTokLiveUser**](TikTokLiveUser.md) |  | [optional] [default to undefined]
+**data** | [**TikTokLiveRoomInfo**](TikTokLiveRoomInfo.md) |  | [optional] [default to undefined]
 **ok** | **boolean** |  | [default to undefined]
 **routes_attempted** | [**Array&lt;ApiRoutes&gt;**](ApiRoutes.md) |  | [default to undefined]
 
