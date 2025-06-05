@@ -1,4 +1,4 @@
-import {AccountsApi, AlertsApi, AnalyticsApi, AuthenticationApi, TikTokApi, WebcastApi} from "@/sdk";
+import {AccountsApi, AlertsApi, AnalyticsApi, AuthenticationApi, WebcastApi} from "@/sdk";
 import {buildConfig, ClientConfiguration} from "@/utils";
 
 // Exports
@@ -8,7 +8,6 @@ export * from './utils';
 // Export an API Client
 export default class EulerStreamApiClient {
 
-  public readonly tiktok: TikTokApi;
   public readonly webcast: WebcastApi;
   public readonly accounts: AccountsApi;
   public readonly authentication: AuthenticationApi;
@@ -35,7 +34,6 @@ export default class EulerStreamApiClient {
     this.configuration = buildConfig(config);
 
     // Set up the APIs
-    this.tiktok = new TikTokApi(this.configuration);
     this.webcast = new WebcastApi(this.configuration);
     this.accounts = new AccountsApi(this.configuration);
     this.authentication = new AuthenticationApi(this.configuration);
