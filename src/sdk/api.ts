@@ -505,6 +505,25 @@ export interface ICreateKeyResponse {
 /**
  * 
  * @export
+ * @interface IDeleteAlertResponse
+ */
+export interface IDeleteAlertResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof IDeleteAlertResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof IDeleteAlertResponse
+     */
+    'message'?: string;
+}
+/**
+ * 
+ * @export
  * @interface IDeleteAlertTargetResponse
  */
 export interface IDeleteAlertTargetResponse {
@@ -683,10 +702,10 @@ export interface IHostsResponse {
     'message'?: string;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<PeerPresence>}
      * @memberof IHostsResponse
      */
-    'hosts'?: Array<string>;
+    'hosts'?: Array<PeerPresence>;
 }
 /**
  * 
@@ -870,35 +889,10 @@ export interface IRetrieveAgentHostsResponse {
     'message'?: string;
     /**
      * 
-     * @type {IRetrieveAgentHostsResponseAgents}
+     * @type {Array<PeerPresence>}
      * @memberof IRetrieveAgentHostsResponse
      */
-    'agents': IRetrieveAgentHostsResponseAgents;
-}
-/**
- * 
- * @export
- * @interface IRetrieveAgentHostsResponseAgents
- */
-export interface IRetrieveAgentHostsResponseAgents {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof IRetrieveAgentHostsResponseAgents
-     */
-    'enterprise': Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof IRetrieveAgentHostsResponseAgents
-     */
-    'tiktory': Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof IRetrieveAgentHostsResponseAgents
-     */
-    'public': Array<string>;
+    'agents': Array<PeerPresence>;
 }
 /**
  * 
@@ -1744,6 +1738,60 @@ export interface PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStri
      */
     'flv_pull_url_ld'?: string;
 }
+/**
+ * 
+ * @export
+ * @interface PeerPresence
+ */
+export interface PeerPresence {
+    /**
+     * 
+     * @type {number}
+     * @memberof PeerPresence
+     */
+    'lastSeen': number;
+    /**
+     * 
+     * @type {PeerRole}
+     * @memberof PeerPresence
+     */
+    'role': PeerRole;
+    /**
+     * 
+     * @type {string}
+     * @memberof PeerPresence
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PeerPresence
+     */
+    'type': PeerPresenceTypeEnum;
+}
+
+export const PeerPresenceTypeEnum = {
+    Api: 'api',
+    Agent: 'agent'
+} as const;
+
+export type PeerPresenceTypeEnum = typeof PeerPresenceTypeEnum[keyof typeof PeerPresenceTypeEnum];
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const PeerRole = {
+    Public: 'public',
+    Enterprise: 'enterprise',
+    Staging: 'staging'
+} as const;
+
+export type PeerRole = typeof PeerRole[keyof typeof PeerRole];
+
+
 /**
  * 
  * @export
@@ -2770,6 +2818,52 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
+         * Delete an alert from the Sign API
+         * @param {number} accountId The ID of the account to delete the alert from
+         * @param {number} alertId The ID of the alert to delete
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteAlert: async (accountId: number, alertId: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('deleteAlert', 'accountId', accountId)
+            // verify required parameter 'alertId' is not null or undefined
+            assertParamExists('deleteAlert', 'alertId', alertId)
+            const localVarPath = `/accounts/{account_id}/alerts/{alert_id}/delete`
+                .replace(`{${"account_id"}}`, encodeURIComponent(String(accountId)))
+                .replace(`{${"alert_id"}}`, encodeURIComponent(String(alertId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "apiKey", configuration)
+
+            // authentication jwt_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "x-jwt-key", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * 
          * @param {number} accountId 
          * @param {boolean} [includeRoomInfo] 
@@ -2891,6 +2985,19 @@ export const AlertsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Delete an alert from the Sign API
+         * @param {number} accountId The ID of the account to delete the alert from
+         * @param {number} alertId The ID of the alert to delete
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteAlert(accountId: number, alertId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IDeleteAlertResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteAlert(accountId, alertId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AlertsApi.deleteAlert']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * 
          * @param {number} accountId 
          * @param {boolean} [includeRoomInfo] 
@@ -2938,6 +3045,16 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.createAlert(accountId, iAlertConfigBase, options).then((request) => request(axios, basePath));
         },
         /**
+         * Delete an alert from the Sign API
+         * @param {number} accountId The ID of the account to delete the alert from
+         * @param {number} alertId The ID of the alert to delete
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteAlert(accountId: number, alertId: number, options?: RawAxiosRequestConfig): AxiosPromise<IDeleteAlertResponse> {
+            return localVarFp.deleteAlert(accountId, alertId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * 
          * @param {number} accountId 
          * @param {boolean} [includeRoomInfo] 
@@ -2981,6 +3098,18 @@ export class AlertsApi extends BaseAPI {
     }
 
     /**
+     * Delete an alert from the Sign API
+     * @param {number} accountId The ID of the account to delete the alert from
+     * @param {number} alertId The ID of the alert to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AlertsApi
+     */
+    public deleteAlert(accountId: number, alertId: number, options?: RawAxiosRequestConfig) {
+        return AlertsApiFp(this.configuration).deleteAlert(accountId, alertId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * 
      * @param {number} accountId 
      * @param {boolean} [includeRoomInfo] 
@@ -3015,7 +3144,7 @@ export class AlertsApi extends BaseAPI {
 export const AnalyticsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Fetch a webcast URL for a given room ID
+         * Retrieve the currently connected agents
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3141,7 +3270,7 @@ export const AnalyticsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AnalyticsApiAxiosParamCreator(configuration)
     return {
         /**
-         * Fetch a webcast URL for a given room ID
+         * Retrieve the currently connected agents
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3190,7 +3319,7 @@ export const AnalyticsApiFactory = function (configuration?: Configuration, base
     const localVarFp = AnalyticsApiFp(configuration)
     return {
         /**
-         * Fetch a webcast URL for a given room ID
+         * Retrieve the currently connected agents
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3230,7 +3359,7 @@ export const AnalyticsApiFactory = function (configuration?: Configuration, base
  */
 export class AnalyticsApi extends BaseAPI {
     /**
-     * Fetch a webcast URL for a given room ID
+     * Retrieve the currently connected agents
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AnalyticsApi
@@ -3859,13 +3988,12 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
          * @param {string} [cursor] The cursor to fetch the webcast URL for
          * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
          * @param {string} [userAgent] Override the user agent used in the signature
-         * @param {string} [preferredAgentIds] The preferred agent ID
          * @param {string} [ttTargetIdc] The target IDC to use for the request
          * @param {boolean} [clientEnter] Whether the client is entering the room
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchWebcastURL: async (client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, preferredAgentIds?: string, ttTargetIdc?: string, clientEnter?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchWebcastURL: async (client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'client' is not null or undefined
             assertParamExists('fetchWebcastURL', 'client', client)
             const localVarPath = `/webcast/fetch`;
@@ -3911,10 +4039,6 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
 
             if (userAgent !== undefined) {
                 localVarQueryParameter['user_agent'] = userAgent;
-            }
-
-            if (preferredAgentIds !== undefined) {
-                localVarQueryParameter['preferred_agent_ids'] = preferredAgentIds;
             }
 
             if (ttTargetIdc !== undefined) {
@@ -4097,12 +4221,13 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Fetch Room Info for a given uniqueId. This is a premium endpoint that bypasses TikTok captchas. It is counted towards your request quota.
-         * @param {string} uniqueId The unique ID of the TikTok user to fetch data for
+         * Retrieve TikTok Live Room Information
+         * @param {string} uniqueId The unique identifier for the TikTok user or room
+         * @param {boolean} [giftInfo] Optional flag to include gift information in the response
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveRoomInfo: async (uniqueId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        retrieveRoomInfo: async (uniqueId: string, giftInfo?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'uniqueId' is not null or undefined
             assertParamExists('retrieveRoomInfo', 'uniqueId', uniqueId)
             const localVarPath = `/webcast/room_info`;
@@ -4125,6 +4250,10 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
 
             if (uniqueId !== undefined) {
                 localVarQueryParameter['uniqueId'] = uniqueId;
+            }
+
+            if (giftInfo !== undefined) {
+                localVarQueryParameter['giftInfo'] = giftInfo;
             }
 
 
@@ -4232,11 +4361,10 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @param {ISignTikTokUrlBody} iSignTikTokUrlBody 
-         * @param {string} [preferredAgentId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        signWebcastUrl: async (iSignTikTokUrlBody: ISignTikTokUrlBody, preferredAgentId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        signWebcastUrl: async (iSignTikTokUrlBody: ISignTikTokUrlBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'iSignTikTokUrlBody' is not null or undefined
             assertParamExists('signWebcastUrl', 'iSignTikTokUrlBody', iSignTikTokUrlBody)
             const localVarPath = `/webcast/sign_url`;
@@ -4256,10 +4384,6 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
 
             // authentication api_key_header required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
-
-            if (preferredAgentId !== undefined) {
-                localVarQueryParameter['preferred_agent_id'] = preferredAgentId;
-            }
 
 
     
@@ -4293,14 +4417,13 @@ export const WebcastApiFp = function(configuration?: Configuration) {
          * @param {string} [cursor] The cursor to fetch the webcast URL for
          * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
          * @param {string} [userAgent] Override the user agent used in the signature
-         * @param {string} [preferredAgentIds] The preferred agent ID
          * @param {string} [ttTargetIdc] The target IDC to use for the request
          * @param {boolean} [clientEnter] Whether the client is entering the room
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, preferredAgentIds?: string, ttTargetIdc?: string, clientEnter?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, ttTargetIdc, clientEnter, options);
+        async fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, ttTargetIdc, clientEnter, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebcastApi.fetchWebcastURL']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4352,13 +4475,14 @@ export const WebcastApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Fetch Room Info for a given uniqueId. This is a premium endpoint that bypasses TikTok captchas. It is counted towards your request quota.
-         * @param {string} uniqueId The unique ID of the TikTok user to fetch data for
+         * Retrieve TikTok Live Room Information
+         * @param {string} uniqueId The unique identifier for the TikTok user or room
+         * @param {boolean} [giftInfo] Optional flag to include gift information in the response
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveRoomInfo(uniqueId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IWebcastRoomInfoRouteResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveRoomInfo(uniqueId, options);
+        async retrieveRoomInfo(uniqueId: string, giftInfo?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IWebcastRoomInfoRouteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveRoomInfo(uniqueId, giftInfo, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebcastApi.retrieveRoomInfo']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4391,12 +4515,11 @@ export const WebcastApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {ISignTikTokUrlBody} iSignTikTokUrlBody 
-         * @param {string} [preferredAgentId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async signWebcastUrl(iSignTikTokUrlBody: ISignTikTokUrlBody, preferredAgentId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SignWebcastUrl200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.signWebcastUrl(iSignTikTokUrlBody, preferredAgentId, options);
+        async signWebcastUrl(iSignTikTokUrlBody: ISignTikTokUrlBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SignWebcastUrl200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.signWebcastUrl(iSignTikTokUrlBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebcastApi.signWebcastUrl']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4419,14 +4542,13 @@ export const WebcastApiFactory = function (configuration?: Configuration, basePa
          * @param {string} [cursor] The cursor to fetch the webcast URL for
          * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
          * @param {string} [userAgent] Override the user agent used in the signature
-         * @param {string} [preferredAgentIds] The preferred agent ID
          * @param {string} [ttTargetIdc] The target IDC to use for the request
          * @param {boolean} [clientEnter] Whether the client is entering the room
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, preferredAgentIds?: string, ttTargetIdc?: string, clientEnter?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, ttTargetIdc, clientEnter, options).then((request) => request(axios, basePath));
+        fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, ttTargetIdc, clientEnter, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve the currently connected WebSocket clients for your account. Only for paid plans.
@@ -4463,13 +4585,14 @@ export const WebcastApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.retrieveRoomId(uniqueId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetch Room Info for a given uniqueId. This is a premium endpoint that bypasses TikTok captchas. It is counted towards your request quota.
-         * @param {string} uniqueId The unique ID of the TikTok user to fetch data for
+         * Retrieve TikTok Live Room Information
+         * @param {string} uniqueId The unique identifier for the TikTok user or room
+         * @param {boolean} [giftInfo] Optional flag to include gift information in the response
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveRoomInfo(uniqueId: string, options?: RawAxiosRequestConfig): AxiosPromise<IWebcastRoomInfoRouteResponse> {
-            return localVarFp.retrieveRoomInfo(uniqueId, options).then((request) => request(axios, basePath));
+        retrieveRoomInfo(uniqueId: string, giftInfo?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<IWebcastRoomInfoRouteResponse> {
+            return localVarFp.retrieveRoomInfo(uniqueId, giftInfo, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch TikTok LIVE Stream video given a uniqueId.
@@ -4493,12 +4616,11 @@ export const WebcastApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @param {ISignTikTokUrlBody} iSignTikTokUrlBody 
-         * @param {string} [preferredAgentId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        signWebcastUrl(iSignTikTokUrlBody: ISignTikTokUrlBody, preferredAgentId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SignWebcastUrl200Response> {
-            return localVarFp.signWebcastUrl(iSignTikTokUrlBody, preferredAgentId, options).then((request) => request(axios, basePath));
+        signWebcastUrl(iSignTikTokUrlBody: ISignTikTokUrlBody, options?: RawAxiosRequestConfig): AxiosPromise<SignWebcastUrl200Response> {
+            return localVarFp.signWebcastUrl(iSignTikTokUrlBody, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -4518,15 +4640,14 @@ export class WebcastApi extends BaseAPI {
      * @param {string} [cursor] The cursor to fetch the webcast URL for
      * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
      * @param {string} [userAgent] Override the user agent used in the signature
-     * @param {string} [preferredAgentIds] The preferred agent ID
      * @param {string} [ttTargetIdc] The target IDC to use for the request
      * @param {boolean} [clientEnter] Whether the client is entering the room
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebcastApi
      */
-    public fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, preferredAgentIds?: string, ttTargetIdc?: string, clientEnter?: boolean, options?: RawAxiosRequestConfig) {
-        return WebcastApiFp(this.configuration).fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, preferredAgentIds, ttTargetIdc, clientEnter, options).then((request) => request(this.axios, this.basePath));
+    public fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, options?: RawAxiosRequestConfig) {
+        return WebcastApiFp(this.configuration).fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, ttTargetIdc, clientEnter, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4572,14 +4693,15 @@ export class WebcastApi extends BaseAPI {
     }
 
     /**
-     * Fetch Room Info for a given uniqueId. This is a premium endpoint that bypasses TikTok captchas. It is counted towards your request quota.
-     * @param {string} uniqueId The unique ID of the TikTok user to fetch data for
+     * Retrieve TikTok Live Room Information
+     * @param {string} uniqueId The unique identifier for the TikTok user or room
+     * @param {boolean} [giftInfo] Optional flag to include gift information in the response
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebcastApi
      */
-    public retrieveRoomInfo(uniqueId: string, options?: RawAxiosRequestConfig) {
-        return WebcastApiFp(this.configuration).retrieveRoomInfo(uniqueId, options).then((request) => request(this.axios, this.basePath));
+    public retrieveRoomInfo(uniqueId: string, giftInfo?: boolean, options?: RawAxiosRequestConfig) {
+        return WebcastApiFp(this.configuration).retrieveRoomInfo(uniqueId, giftInfo, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4608,13 +4730,12 @@ export class WebcastApi extends BaseAPI {
     /**
      * 
      * @param {ISignTikTokUrlBody} iSignTikTokUrlBody 
-     * @param {string} [preferredAgentId] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebcastApi
      */
-    public signWebcastUrl(iSignTikTokUrlBody: ISignTikTokUrlBody, preferredAgentId?: string, options?: RawAxiosRequestConfig) {
-        return WebcastApiFp(this.configuration).signWebcastUrl(iSignTikTokUrlBody, preferredAgentId, options).then((request) => request(this.axios, this.basePath));
+    public signWebcastUrl(iSignTikTokUrlBody: ISignTikTokUrlBody, options?: RawAxiosRequestConfig) {
+        return WebcastApiFp(this.configuration).signWebcastUrl(iSignTikTokUrlBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
