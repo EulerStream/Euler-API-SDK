@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@openapitools/openapi-generator-cli':
-        specifier: ^2.20.0
-        version: 2.20.0
       axios:
         specifier: ^1.9.0
         version: 1.9.0
@@ -24,6 +21,9 @@ importers:
       '@babel/preset-env':
         specifier: ^7.16.11
         version: 7.27.1(@babel/core@7.27.1)
+      '@openapitools/openapi-generator-cli':
+        specifier: ^2.20.0
+        version: 2.20.0
       '@types/node':
         specifier: ^22.15.3
         version: 22.15.3
