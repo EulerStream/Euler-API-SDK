@@ -26,6 +26,7 @@ docs/ICreateAlertResponse.md
 docs/ICreateAlertTargetResponse.md
 docs/ICreateJWTResponse.md
 docs/ICreateKeyResponse.md
+docs/IDeleteAlertResponse.md
 docs/IDeleteAlertTargetResponse.md
 docs/IDeleteKeyResponse.md
 docs/IGetRateLimits.md
@@ -39,7 +40,6 @@ docs/IListKeysResponse.md
 docs/IPipResponse.md
 docs/IRateLimitInfo.md
 docs/IRetrieveAgentHostsResponse.md
-docs/IRetrieveAgentHostsResponseAgents.md
 docs/IRetrieveAggregateUsageResponse.md
 docs/IRetrieveAlertResponse.md
 docs/IRetrieveAlertResponseCreator.md
@@ -63,6 +63,8 @@ docs/LogRequestMethod.md
 docs/PartialAvatarUrlStringNicknameStringSecUidStringNumericUidStringSignatureStringIsVerifiedBooleanFollowingNumberFollowersNumber.md
 docs/PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray.md
 docs/PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString.md
+docs/PeerPresence.md
+docs/PeerRole.md
 docs/Pips200Response.md
 docs/SignWebcastUrl200Response.md
 docs/StreamType.md

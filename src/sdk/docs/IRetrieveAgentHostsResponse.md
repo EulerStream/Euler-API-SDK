@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **number** |  | [default to undefined]
 **message** | **string** |  | [optional] [default to undefined]
-**agents** | [**IRetrieveAgentHostsResponseAgents**](IRetrieveAgentHostsResponseAgents.md) |  | [default to undefined]
+**agents** | [**Array&lt;PeerPresence&gt;**](PeerPresence.md) |  | [default to undefined]
 
 ## Example
 

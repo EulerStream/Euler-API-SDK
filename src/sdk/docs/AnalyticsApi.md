@@ -11,7 +11,7 @@ All URIs are relative to *https://tiktok.eulerstream.com*
 # **fetchAgents**
 > IRetrieveAgentHostsResponse fetchAgents()
 
-Fetch a webcast URL for a given room ID
+Retrieve the currently connected agents
 
 ### Example
 
@@ -48,7 +48,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | All registered agents &amp; whether they are online/offline |  -  |
+|**200** | All registered agents |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

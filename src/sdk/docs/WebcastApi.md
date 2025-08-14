@@ -15,7 +15,7 @@ All URIs are relative to *https://tiktok.eulerstream.com*
 |[**signWebcastUrl**](#signwebcasturl) | **POST** /webcast/sign_url | |
 
 # **fetchWebcastURL**
-> fetchWebcastURL()
+> object fetchWebcastURL()
 
 Fetch the WebSocket URL & first payload for a TikTok LIVE Room given a Room Id.
 
@@ -36,7 +36,6 @@ let uniqueId: string; //The unique ID of the TikTok user. Only available to Ente
 let cursor: string; //The cursor to fetch the webcast URL for (optional) (default to undefined)
 let sessionId: string; //The session ID used to fetch a privileged WS connection (optional) (default to undefined)
 let userAgent: string; //Override the user agent used in the signature (optional) (default to undefined)
-let preferredAgentIds: string; //The preferred agent ID (optional) (default to undefined)
 let ttTargetIdc: string; //The target IDC to use for the request (optional) (default to undefined)
 let clientEnter: boolean; //Whether the client is entering the room (optional) (default to undefined)
 
@@ -47,7 +46,6 @@ const { status, data } = await apiInstance.fetchWebcastURL(
     cursor,
     sessionId,
     userAgent,
-    preferredAgentIds,
     ttTargetIdc,
     clientEnter
 );
@@ -63,14 +61,13 @@ const { status, data } = await apiInstance.fetchWebcastURL(
 | **cursor** | [**string**] | The cursor to fetch the webcast URL for | (optional) defaults to undefined|
 | **sessionId** | [**string**] | The session ID used to fetch a privileged WS connection | (optional) defaults to undefined|
 | **userAgent** | [**string**] | Override the user agent used in the signature | (optional) defaults to undefined|
-| **preferredAgentIds** | [**string**] | The preferred agent ID | (optional) defaults to undefined|
 | **ttTargetIdc** | [**string**] | The target IDC to use for the request | (optional) defaults to undefined|
 | **clientEnter** | [**boolean**] | Whether the client is entering the room | (optional) defaults to undefined|
 
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -79,13 +76,13 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**204** | No content |  -  |
+|**200** | Ok |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -282,7 +279,7 @@ const { status, data } = await apiInstance.retrieveRoomId(
 # **retrieveRoomInfo**
 > IWebcastRoomInfoRouteResponse retrieveRoomInfo()
 
-Fetch Room Info for a given uniqueId. This is a premium endpoint that bypasses TikTok captchas. It is counted towards your request quota.
+Retrieve TikTok Live Room Information
 
 ### Example
 
@@ -295,10 +292,12 @@ import {
 const configuration = new Configuration();
 const apiInstance = new WebcastApi(configuration);
 
-let uniqueId: string; //The unique ID of the TikTok user to fetch data for (default to undefined)
+let uniqueId: string; //The unique identifier for the TikTok user or room (default to undefined)
+let giftInfo: boolean; //Optional flag to include gift information in the response (optional) (default to false)
 
 const { status, data } = await apiInstance.retrieveRoomInfo(
-    uniqueId
+    uniqueId,
+    giftInfo
 );
 ```
 
@@ -306,7 +305,8 @@ const { status, data } = await apiInstance.retrieveRoomInfo(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **uniqueId** | [**string**] | The unique ID of the TikTok user to fetch data for | defaults to undefined|
+| **uniqueId** | [**string**] | The unique identifier for the TikTok user or room | defaults to undefined|
+| **giftInfo** | [**boolean**] | Optional flag to include gift information in the response | (optional) defaults to false|
 
 
 ### Return type
@@ -453,11 +453,9 @@ const configuration = new Configuration();
 const apiInstance = new WebcastApi(configuration);
 
 let iSignTikTokUrlBody: ISignTikTokUrlBody; //
-let preferredAgentId: string; // (optional) (default to undefined)
 
 const { status, data } = await apiInstance.signWebcastUrl(
-    iSignTikTokUrlBody,
-    preferredAgentId
+    iSignTikTokUrlBody
 );
 ```
 
@@ -466,7 +464,6 @@ const { status, data } = await apiInstance.signWebcastUrl(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **iSignTikTokUrlBody** | **ISignTikTokUrlBody**|  | |
-| **preferredAgentId** | [**string**] |  | (optional) defaults to undefined|
 
 
 ### Return type

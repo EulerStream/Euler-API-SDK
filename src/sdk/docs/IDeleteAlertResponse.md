@@ -1,4 +1,4 @@
-# IHostsResponse
+# IDeleteAlertResponse
 
 
 ## Properties
@@ -7,17 +7,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **number** |  | [default to undefined]
 **message** | **string** |  | [optional] [default to undefined]
-**hosts** | [**Array&lt;PeerPresence&gt;**](PeerPresence.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import { IHostsResponse } from './api';
+import { IDeleteAlertResponse } from './api';
 
-const instance: IHostsResponse = {
+const instance: IDeleteAlertResponse = {
     code,
     message,
-    hosts,
 };
 ```
 

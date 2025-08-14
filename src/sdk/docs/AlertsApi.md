@@ -5,6 +5,7 @@ All URIs are relative to *https://tiktok.eulerstream.com*
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
 |[**createAlert**](#createalert) | **PUT** /accounts/{account_id}/alerts/create | |
+|[**deleteAlert**](#deletealert) | **DELETE** /accounts/{account_id}/alerts/{alert_id}/delete | |
 |[**listAlerts**](#listalerts) | **GET** /accounts/{account_id}/alerts/list | |
 |[**retrieveAlert**](#retrievealert) | **GET** /accounts/{account_id}/alerts/{alert_id}/retrieve | |
 
@@ -53,6 +54,60 @@ const { status, data } = await apiInstance.createAlert(
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Ok |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteAlert**
+> IDeleteAlertResponse deleteAlert()
+
+Delete an alert from the Sign API
+
+### Example
+
+```typescript
+import {
+    AlertsApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new AlertsApi(configuration);
+
+let accountId: number; //The ID of the account to delete the alert from (default to undefined)
+let alertId: number; //The ID of the alert to delete (default to undefined)
+
+const { status, data } = await apiInstance.deleteAlert(
+    accountId,
+    alertId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | [**number**] | The ID of the account to delete the alert from | defaults to undefined|
+| **alertId** | [**number**] | The ID of the alert to delete | defaults to undefined|
+
+
+### Return type
+
+**IDeleteAlertResponse**
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [jwt_key_header](../README.md#jwt_key_header), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
