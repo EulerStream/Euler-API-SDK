@@ -10,7 +10,7 @@ All URIs are relative to *https://tiktok.eulerstream.com*
 |[**testAlertTarget**](#testalerttarget) | **POST** /accounts/{account_id}/alerts/{alert_id}/targets/{target_id}/test | |
 
 # **createAlertTarget**
-> ICreateAlertTargetResponse createAlertTarget(iAlertTargetConfigBase)
+> CreateAlertTargetResponse createAlertTarget(createAlertTargetPayload)
 
 Create a target for an alert. This is the HTTP endpoint that will be called when an alert is triggered.
 
@@ -20,7 +20,7 @@ Create a target for an alert. This is the HTTP endpoint that will be called when
 import {
     AlertTargetsApi,
     Configuration,
-    IAlertTargetConfigBase
+    CreateAlertTargetPayload
 } from './api';
 
 const configuration = new Configuration();
@@ -28,12 +28,12 @@ const apiInstance = new AlertTargetsApi(configuration);
 
 let accountId: number; //The ID of the account to create the alert target for (default to undefined)
 let alertId: number; //The ID of the alert to create the target for (default to undefined)
-let iAlertTargetConfigBase: IAlertTargetConfigBase; //Configuration for the alert target
+let createAlertTargetPayload: CreateAlertTargetPayload; //Configuration for the alert target
 
 const { status, data } = await apiInstance.createAlertTarget(
     accountId,
     alertId,
-    iAlertTargetConfigBase
+    createAlertTargetPayload
 );
 ```
 
@@ -41,14 +41,14 @@ const { status, data } = await apiInstance.createAlertTarget(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **iAlertTargetConfigBase** | **IAlertTargetConfigBase**| Configuration for the alert target | |
+| **createAlertTargetPayload** | **CreateAlertTargetPayload**| Configuration for the alert target | |
 | **accountId** | [**number**] | The ID of the account to create the alert target for | defaults to undefined|
 | **alertId** | [**number**] | The ID of the alert to create the target for | defaults to undefined|
 
 
 ### Return type
 
-**ICreateAlertTargetResponse**
+**CreateAlertTargetResponse**
 
 ### Authorization
 
@@ -68,7 +68,7 @@ const { status, data } = await apiInstance.createAlertTarget(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deleteAlertTarget**
-> IDeleteAlertTargetResponse deleteAlertTarget()
+> DeleteAlertTargetResponse deleteAlertTarget()
 
 Delete an alert target from the Sign API
 
@@ -105,7 +105,7 @@ const { status, data } = await apiInstance.deleteAlertTarget(
 
 ### Return type
 
-**IDeleteAlertTargetResponse**
+**DeleteAlertTargetResponse**
 
 ### Authorization
 
@@ -125,7 +125,7 @@ const { status, data } = await apiInstance.deleteAlertTarget(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listAlertTargets**
-> IListAlertTargetsResponse listAlertTargets()
+> ListAlertTargetsResponse listAlertTargets()
 
 List all alert targets for a specific alert
 
@@ -159,7 +159,7 @@ const { status, data } = await apiInstance.listAlertTargets(
 
 ### Return type
 
-**IListAlertTargetsResponse**
+**ListAlertTargetsResponse**
 
 ### Authorization
 
@@ -179,7 +179,7 @@ const { status, data } = await apiInstance.listAlertTargets(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **testAlertTarget**
-> ITestAlertTargetResponse testAlertTarget()
+> TestAlertTargetResponse testAlertTarget()
 
 Test an alert target
 
@@ -216,7 +216,7 @@ const { status, data } = await apiInstance.testAlertTarget(
 
 ### Return type
 
-**ITestAlertTargetResponse**
+**TestAlertTargetResponse**
 
 ### Authorization
 

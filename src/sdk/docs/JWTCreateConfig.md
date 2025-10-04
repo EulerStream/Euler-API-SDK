@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**limits** | [**IAccountRequestLimits**](IAccountRequestLimits.md) |  | [optional] [default to undefined]
+**limits** | [**AccountsTableRequestLimits**](AccountsTableRequestLimits.md) |  | [optional] [default to undefined]
 **websockets** | [**WebSocketJWTLimits**](WebSocketJWTLimits.md) |  | [optional] [default to undefined]
 **expireAfter** | **number** |  | [default to undefined]
 **name** | **string** |  | [optional] [default to undefined]

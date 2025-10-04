@@ -26,1376 +26,950 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  * 
  * @export
- * @enum {string}
+ * @interface Account
  */
-
-export const ApiRoutes = {
-    ApiLive: 'api-live',
-    InfoByUser: 'info-by-user'
-} as const;
-
-export type ApiRoutes = typeof ApiRoutes[keyof typeof ApiRoutes];
-
-
-/**
- * 
- * @export
- * @interface IAccountRequestLimits
- */
-export interface IAccountRequestLimits {
+export interface Account {
     /**
      * 
      * @type {number}
-     * @memberof IAccountRequestLimits
+     * @memberof Account
      */
     'day': number;
     /**
      * 
      * @type {number}
-     * @memberof IAccountRequestLimits
+     * @memberof Account
+     */
+    'hour': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Account
      */
     'minute': number;
     /**
      * 
-     * @type {number}
-     * @memberof IAccountRequestLimits
+     * @type {string}
+     * @memberof Account
      */
-    'hour': number;
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Account
+     */
+    'webhook_secret': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Account
+     */
+    'max_alerts': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Account
+     */
+    'max_websockets': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Account
+     */
+    'expires_at': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Account
+     */
+    'updated_at': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Account
+     */
+    'created_at': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Account
+     */
+    'id': number;
 }
 /**
  * 
  * @export
- * @interface IAlert
+ * @interface AccountConfig
  */
-export interface IAlert {
-    /**
-     * 
-     * @type {string}
-     * @memberof IAlert
-     */
-    'unique_id': string;
+export interface AccountConfig {
     /**
      * 
      * @type {number}
-     * @memberof IAlert
+     * @memberof AccountConfig
+     */
+    'day': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountConfig
+     */
+    'hour': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountConfig
+     */
+    'minute': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountConfig
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountConfig
+     */
+    'webhook_secret': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountConfig
+     */
+    'max_alerts': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountConfig
+     */
+    'max_websockets': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountConfig
+     */
+    'expires_at': string | null;
+}
+/**
+ * 
+ * @export
+ * @enum {number}
+ */
+
+export const AccountScopes = {
+    NUMBER_MINUS_1: -1,
+    NUMBER_0: 0,
+    NUMBER_1: 1,
+    NUMBER_3: 3,
+    NUMBER_5: 5,
+    NUMBER_6: 6,
+    NUMBER_7: 7,
+    NUMBER_8: 8
+} as const;
+
+export type AccountScopes = typeof AccountScopes[keyof typeof AccountScopes];
+
+
+/**
+ * 
+ * @export
+ * @interface AccountWithPermissionsSafe
+ */
+export interface AccountWithPermissionsSafe {
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountWithPermissionsSafe
+     */
+    'day': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountWithPermissionsSafe
+     */
+    'hour': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountWithPermissionsSafe
+     */
+    'minute': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountWithPermissionsSafe
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountWithPermissionsSafe
+     */
+    'webhook_secret': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountWithPermissionsSafe
+     */
+    'max_alerts': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountWithPermissionsSafe
+     */
+    'max_websockets': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountWithPermissionsSafe
+     */
+    'expires_at': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountWithPermissionsSafe
+     */
+    'updated_at': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountWithPermissionsSafe
+     */
+    'created_at': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountWithPermissionsSafe
+     */
+    'id': number;
+    /**
+     * 
+     * @type {Array<AccountScopes>}
+     * @memberof AccountWithPermissionsSafe
+     */
+    'scopes': Array<AccountScopes>;
+}
+/**
+ * 
+ * @export
+ * @interface AccountsTableRequestLimits
+ */
+export interface AccountsTableRequestLimits {
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountsTableRequestLimits
+     */
+    'day': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountsTableRequestLimits
+     */
+    'hour': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountsTableRequestLimits
+     */
+    'minute': number;
+}
+/**
+ * 
+ * @export
+ * @interface Alert
+ */
+export interface Alert {
+    /**
+     * 
+     * @type {number}
+     * @memberof Alert
      */
     'account_id': number;
     /**
      * 
      * @type {number}
-     * @memberof IAlert
+     * @memberof Alert
      */
     'alert_creator_id': number;
     /**
      * 
-     * @type {number}
-     * @memberof IAlert
+     * @type {boolean}
+     * @memberof Alert
      */
-    'id': number;
+    'read_only': boolean;
     /**
      * 
      * @type {string}
-     * @memberof IAlert
+     * @memberof Alert
      */
-    'created_at': string;
+    'alert_creator_nickname': string | null;
     /**
      * 
      * @type {string}
-     * @memberof IAlert
+     * @memberof Alert
+     */
+    'alert_creator_avatar_url': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Alert
      */
     'alert_creator_username': string;
     /**
      * 
+     * @type {string}
+     * @memberof Alert
+     */
+    'created_at': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Alert
+     */
+    'id': number;
+}
+/**
+ * 
+ * @export
+ * @interface AlertConfig
+ */
+export interface AlertConfig {
+    /**
+     * 
+     * @type {number}
+     * @memberof AlertConfig
+     */
+    'account_id': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AlertConfig
+     */
+    'alert_creator_id': number;
+    /**
+     * 
      * @type {boolean}
-     * @memberof IAlert
+     * @memberof AlertConfig
      */
     'read_only': boolean;
 }
 /**
  * 
  * @export
- * @interface IAlertConfigBase
+ * @interface AlertTarget
  */
-export interface IAlertConfigBase {
+export interface AlertTarget {
     /**
      * 
      * @type {string}
-     * @memberof IAlertConfigBase
-     */
-    'unique_id': string;
-}
-/**
- * 
- * @export
- * @interface IAlertTarget
- */
-export interface IAlertTarget {
-    /**
-     * 
-     * @type {string}
-     * @memberof IAlertTarget
+     * @memberof AlertTarget
      */
     'url': string;
     /**
      * Construct a type with a set of properties K of type T
      * @type {{ [key: string]: any; }}
-     * @memberof IAlertTarget
+     * @memberof AlertTarget
      */
-    'metadata'?: { [key: string]: any; };
+    'metadata': { [key: string]: any; };
     /**
      * 
      * @type {number}
-     * @memberof IAlertTarget
+     * @memberof AlertTarget
      */
     'alert_id': number;
     /**
      * 
      * @type {number}
-     * @memberof IAlertTarget
+     * @memberof AlertTarget
      */
     'alert_creator_id': number;
     /**
      * 
+     * @type {AlertTargetStatus}
+     * @memberof AlertTarget
+     */
+    'last_status': AlertTargetStatus;
+    /**
+     * 
+     * @type {AlertTargetFormat}
+     * @memberof AlertTarget
+     */
+    'format': AlertTargetFormat;
+    /**
+     * 
      * @type {number}
-     * @memberof IAlertTarget
+     * @memberof AlertTarget
      */
-    'id': number;
-    /**
-     * 
-     * @type {IAlertTargetStatus}
-     * @memberof IAlertTarget
-     */
-    'last_status': IAlertTargetStatus;
+    'account_id': number;
     /**
      * 
      * @type {string}
-     * @memberof IAlertTarget
-     */
-    'created_at': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IAlertTarget
+     * @memberof AlertTarget
      */
     'updated_at': string;
     /**
      * 
-     * @type {IAlertTargetFormat}
-     * @memberof IAlertTarget
+     * @type {string}
+     * @memberof AlertTarget
      */
-    'format': IAlertTargetFormat;
+    'created_at': string;
     /**
      * 
      * @type {number}
-     * @memberof IAlertTarget
+     * @memberof AlertTarget
      */
-    'account_id': number;
+    'id': number;
 }
 
 
 /**
  * 
  * @export
- * @interface IAlertTargetConfigBase
+ * @interface AlertTargetConfig
  */
-export interface IAlertTargetConfigBase {
+export interface AlertTargetConfig {
     /**
      * 
      * @type {string}
-     * @memberof IAlertTargetConfigBase
+     * @memberof AlertTargetConfig
      */
     'url': string;
     /**
      * Construct a type with a set of properties K of type T
      * @type {{ [key: string]: any; }}
-     * @memberof IAlertTargetConfigBase
+     * @memberof AlertTargetConfig
+     */
+    'metadata': { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof AlertTargetConfig
+     */
+    'alert_id': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AlertTargetConfig
+     */
+    'alert_creator_id': number;
+    /**
+     * 
+     * @type {AlertTargetStatus}
+     * @memberof AlertTargetConfig
+     */
+    'last_status': AlertTargetStatus;
+    /**
+     * 
+     * @type {AlertTargetFormat}
+     * @memberof AlertTargetConfig
+     */
+    'format': AlertTargetFormat;
+}
+
+
+/**
+ * 
+ * @export
+ * @enum {number}
+ */
+
+export const AlertTargetFormat = {
+    NUMBER_1: 1
+} as const;
+
+export type AlertTargetFormat = typeof AlertTargetFormat[keyof typeof AlertTargetFormat];
+
+
+/**
+ * 
+ * @export
+ * @enum {number}
+ */
+
+export const AlertTargetStatus = {
+    NUMBER_0: 0,
+    NUMBER_1: 1,
+    NUMBER_4: 4
+} as const;
+
+export type AlertTargetStatus = typeof AlertTargetStatus[keyof typeof AlertTargetStatus];
+
+
+/**
+ * 
+ * @export
+ * @interface ApiKey
+ */
+export interface ApiKey {
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKey
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKey
+     */
+    'value': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ApiKey
+     */
+    'account_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKey
+     */
+    'updated_at': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKey
+     */
+    'created_at': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ApiKey
+     */
+    'id': number;
+}
+/**
+ * 
+ * @export
+ * @interface ApiKeyConfig
+ */
+export interface ApiKeyConfig {
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKeyConfig
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKeyConfig
+     */
+    'value': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ApiKeyConfig
+     */
+    'account_id': number;
+}
+/**
+ * 
+ * @export
+ * @interface CountSignUsage
+ */
+export interface CountSignUsage {
+    /**
+     * 
+     * @type {number}
+     * @memberof CountSignUsage
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CountSignUsage
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CountSignUsage
+     */
+    'pages'?: number;
+}
+/**
+ * Configuration for the alert
+ * @export
+ * @interface CreateAlertRequest
+ */
+export interface CreateAlertRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateAlertRequest
+     */
+    'unique_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface CreateAlertResponse
+ */
+export interface CreateAlertResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateAlertResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateAlertResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {Alert}
+     * @memberof CreateAlertResponse
+     */
+    'alert'?: Alert;
+}
+/**
+ * 
+ * @export
+ * @interface CreateAlertTargetPayload
+ */
+export interface CreateAlertTargetPayload {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateAlertTargetPayload
+     */
+    'url': string;
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: any; }}
+     * @memberof CreateAlertTargetPayload
      */
     'metadata'?: { [key: string]: any; };
 }
 /**
  * 
  * @export
- * @enum {number}
+ * @interface CreateAlertTargetResponse
  */
-
-export const IAlertTargetFormat = {
-    NUMBER_0: 0,
-    NUMBER_1: 1
-} as const;
-
-export type IAlertTargetFormat = typeof IAlertTargetFormat[keyof typeof IAlertTargetFormat];
-
-
-/**
- * 
- * @export
- * @enum {number}
- */
-
-export const IAlertTargetStatus = {
-    NUMBER_0: 0,
-    NUMBER_1: 1,
-    NUMBER_4: 4
-} as const;
-
-export type IAlertTargetStatus = typeof IAlertTargetStatus[keyof typeof IAlertTargetStatus];
-
-
-/**
- * 
- * @export
- * @interface IAlertWithRoomInfo
- */
-export interface IAlertWithRoomInfo {
-    /**
-     * 
-     * @type {string}
-     * @memberof IAlertWithRoomInfo
-     */
-    'unique_id': string;
+export interface CreateAlertTargetResponse {
     /**
      * 
      * @type {number}
-     * @memberof IAlertWithRoomInfo
-     */
-    'account_id': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof IAlertWithRoomInfo
-     */
-    'alert_creator_id': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof IAlertWithRoomInfo
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IAlertWithRoomInfo
-     */
-    'created_at': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IAlertWithRoomInfo
-     */
-    'alert_creator_username': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IAlertWithRoomInfo
-     */
-    'read_only': boolean;
-    /**
-     * 
-     * @type {TikTokLiveRoomInfo}
-     * @memberof IAlertWithRoomInfo
-     */
-    'room_info'?: TikTokLiveRoomInfo;
-}
-/**
- * 
- * @export
- * @interface IApiKey
- */
-export interface IApiKey {
-    /**
-     * 
-     * @type {string}
-     * @memberof IApiKey
-     */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IApiKey
-     */
-    'value': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof IApiKey
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IApiKey
-     */
-    'created_at': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IApiKey
-     */
-    'updated_at': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof IApiKey
-     */
-    'account_id': number;
-}
-/**
- * 
- * @export
- * @interface IApiKeyConfig
- */
-export interface IApiKeyConfig {
-    /**
-     * 
-     * @type {string}
-     * @memberof IApiKeyConfig
-     */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IApiKeyConfig
-     */
-    'value': string;
-}
-/**
- * 
- * @export
- * @interface IApiKeyConfigBase
- */
-export interface IApiKeyConfigBase {
-    /**
-     * 
-     * @type {string}
-     * @memberof IApiKeyConfigBase
-     */
-    'name': string;
-}
-/**
- * 
- * @export
- * @interface ICountSignUsage
- */
-export interface ICountSignUsage {
-    /**
-     * 
-     * @type {number}
-     * @memberof ICountSignUsage
+     * @memberof CreateAlertTargetResponse
      */
     'code': number;
     /**
      * 
      * @type {string}
-     * @memberof ICountSignUsage
+     * @memberof CreateAlertTargetResponse
      */
     'message'?: string;
     /**
      * 
-     * @type {number}
-     * @memberof ICountSignUsage
+     * @type {AlertTarget}
+     * @memberof CreateAlertTargetResponse
      */
-    'pages'?: number;
+    'target'?: AlertTarget;
 }
 /**
  * 
  * @export
- * @interface ICreateAlertResponse
+ * @interface CreateJWTResponse
  */
-export interface ICreateAlertResponse {
+export interface CreateJWTResponse {
     /**
      * 
      * @type {number}
-     * @memberof ICreateAlertResponse
+     * @memberof CreateJWTResponse
      */
     'code': number;
     /**
      * 
      * @type {string}
-     * @memberof ICreateAlertResponse
-     */
-    'message'?: string;
-    /**
-     * 
-     * @type {IAlert}
-     * @memberof ICreateAlertResponse
-     */
-    'alert'?: IAlert;
-}
-/**
- * 
- * @export
- * @interface ICreateAlertTargetResponse
- */
-export interface ICreateAlertTargetResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof ICreateAlertTargetResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ICreateAlertTargetResponse
-     */
-    'message'?: string;
-    /**
-     * 
-     * @type {IAlertTarget}
-     * @memberof ICreateAlertTargetResponse
-     */
-    'target'?: IAlertTarget;
-}
-/**
- * 
- * @export
- * @interface ICreateJWTResponse
- */
-export interface ICreateJWTResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof ICreateJWTResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ICreateJWTResponse
+     * @memberof CreateJWTResponse
      */
     'message'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ICreateJWTResponse
+     * @memberof CreateJWTResponse
      */
     'token'?: string;
     /**
      * 
      * @type {JWTConfig}
-     * @memberof ICreateJWTResponse
+     * @memberof CreateJWTResponse
      */
     'config'?: JWTConfig;
 }
 /**
  * 
  * @export
- * @interface ICreateKeyResponse
+ * @interface CreateKeyPayload
  */
-export interface ICreateKeyResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof ICreateKeyResponse
-     */
-    'code': number;
+export interface CreateKeyPayload {
     /**
      * 
      * @type {string}
-     * @memberof ICreateKeyResponse
+     * @memberof CreateKeyPayload
      */
-    'message'?: string;
-    /**
-     * 
-     * @type {IApiKey}
-     * @memberof ICreateKeyResponse
-     */
-    'key'?: IApiKey;
+    'name': string;
 }
 /**
  * 
  * @export
- * @interface IDeleteAlertResponse
+ * @interface CreateKeyResponse
  */
-export interface IDeleteAlertResponse {
+export interface CreateKeyResponse {
     /**
      * 
      * @type {number}
-     * @memberof IDeleteAlertResponse
+     * @memberof CreateKeyResponse
      */
     'code': number;
     /**
      * 
      * @type {string}
-     * @memberof IDeleteAlertResponse
+     * @memberof CreateKeyResponse
      */
     'message'?: string;
+    /**
+     * 
+     * @type {ApiKey}
+     * @memberof CreateKeyResponse
+     */
+    'key'?: ApiKey;
 }
 /**
  * 
  * @export
- * @interface IDeleteAlertTargetResponse
+ * @interface DeleteAlertResponse
  */
-export interface IDeleteAlertTargetResponse {
+export interface DeleteAlertResponse {
     /**
      * 
      * @type {number}
-     * @memberof IDeleteAlertTargetResponse
+     * @memberof DeleteAlertResponse
      */
     'code': number;
     /**
      * 
      * @type {string}
-     * @memberof IDeleteAlertTargetResponse
+     * @memberof DeleteAlertResponse
      */
     'message'?: string;
 }
 /**
  * 
  * @export
- * @interface IDeleteKeyResponse
+ * @interface DeleteAlertTargetResponse
  */
-export interface IDeleteKeyResponse {
+export interface DeleteAlertTargetResponse {
     /**
      * 
      * @type {number}
-     * @memberof IDeleteKeyResponse
+     * @memberof DeleteAlertTargetResponse
      */
     'code': number;
     /**
      * 
      * @type {string}
-     * @memberof IDeleteKeyResponse
+     * @memberof DeleteAlertTargetResponse
      */
     'message'?: string;
 }
 /**
  * 
  * @export
- * @interface IGetRateLimits
+ * @interface DeleteKeyResponse
  */
-export interface IGetRateLimits {
+export interface DeleteKeyResponse {
     /**
      * 
      * @type {number}
-     * @memberof IGetRateLimits
+     * @memberof DeleteKeyResponse
      */
     'code': number;
     /**
      * 
      * @type {string}
-     * @memberof IGetRateLimits
+     * @memberof DeleteKeyResponse
      */
     'message'?: string;
-    /**
-     * 
-     * @type {IRateLimitInfo}
-     * @memberof IGetRateLimits
-     */
-    'day'?: IRateLimitInfo;
-    /**
-     * 
-     * @type {IRateLimitInfo}
-     * @memberof IGetRateLimits
-     */
-    'hour'?: IRateLimitInfo;
-    /**
-     * 
-     * @type {IRateLimitInfo}
-     * @memberof IGetRateLimits
-     */
-    'minute'?: IRateLimitInfo;
 }
 /**
  * 
  * @export
- * @interface IGetSignUsageResponse
+ * @interface GetRateLimits
  */
-export interface IGetSignUsageResponse {
+export interface GetRateLimits {
     /**
      * 
      * @type {number}
-     * @memberof IGetSignUsageResponse
+     * @memberof GetRateLimits
      */
     'code': number;
     /**
      * 
      * @type {string}
-     * @memberof IGetSignUsageResponse
+     * @memberof GetRateLimits
      */
     'message'?: string;
     /**
      * 
-     * @type {Array<ISignLogPublic>}
-     * @memberof IGetSignUsageResponse
+     * @type {RateLimitInfo}
+     * @memberof GetRateLimits
      */
-    'usage'?: Array<ISignLogPublic>;
+    'day'?: RateLimitInfo;
+    /**
+     * 
+     * @type {RateLimitInfo}
+     * @memberof GetRateLimits
+     */
+    'hour'?: RateLimitInfo;
+    /**
+     * 
+     * @type {RateLimitInfo}
+     * @memberof GetRateLimits
+     */
+    'minute'?: RateLimitInfo;
+    /**
+     * 
+     * @type {LoadShedInfo}
+     * @memberof GetRateLimits
+     */
+    'load_shedding': LoadShedInfo;
 }
 /**
  * 
  * @export
- * @interface IGetSignWebcastUrlResponse
+ * @interface GetSignUsageResponse
  */
-export interface IGetSignWebcastUrlResponse {
+export interface GetSignUsageResponse {
     /**
      * 
      * @type {number}
-     * @memberof IGetSignWebcastUrlResponse
+     * @memberof GetSignUsageResponse
      */
     'code': number;
     /**
      * 
      * @type {string}
-     * @memberof IGetSignWebcastUrlResponse
+     * @memberof GetSignUsageResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {Array<SignLogPublic>}
+     * @memberof GetSignUsageResponse
+     */
+    'usage'?: Array<SignLogPublic>;
+}
+/**
+ * 
+ * @export
+ * @interface GetSignWebcastUrlResponse
+ */
+export interface GetSignWebcastUrlResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetSignWebcastUrlResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetSignWebcastUrlResponse
      */
     'message'?: string;
     /**
      * 
      * @type {string}
-     * @memberof IGetSignWebcastUrlResponse
+     * @memberof GetSignWebcastUrlResponse
      */
     'signedUrl'?: string;
     /**
      * 
      * @type {string}
-     * @memberof IGetSignWebcastUrlResponse
+     * @memberof GetSignWebcastUrlResponse
      */
     'msToken'?: string;
     /**
      * 
      * @type {string}
-     * @memberof IGetSignWebcastUrlResponse
+     * @memberof GetSignWebcastUrlResponse
      */
     'browserVersion'?: string;
     /**
      * 
      * @type {string}
-     * @memberof IGetSignWebcastUrlResponse
+     * @memberof GetSignWebcastUrlResponse
      */
     'browserName'?: string;
     /**
      * 
      * @type {string}
-     * @memberof IGetSignWebcastUrlResponse
+     * @memberof GetSignWebcastUrlResponse
      */
     '_signature'?: string;
     /**
      * 
      * @type {string}
-     * @memberof IGetSignWebcastUrlResponse
+     * @memberof GetSignWebcastUrlResponse
      */
     'X-Bogus'?: string;
     /**
      * 
      * @type {string}
-     * @memberof IGetSignWebcastUrlResponse
+     * @memberof GetSignWebcastUrlResponse
      */
     'User-Agent'?: string;
 }
 /**
  * 
  * @export
- * @interface IHostsResponse
+ * @interface HostsResponse
  */
-export interface IHostsResponse {
+export interface HostsResponse {
     /**
      * 
      * @type {number}
-     * @memberof IHostsResponse
+     * @memberof HostsResponse
      */
     'code': number;
     /**
      * 
      * @type {string}
-     * @memberof IHostsResponse
+     * @memberof HostsResponse
      */
     'message'?: string;
     /**
      * 
      * @type {Array<PeerPresence>}
-     * @memberof IHostsResponse
+     * @memberof HostsResponse
      */
     'hosts'?: Array<PeerPresence>;
 }
 /**
  * 
  * @export
- * @interface IJSONResponse
+ * @interface JSONResponse
  */
-export interface IJSONResponse {
+export interface JSONResponse {
     /**
      * 
      * @type {number}
-     * @memberof IJSONResponse
+     * @memberof JSONResponse
      */
     'code': number;
     /**
      * 
      * @type {string}
-     * @memberof IJSONResponse
+     * @memberof JSONResponse
      */
     'message'?: string;
-}
-/**
- * 
- * @export
- * @interface IListAlertTargetsResponse
- */
-export interface IListAlertTargetsResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof IListAlertTargetsResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IListAlertTargetsResponse
-     */
-    'message'?: string;
-    /**
-     * 
-     * @type {Array<IAlertTarget>}
-     * @memberof IListAlertTargetsResponse
-     */
-    'targets'?: Array<IAlertTarget>;
-}
-/**
- * 
- * @export
- * @interface IListAlertsResponse
- */
-export interface IListAlertsResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof IListAlertsResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IListAlertsResponse
-     */
-    'message'?: string;
-    /**
-     * 
-     * @type {Array<IAlertWithRoomInfo>}
-     * @memberof IListAlertsResponse
-     */
-    'alerts'?: Array<IAlertWithRoomInfo>;
-}
-/**
- * 
- * @export
- * @interface IListKeysResponse
- */
-export interface IListKeysResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof IListKeysResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IListKeysResponse
-     */
-    'message'?: string;
-    /**
-     * 
-     * @type {Array<IApiKey>}
-     * @memberof IListKeysResponse
-     */
-    'keys'?: Array<IApiKey>;
-}
-/**
- * 
- * @export
- * @interface IPipResponse
- */
-export interface IPipResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof IPipResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IPipResponse
-     */
-    'message'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IPipResponse
-     */
-    'image_url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IPipResponse
-     */
-    'label': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof IPipResponse
-     */
-    'value': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IPipResponse
-     */
-    'unit': string;
-}
-/**
- * 
- * @export
- * @interface IRateLimitInfo
- */
-export interface IRateLimitInfo {
-    /**
-     * 
-     * @type {number}
-     * @memberof IRateLimitInfo
-     */
-    'max': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof IRateLimitInfo
-     */
-    'remaining': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IRateLimitInfo
-     */
-    'reset_at': string | null;
-}
-/**
- * 
- * @export
- * @interface IRetrieveAgentHostsResponse
- */
-export interface IRetrieveAgentHostsResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof IRetrieveAgentHostsResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IRetrieveAgentHostsResponse
-     */
-    'message'?: string;
-    /**
-     * 
-     * @type {Array<PeerPresence>}
-     * @memberof IRetrieveAgentHostsResponse
-     */
-    'agents': Array<PeerPresence>;
-}
-/**
- * 
- * @export
- * @interface IRetrieveAggregateUsageResponse
- */
-export interface IRetrieveAggregateUsageResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof IRetrieveAggregateUsageResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IRetrieveAggregateUsageResponse
-     */
-    'message'?: string;
-    /**
-     * Construct a type with a set of properties K of type T
-     * @type {{ [key: string]: { [key: string]: any; }; }}
-     * @memberof IRetrieveAggregateUsageResponse
-     */
-    'usage'?: { [key: string]: { [key: string]: any; }; };
-}
-/**
- * 
- * @export
- * @interface IRetrieveAlertResponse
- */
-export interface IRetrieveAlertResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof IRetrieveAlertResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IRetrieveAlertResponse
-     */
-    'message'?: string;
-    /**
-     * 
-     * @type {IAlert}
-     * @memberof IRetrieveAlertResponse
-     */
-    'alert'?: IAlert;
-    /**
-     * 
-     * @type {IRetrieveAlertResponseCreator}
-     * @memberof IRetrieveAlertResponse
-     */
-    'creator'?: IRetrieveAlertResponseCreator;
-    /**
-     * 
-     * @type {TikTokLiveRoomInfo}
-     * @memberof IRetrieveAlertResponse
-     */
-    'room_info'?: TikTokLiveRoomInfo;
-}
-/**
- * 
- * @export
- * @interface IRetrieveAlertResponseCreator
- */
-export interface IRetrieveAlertResponseCreator {
-    /**
-     * 
-     * @type {string}
-     * @memberof IRetrieveAlertResponseCreator
-     */
-    'room_id': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof IRetrieveAlertResponseCreator
-     */
-    'state_label': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof IRetrieveAlertResponseCreator
-     */
-    'state': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IRetrieveAlertResponseCreator
-     */
-    'unique_id': string;
-}
-/**
- * 
- * @export
- * @interface IRetrieveKeyResponse
- */
-export interface IRetrieveKeyResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof IRetrieveKeyResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IRetrieveKeyResponse
-     */
-    'message'?: string;
-    /**
-     * 
-     * @type {IApiKey}
-     * @memberof IRetrieveKeyResponse
-     */
-    'key'?: IApiKey;
-}
-/**
- * 
- * @export
- * @interface IRetrievedCloudWebSocketsRouteResponse
- */
-export interface IRetrievedCloudWebSocketsRouteResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof IRetrievedCloudWebSocketsRouteResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IRetrievedCloudWebSocketsRouteResponse
-     */
-    'message'?: string;
-    /**
-     * Construct a type with a set of properties K of type T
-     * @type {{ [key: string]: WebSocketState; }}
-     * @memberof IRetrievedCloudWebSocketsRouteResponse
-     */
-    'state'?: { [key: string]: WebSocketState; };
-    /**
-     * 
-     * @type {number}
-     * @memberof IRetrievedCloudWebSocketsRouteResponse
-     */
-    'connections'?: number;
-}
-/**
- * 
- * @export
- * @interface ISignLogPublic
- */
-export interface ISignLogPublic {
-    /**
-     * 
-     * @type {number}
-     * @memberof ISignLogPublic
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ISignLogPublic
-     */
-    'ts': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ISignLogPublic
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ISignLogPublic
-     */
-    'client': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ISignLogPublic
-     */
-    'ip': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ISignLogPublic
-     */
-    'api_key_id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ISignLogPublic
-     */
-    'user_agent': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ISignLogPublic
-     */
-    'agent_id': string;
-}
-/**
- * 
- * @export
- * @interface ISignTikTokUrlBody
- */
-export interface ISignTikTokUrlBody {
-    /**
-     * 
-     * @type {string}
-     * @memberof ISignTikTokUrlBody
-     */
-    'url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ISignTikTokUrlBody
-     */
-    'userAgent'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ISignTikTokUrlBody
-     */
-    'method'?: ISignTikTokUrlBodyMethodEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof ISignTikTokUrlBody
-     */
-    'sessionId'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ISignTikTokUrlBody
-     */
-    'ttTargetIdc'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ISignTikTokUrlBody
-     */
-    'payload'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ISignTikTokUrlBody
-     */
-    'type'?: ISignTikTokUrlBodyTypeEnum;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ISignTikTokUrlBody
-     */
-    'includeBrowserParams'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ISignTikTokUrlBody
-     */
-    'includeVerifyFp'?: boolean;
-}
-
-export const ISignTikTokUrlBodyMethodEnum = {
-    Get: 'GET',
-    Post: 'POST',
-    Options: 'OPTIONS',
-    Put: 'PUT',
-    Delete: 'DELETE',
-    Patch: 'PATCH',
-    Head: 'HEAD'
-} as const;
-
-export type ISignTikTokUrlBodyMethodEnum = typeof ISignTikTokUrlBodyMethodEnum[keyof typeof ISignTikTokUrlBodyMethodEnum];
-export const ISignTikTokUrlBodyTypeEnum = {
-    Fetch: 'fetch',
-    Xhr: 'xhr'
-} as const;
-
-export type ISignTikTokUrlBodyTypeEnum = typeof ISignTikTokUrlBodyTypeEnum[keyof typeof ISignTikTokUrlBodyTypeEnum];
-
-/**
- * 
- * @export
- * @interface ISignTikTokUrlResponse
- */
-export interface ISignTikTokUrlResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof ISignTikTokUrlResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ISignTikTokUrlResponse
-     */
-    'message'?: string;
-    /**
-     * 
-     * @type {PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray}
-     * @memberof ISignTikTokUrlResponse
-     */
-    'response'?: PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray;
-}
-/**
- * 
- * @export
- * @interface ITestAlertTargetResponse
- */
-export interface ITestAlertTargetResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof ITestAlertTargetResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ITestAlertTargetResponse
-     */
-    'message'?: string;
-    /**
-     * 
-     * @type {IAlertTargetStatus}
-     * @memberof ITestAlertTargetResponse
-     */
-    'status'?: IAlertTargetStatus;
-    /**
-     * 
-     * @type {string}
-     * @memberof ITestAlertTargetResponse
-     */
-    'statusLabel'?: string;
-}
-
-
-/**
- * 
- * @export
- * @interface IUpdateKeyResponse
- */
-export interface IUpdateKeyResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof IUpdateKeyResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IUpdateKeyResponse
-     */
-    'message'?: string;
-    /**
-     * 
-     * @type {IApiKeyConfig}
-     * @memberof IUpdateKeyResponse
-     */
-    'config'?: IApiKeyConfig;
-}
-/**
- * 
- * @export
- * @interface IWebcastRoomChatPayload
- */
-export interface IWebcastRoomChatPayload {
-    /**
-     * 
-     * @type {string}
-     * @memberof IWebcastRoomChatPayload
-     */
-    'content': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IWebcastRoomChatPayload
-     */
-    'sessionId': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IWebcastRoomChatPayload
-     */
-    'ttTargetIdc': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IWebcastRoomChatPayload
-     */
-    'roomId': string;
-}
-/**
- * 
- * @export
- * @interface IWebcastRoomChatRouteResponse
- */
-export interface IWebcastRoomChatRouteResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof IWebcastRoomChatRouteResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IWebcastRoomChatRouteResponse
-     */
-    'message'?: string;
-    /**
-     * 
-     * @type {any}
-     * @memberof IWebcastRoomChatRouteResponse
-     */
-    'data'?: any;
-}
-/**
- * 
- * @export
- * @interface IWebcastRoomIdRouteResponse
- */
-export interface IWebcastRoomIdRouteResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof IWebcastRoomIdRouteResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IWebcastRoomIdRouteResponse
-     */
-    'message'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IWebcastRoomIdRouteResponse
-     */
-    'room_id'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IWebcastRoomIdRouteResponse
-     */
-    'is_live'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IWebcastRoomIdRouteResponse
-     */
-    'ok': boolean;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof IWebcastRoomIdRouteResponse
-     */
-    'routes_attempted': Array<string>;
-}
-/**
- * 
- * @export
- * @interface IWebcastRoomInfoRouteResponse
- */
-export interface IWebcastRoomInfoRouteResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof IWebcastRoomInfoRouteResponse
-     */
-    'code': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IWebcastRoomInfoRouteResponse
-     */
-    'message'?: string;
-    /**
-     * 
-     * @type {TikTokLiveRoomInfo}
-     * @memberof IWebcastRoomInfoRouteResponse
-     */
-    'data'?: TikTokLiveRoomInfo;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IWebcastRoomInfoRouteResponse
-     */
-    'ok': boolean;
-    /**
-     * 
-     * @type {Array<ApiRoutes>}
-     * @memberof IWebcastRoomInfoRouteResponse
-     */
-    'routes_attempted': Array<ApiRoutes>;
 }
 /**
  * 
@@ -1423,16 +997,22 @@ export interface JWTConfig {
     'ttl': number;
     /**
      * 
-     * @type {JWTConfigAccountData}
+     * @type {number}
      * @memberof JWTConfig
      */
-    'accountData': JWTConfigAccountData;
+    'accountId': number;
     /**
      * 
-     * @type {JWTConfigApiKeyData}
+     * @type {number}
      * @memberof JWTConfig
      */
-    'apiKeyData': JWTConfigApiKeyData;
+    'apiKeyId': number;
+    /**
+     * 
+     * @type {AccountsTableRequestLimits}
+     * @memberof JWTConfig
+     */
+    'limits': AccountsTableRequestLimits;
     /**
      * 
      * @type {WebSocketJWTLimits}
@@ -1449,59 +1029,15 @@ export interface JWTConfig {
 /**
  * 
  * @export
- * @interface JWTConfigAccountData
- */
-export interface JWTConfigAccountData {
-    /**
-     * 
-     * @type {number}
-     * @memberof JWTConfigAccountData
-     */
-    'day': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof JWTConfigAccountData
-     */
-    'minute': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof JWTConfigAccountData
-     */
-    'hour': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof JWTConfigAccountData
-     */
-    'id': number;
-}
-/**
- * 
- * @export
- * @interface JWTConfigApiKeyData
- */
-export interface JWTConfigApiKeyData {
-    /**
-     * 
-     * @type {number}
-     * @memberof JWTConfigApiKeyData
-     */
-    'id': number;
-}
-/**
- * 
- * @export
  * @interface JWTCreateConfig
  */
 export interface JWTCreateConfig {
     /**
      * 
-     * @type {IAccountRequestLimits}
+     * @type {AccountsTableRequestLimits}
      * @memberof JWTCreateConfig
      */
-    'limits'?: IAccountRequestLimits | null;
+    'limits'?: AccountsTableRequestLimits | null;
     /**
      * 
      * @type {WebSocketJWTLimits}
@@ -1524,37 +1060,103 @@ export interface JWTCreateConfig {
 /**
  * 
  * @export
- * @enum {string}
+ * @interface ListAlertTargetsResponse
  */
-
-export const LiveClient = {
-    TtliveJava: 'ttlive-java',
-    TtliveNode: 'ttlive-node',
-    TtlivePython: 'ttlive-python',
-    TtliveNet: 'ttlive-net',
-    TtliveRust: 'ttlive-rust',
-    GotiktokLive: 'gotiktok_live',
-    TtliveCloudflare: 'ttlive-cloudflare',
-    TtliveOther: 'ttlive-other'
-} as const;
-
-export type LiveClient = typeof LiveClient[keyof typeof LiveClient];
-
-
+export interface ListAlertTargetsResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof ListAlertTargetsResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListAlertTargetsResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {Array<AlertTarget>}
+     * @memberof ListAlertTargetsResponse
+     */
+    'targets'?: Array<AlertTarget>;
+}
 /**
  * 
  * @export
- * @enum {number}
+ * @interface ListAlertsResponse
  */
-
-export const LogRequestMethod = {
-    NUMBER_0: 0,
-    NUMBER_1: 1
-} as const;
-
-export type LogRequestMethod = typeof LogRequestMethod[keyof typeof LogRequestMethod];
-
-
+export interface ListAlertsResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof ListAlertsResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListAlertsResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {Array<Alert>}
+     * @memberof ListAlertsResponse
+     */
+    'alerts'?: Array<Alert>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ListAlertsResponse
+     */
+    'hasMore': boolean;
+}
+/**
+ * 
+ * @export
+ * @interface ListKeysResponse
+ */
+export interface ListKeysResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof ListKeysResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListKeysResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {Array<ApiKey>}
+     * @memberof ListKeysResponse
+     */
+    'keys'?: Array<ApiKey>;
+}
+/**
+ * 
+ * @export
+ * @interface LoadShedInfo
+ */
+export interface LoadShedInfo {
+    /**
+     * 
+     * @type {number}
+     * @memberof LoadShedInfo
+     */
+    'at': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LoadShedInfo
+     */
+    'chance': number;
+}
 /**
  * Make all properties in T optional
  * @export
@@ -1613,128 +1215,128 @@ export interface PartialAvatarUrlStringNicknameStringSecUidStringNumericUidStrin
 /**
  * Make all properties in T optional
  * @export
- * @interface PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
+ * @interface PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray
  */
-export interface PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray {
+export interface PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray {
     /**
      * 
      * @type {string}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray
      */
     'signedUrl'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray
      */
     'userAgent'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray
      */
     'browserName'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray
      */
     'browserVersion'?: string;
     /**
      * Construct a type with a set of properties K of type T
      * @type {{ [key: string]: string; }}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray
      */
     'tokens'?: { [key: string]: string; };
     /**
      * Construct a type with a set of properties K of type T
      * @type {{ [key: string]: string; }}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray
      */
     'requestHeaders'?: { [key: string]: string; };
     /**
      * 
-     * @type {Array<{ [key: string]: any; }>}
-     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray
+     * @type {Array<{ [key: string]: string; }>}
+     * @memberof PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray
      */
-    'cookies'?: Array<{ [key: string]: any; }>;
+    'cookies'?: Array<{ [key: string]: string; }>;
 }
 /**
  * Make all properties in T optional
  * @export
- * @interface PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString
+ * @interface PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString
  */
-export interface PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString {
+export interface PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString {
     /**
      * 
      * @type {number}
-     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString
+     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString
      */
     'status'?: number;
     /**
      * 
      * @type {boolean}
-     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString
+     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString
      */
     'is_live'?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString
+     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString
      */
     'id'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString
+     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString
      */
     'cover_url'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString
+     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString
      */
     'title'?: string;
     /**
      * 
      * @type {number}
-     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString
+     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString
      */
     'start_time'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString
+     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString
      */
     'current_viewers'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString
+     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString
      */
     'total_viewers'?: number;
     /**
      * 
      * @type {string}
-     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString
+     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString
      */
     'hls_pull_url'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString
-     */
-    'hls_pull_url_ld'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString
+     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString
      */
     'flv_pull_url'?: string;
     /**
      * 
      * @type {string}
-     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString
+     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString
+     */
+    'hls_pull_url_ld'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString
      */
     'flv_pull_url_ld'?: string;
 }
@@ -1795,45 +1397,379 @@ export type PeerRole = typeof PeerRole[keyof typeof PeerRole];
 /**
  * 
  * @export
- * @interface Pips200Response
+ * @enum {string}
  */
-export interface Pips200Response {
+
+export const ProxyRegion = {
+    De: 'DE',
+    Es: 'ES',
+    Fr: 'FR',
+    Gb: 'GB',
+    Pl: 'PL',
+    Us: 'US'
+} as const;
+
+export type ProxyRegion = typeof ProxyRegion[keyof typeof ProxyRegion];
+
+
+/**
+ * 
+ * @export
+ * @interface RateLimitInfo
+ */
+export interface RateLimitInfo {
     /**
      * 
      * @type {number}
-     * @memberof Pips200Response
+     * @memberof RateLimitInfo
+     */
+    'max': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof RateLimitInfo
+     */
+    'remaining': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RateLimitInfo
+     */
+    'reset_at': string | null;
+}
+/**
+ * 
+ * @export
+ * @interface RetrieveAccountResponse
+ */
+export interface RetrieveAccountResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof RetrieveAccountResponse
      */
     'code': number;
     /**
      * 
      * @type {string}
-     * @memberof Pips200Response
+     * @memberof RetrieveAccountResponse
      */
     'message'?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Pips200Response
+     * @type {AccountWithPermissionsSafe}
+     * @memberof RetrieveAccountResponse
      */
-    'image_url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Pips200Response
-     */
-    'label': string;
+    'account'?: AccountWithPermissionsSafe;
+}
+/**
+ * 
+ * @export
+ * @interface RetrieveAgentHostsResponse
+ */
+export interface RetrieveAgentHostsResponse {
     /**
      * 
      * @type {number}
-     * @memberof Pips200Response
+     * @memberof RetrieveAgentHostsResponse
      */
-    'value': number;
+    'code': number;
     /**
      * 
      * @type {string}
-     * @memberof Pips200Response
+     * @memberof RetrieveAgentHostsResponse
      */
-    'unit': string;
+    'message'?: string;
+    /**
+     * 
+     * @type {Array<PeerPresence>}
+     * @memberof RetrieveAgentHostsResponse
+     */
+    'agents': Array<PeerPresence>;
+}
+/**
+ * 
+ * @export
+ * @interface RetrieveAggregateUsageResponse
+ */
+export interface RetrieveAggregateUsageResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof RetrieveAggregateUsageResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RetrieveAggregateUsageResponse
+     */
+    'message'?: string;
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: { [key: string]: any; }; }}
+     * @memberof RetrieveAggregateUsageResponse
+     */
+    'usage'?: { [key: string]: { [key: string]: any; }; };
+}
+/**
+ * 
+ * @export
+ * @interface RetrieveAlertResponse
+ */
+export interface RetrieveAlertResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof RetrieveAlertResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RetrieveAlertResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {Alert}
+     * @memberof RetrieveAlertResponse
+     */
+    'alert'?: Alert;
+    /**
+     * 
+     * @type {RetrieveAlertResponseCreator}
+     * @memberof RetrieveAlertResponse
+     */
+    'creator'?: RetrieveAlertResponseCreator;
+}
+/**
+ * 
+ * @export
+ * @interface RetrieveAlertResponseCreator
+ */
+export interface RetrieveAlertResponseCreator {
+    /**
+     * 
+     * @type {string}
+     * @memberof RetrieveAlertResponseCreator
+     */
+    'last_nickname': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof RetrieveAlertResponseCreator
+     */
+    'last_avatar_url': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof RetrieveAlertResponseCreator
+     */
+    'room_id': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof RetrieveAlertResponseCreator
+     */
+    'state_label': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RetrieveAlertResponseCreator
+     */
+    'state': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RetrieveAlertResponseCreator
+     */
+    'unique_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface RetrieveKeyResponse
+ */
+export interface RetrieveKeyResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof RetrieveKeyResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RetrieveKeyResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {ApiKey}
+     * @memberof RetrieveKeyResponse
+     */
+    'key'?: ApiKey;
+}
+/**
+ * 
+ * @export
+ * @interface SignLogPublic
+ */
+export interface SignLogPublic {
+    /**
+     * 
+     * @type {string}
+     * @memberof SignLogPublic
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignLogPublic
+     */
+    'ts': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SignLogPublic
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignLogPublic
+     */
+    'client': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignLogPublic
+     */
+    'ip': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SignLogPublic
+     */
+    'api_key_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignLogPublic
+     */
+    'user_agent': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignLogPublic
+     */
+    'agent_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface SignTikTokUrlBody
+ */
+export interface SignTikTokUrlBody {
+    /**
+     * 
+     * @type {string}
+     * @memberof SignTikTokUrlBody
+     */
+    'url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignTikTokUrlBody
+     */
+    'userAgent'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignTikTokUrlBody
+     */
+    'method'?: SignTikTokUrlBodyMethodEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignTikTokUrlBody
+     */
+    'sessionId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignTikTokUrlBody
+     */
+    'ttTargetIdc'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignTikTokUrlBody
+     */
+    'payload'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignTikTokUrlBody
+     */
+    'type'?: SignTikTokUrlBodyTypeEnum;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SignTikTokUrlBody
+     */
+    'includeBrowserParams'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SignTikTokUrlBody
+     */
+    'includeVerifyFp'?: boolean;
+}
+
+export const SignTikTokUrlBodyMethodEnum = {
+    Get: 'GET',
+    Post: 'POST',
+    Options: 'OPTIONS',
+    Put: 'PUT',
+    Delete: 'DELETE',
+    Patch: 'PATCH',
+    Head: 'HEAD'
+} as const;
+
+export type SignTikTokUrlBodyMethodEnum = typeof SignTikTokUrlBodyMethodEnum[keyof typeof SignTikTokUrlBodyMethodEnum];
+export const SignTikTokUrlBodyTypeEnum = {
+    Fetch: 'fetch',
+    Xhr: 'xhr'
+} as const;
+
+export type SignTikTokUrlBodyTypeEnum = typeof SignTikTokUrlBodyTypeEnum[keyof typeof SignTikTokUrlBodyTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface SignTikTokUrlResponse
+ */
+export interface SignTikTokUrlResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof SignTikTokUrlResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignTikTokUrlResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray}
+     * @memberof SignTikTokUrlResponse
+     */
+    'response'?: PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray;
 }
 /**
  * 
@@ -1855,10 +1791,10 @@ export interface SignWebcastUrl200Response {
     'message'?: string;
     /**
      * 
-     * @type {PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray}
+     * @type {PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray}
      * @memberof SignWebcastUrl200Response
      */
-    'response'?: PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringAnyArray;
+    'response'?: PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray;
 }
 /**
  * 
@@ -1879,94 +1815,165 @@ export type StreamType = typeof StreamType[keyof typeof StreamType];
 /**
  * 
  * @export
- * @interface TikTokLiveRoomInfo
+ * @interface TestAlertTargetResponse
  */
-export interface TikTokLiveRoomInfo {
+export interface TestAlertTargetResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof TestAlertTargetResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TestAlertTargetResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {AlertTargetStatus}
+     * @memberof TestAlertTargetResponse
+     */
+    'status'?: AlertTargetStatus;
+    /**
+     * 
+     * @type {string}
+     * @memberof TestAlertTargetResponse
+     */
+    'statusLabel'?: string;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface TikTokLiveUser
+ */
+export interface TikTokLiveUser {
     /**
      * Construct a type with a set of properties K of type T
      * @type {{ [key: string]: any; }}
-     * @memberof TikTokLiveRoomInfo
+     * @memberof TikTokLiveUser
      */
     'raw': { [key: string]: any; };
     /**
      * 
-     * @type {PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString}
-     * @memberof TikTokLiveRoomInfo
+     * @type {PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString}
+     * @memberof TikTokLiveUser
      */
-    'room_info'?: PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringHlsPullUrlLdStringFlvPullUrlStringFlvPullUrlLdString;
+    'room_info'?: PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString;
     /**
      * 
-     * @type {TikTokLiveRoomInfoUser}
-     * @memberof TikTokLiveRoomInfo
+     * @type {TikTokLiveUserUser}
+     * @memberof TikTokLiveUser
      */
-    'user'?: TikTokLiveRoomInfoUser;
+    'user'?: TikTokLiveUserUser;
     /**
      * 
      * @type {string}
-     * @memberof TikTokLiveRoomInfo
+     * @memberof TikTokLiveUser
      */
     'unique_id': string;
 }
 /**
  * 
  * @export
- * @interface TikTokLiveRoomInfoUser
+ * @interface TikTokLiveUserUser
  */
-export interface TikTokLiveRoomInfoUser {
+export interface TikTokLiveUserUser {
     /**
      * 
      * @type {string}
-     * @memberof TikTokLiveRoomInfoUser
+     * @memberof TikTokLiveUserUser
      */
     'avatar_url'?: string;
     /**
      * 
      * @type {string}
-     * @memberof TikTokLiveRoomInfoUser
+     * @memberof TikTokLiveUserUser
      */
     'nickname'?: string;
     /**
      * 
      * @type {string}
-     * @memberof TikTokLiveRoomInfoUser
+     * @memberof TikTokLiveUserUser
      */
     'sec_uid'?: string;
     /**
      * 
      * @type {string}
-     * @memberof TikTokLiveRoomInfoUser
+     * @memberof TikTokLiveUserUser
      */
     'numeric_uid'?: string;
     /**
      * 
      * @type {string}
-     * @memberof TikTokLiveRoomInfoUser
+     * @memberof TikTokLiveUserUser
      */
     'signature'?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof TikTokLiveRoomInfoUser
+     * @memberof TikTokLiveUserUser
      */
     'is_verified'?: boolean;
     /**
      * 
      * @type {number}
-     * @memberof TikTokLiveRoomInfoUser
+     * @memberof TikTokLiveUserUser
      */
     'following'?: number;
     /**
      * 
      * @type {number}
-     * @memberof TikTokLiveRoomInfoUser
+     * @memberof TikTokLiveUserUser
      */
     'followers'?: number;
     /**
      * 
      * @type {string}
-     * @memberof TikTokLiveRoomInfoUser
+     * @memberof TikTokLiveUserUser
      */
     'unique_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateKeyPayload
+ */
+export interface UpdateKeyPayload {
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateKeyPayload
+     */
+    'name': string;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateKeyResponse
+ */
+export interface UpdateKeyResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateKeyResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateKeyResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {ApiKey}
+     * @memberof UpdateKeyResponse
+     */
+    'config'?: ApiKey;
 }
 /**
  * 
@@ -1990,39 +1997,152 @@ export interface WebSocketJWTLimits {
 /**
  * 
  * @export
- * @interface WebSocketState
+ * @enum {string}
  */
-export interface WebSocketState {
+
+export const WebcastFetchPlatform = {
+    Mobile: 'mobile',
+    Web: 'web'
+} as const;
+
+export type WebcastFetchPlatform = typeof WebcastFetchPlatform[keyof typeof WebcastFetchPlatform];
+
+
+/**
+ * 
+ * @export
+ * @interface WebcastRoomChatPayload
+ */
+export interface WebcastRoomChatPayload {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastRoomChatPayload
+     */
+    'content': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastRoomChatPayload
+     */
+    'sessionId': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastRoomChatPayload
+     */
+    'ttTargetIdc': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastRoomChatPayload
+     */
+    'roomId': string;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastRoomChatRouteResponse
+ */
+export interface WebcastRoomChatRouteResponse {
     /**
      * 
      * @type {number}
-     * @memberof WebSocketState
+     * @memberof WebcastRoomChatRouteResponse
      */
-    'apiKeyId': number;
+    'code': number;
     /**
      * 
      * @type {string}
-     * @memberof WebSocketState
+     * @memberof WebcastRoomChatRouteResponse
      */
-    'jwtName': string | null;
+    'message'?: string;
     /**
      * 
-     * @type {string}
-     * @memberof WebSocketState
+     * @type {any}
+     * @memberof WebcastRoomChatRouteResponse
      */
-    'jwtId': string | null;
+    'data'?: any;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastRoomIdRouteResponse
+ */
+export interface WebcastRoomIdRouteResponse {
     /**
      * 
      * @type {number}
-     * @memberof WebSocketState
+     * @memberof WebcastRoomIdRouteResponse
      */
-    'heartbeat': number;
+    'code': number;
     /**
      * 
      * @type {string}
-     * @memberof WebSocketState
+     * @memberof WebcastRoomIdRouteResponse
      */
-    'wsId': string;
+    'message'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WebcastRoomIdRouteResponse
+     */
+    'ok': boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof WebcastRoomIdRouteResponse
+     */
+    'routes_attempted': Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WebcastRoomIdRouteResponse
+     */
+    'is_live'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastRoomIdRouteResponse
+     */
+    'room_id'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastRoomInfoRouteResponse
+ */
+export interface WebcastRoomInfoRouteResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastRoomInfoRouteResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastRoomInfoRouteResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WebcastRoomInfoRouteResponse
+     */
+    'ok': boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof WebcastRoomInfoRouteResponse
+     */
+    'routes_attempted': Array<string>;
+    /**
+     * 
+     * @type {TikTokLiveUser}
+     * @memberof WebcastRoomInfoRouteResponse
+     */
+    'data': TikTokLiveUser | null;
 }
 
 /**
@@ -2161,6 +2281,41 @@ export const AccountsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
+         * Retrieve an account from the Sign API
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveAccountSelf: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/accounts/me`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "apiKey", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve the usage logs for a specific account
          * @param {number} accountId Account ID to retrieve usage logs for
          * @param {RetrieveAggregateUsagePeriodEnum} period The period for aggregate statistics to check
@@ -2232,7 +2387,7 @@ export const AccountsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async countSignUsage(accountId: number, from: string, to: string, apiKeyId?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ICountSignUsage>> {
+        async countSignUsage(accountId: number, from: string, to: string, apiKeyId?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CountSignUsage>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.countSignUsage(accountId, from, to, apiKeyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AccountsApi.countSignUsage']?.[localVarOperationServerIndex]?.url;
@@ -2248,10 +2403,21 @@ export const AccountsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSignUsage(accountId: number, from: string, to: string, apiKeyId?: number, page?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IGetSignUsageResponse>> {
+        async getSignUsage(accountId: number, from: string, to: string, apiKeyId?: number, page?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetSignUsageResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSignUsage(accountId, from, to, apiKeyId, page, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AccountsApi.getSignUsage']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieve an account from the Sign API
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveAccountSelf(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RetrieveAccountResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveAccountSelf(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AccountsApi.retrieveAccountSelf']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -2262,7 +2428,7 @@ export const AccountsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveAggregateUsage(accountId: number, period: RetrieveAggregateUsagePeriodEnum, value: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IRetrieveAggregateUsageResponse>> {
+        async retrieveAggregateUsage(accountId: number, period: RetrieveAggregateUsagePeriodEnum, value: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RetrieveAggregateUsageResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveAggregateUsage(accountId, period, value, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AccountsApi.retrieveAggregateUsage']?.[localVarOperationServerIndex]?.url;
@@ -2287,7 +2453,7 @@ export const AccountsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        countSignUsage(accountId: number, from: string, to: string, apiKeyId?: number, options?: RawAxiosRequestConfig): AxiosPromise<ICountSignUsage> {
+        countSignUsage(accountId: number, from: string, to: string, apiKeyId?: number, options?: RawAxiosRequestConfig): AxiosPromise<CountSignUsage> {
             return localVarFp.countSignUsage(accountId, from, to, apiKeyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -2300,8 +2466,16 @@ export const AccountsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSignUsage(accountId: number, from: string, to: string, apiKeyId?: number, page?: number, options?: RawAxiosRequestConfig): AxiosPromise<IGetSignUsageResponse> {
+        getSignUsage(accountId: number, from: string, to: string, apiKeyId?: number, page?: number, options?: RawAxiosRequestConfig): AxiosPromise<GetSignUsageResponse> {
             return localVarFp.getSignUsage(accountId, from, to, apiKeyId, page, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve an account from the Sign API
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveAccountSelf(options?: RawAxiosRequestConfig): AxiosPromise<RetrieveAccountResponse> {
+            return localVarFp.retrieveAccountSelf(options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve the usage logs for a specific account
@@ -2311,7 +2485,7 @@ export const AccountsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveAggregateUsage(accountId: number, period: RetrieveAggregateUsagePeriodEnum, value: number, options?: RawAxiosRequestConfig): AxiosPromise<IRetrieveAggregateUsageResponse> {
+        retrieveAggregateUsage(accountId: number, period: RetrieveAggregateUsagePeriodEnum, value: number, options?: RawAxiosRequestConfig): AxiosPromise<RetrieveAggregateUsageResponse> {
             return localVarFp.retrieveAggregateUsage(accountId, period, value, options).then((request) => request(axios, basePath));
         },
     };
@@ -2354,6 +2528,16 @@ export class AccountsApi extends BaseAPI {
     }
 
     /**
+     * Retrieve an account from the Sign API
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public retrieveAccountSelf(options?: RawAxiosRequestConfig) {
+        return AccountsApiFp(this.configuration).retrieveAccountSelf(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Retrieve the usage logs for a specific account
      * @param {number} accountId Account ID to retrieve usage logs for
      * @param {RetrieveAggregateUsagePeriodEnum} period The period for aggregate statistics to check
@@ -2387,17 +2571,17 @@ export const AlertTargetsApiAxiosParamCreator = function (configuration?: Config
          * Create a target for an alert. This is the HTTP endpoint that will be called when an alert is triggered.
          * @param {number} accountId The ID of the account to create the alert target for
          * @param {number} alertId The ID of the alert to create the target for
-         * @param {IAlertTargetConfigBase} iAlertTargetConfigBase Configuration for the alert target
+         * @param {CreateAlertTargetPayload} createAlertTargetPayload Configuration for the alert target
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createAlertTarget: async (accountId: number, alertId: number, iAlertTargetConfigBase: IAlertTargetConfigBase, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createAlertTarget: async (accountId: number, alertId: number, createAlertTargetPayload: CreateAlertTargetPayload, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('createAlertTarget', 'accountId', accountId)
             // verify required parameter 'alertId' is not null or undefined
             assertParamExists('createAlertTarget', 'alertId', alertId)
-            // verify required parameter 'iAlertTargetConfigBase' is not null or undefined
-            assertParamExists('createAlertTarget', 'iAlertTargetConfigBase', iAlertTargetConfigBase)
+            // verify required parameter 'createAlertTargetPayload' is not null or undefined
+            assertParamExists('createAlertTarget', 'createAlertTargetPayload', createAlertTargetPayload)
             const localVarPath = `/accounts/{account_id}/alerts/{alert_id}/targets/create`
                 .replace(`{${"account_id"}}`, encodeURIComponent(String(accountId)))
                 .replace(`{${"alert_id"}}`, encodeURIComponent(String(alertId)));
@@ -2428,7 +2612,7 @@ export const AlertTargetsApiAxiosParamCreator = function (configuration?: Config
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(iAlertTargetConfigBase, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(createAlertTargetPayload, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2595,12 +2779,12 @@ export const AlertTargetsApiFp = function(configuration?: Configuration) {
          * Create a target for an alert. This is the HTTP endpoint that will be called when an alert is triggered.
          * @param {number} accountId The ID of the account to create the alert target for
          * @param {number} alertId The ID of the alert to create the target for
-         * @param {IAlertTargetConfigBase} iAlertTargetConfigBase Configuration for the alert target
+         * @param {CreateAlertTargetPayload} createAlertTargetPayload Configuration for the alert target
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createAlertTarget(accountId: number, alertId: number, iAlertTargetConfigBase: IAlertTargetConfigBase, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ICreateAlertTargetResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createAlertTarget(accountId, alertId, iAlertTargetConfigBase, options);
+        async createAlertTarget(accountId: number, alertId: number, createAlertTargetPayload: CreateAlertTargetPayload, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateAlertTargetResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createAlertTarget(accountId, alertId, createAlertTargetPayload, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AlertTargetsApi.createAlertTarget']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -2613,7 +2797,7 @@ export const AlertTargetsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteAlertTarget(accountId: number, alertId: number, targetId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IDeleteAlertTargetResponse>> {
+        async deleteAlertTarget(accountId: number, alertId: number, targetId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteAlertTargetResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteAlertTarget(accountId, alertId, targetId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AlertTargetsApi.deleteAlertTarget']?.[localVarOperationServerIndex]?.url;
@@ -2626,7 +2810,7 @@ export const AlertTargetsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listAlertTargets(accountId: number, alertId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IListAlertTargetsResponse>> {
+        async listAlertTargets(accountId: number, alertId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListAlertTargetsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listAlertTargets(accountId, alertId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AlertTargetsApi.listAlertTargets']?.[localVarOperationServerIndex]?.url;
@@ -2640,7 +2824,7 @@ export const AlertTargetsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async testAlertTarget(accountId: number, alertId: number, targetId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ITestAlertTargetResponse>> {
+        async testAlertTarget(accountId: number, alertId: number, targetId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TestAlertTargetResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.testAlertTarget(accountId, alertId, targetId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AlertTargetsApi.testAlertTarget']?.[localVarOperationServerIndex]?.url;
@@ -2660,12 +2844,12 @@ export const AlertTargetsApiFactory = function (configuration?: Configuration, b
          * Create a target for an alert. This is the HTTP endpoint that will be called when an alert is triggered.
          * @param {number} accountId The ID of the account to create the alert target for
          * @param {number} alertId The ID of the alert to create the target for
-         * @param {IAlertTargetConfigBase} iAlertTargetConfigBase Configuration for the alert target
+         * @param {CreateAlertTargetPayload} createAlertTargetPayload Configuration for the alert target
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createAlertTarget(accountId: number, alertId: number, iAlertTargetConfigBase: IAlertTargetConfigBase, options?: RawAxiosRequestConfig): AxiosPromise<ICreateAlertTargetResponse> {
-            return localVarFp.createAlertTarget(accountId, alertId, iAlertTargetConfigBase, options).then((request) => request(axios, basePath));
+        createAlertTarget(accountId: number, alertId: number, createAlertTargetPayload: CreateAlertTargetPayload, options?: RawAxiosRequestConfig): AxiosPromise<CreateAlertTargetResponse> {
+            return localVarFp.createAlertTarget(accountId, alertId, createAlertTargetPayload, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete an alert target from the Sign API
@@ -2675,7 +2859,7 @@ export const AlertTargetsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteAlertTarget(accountId: number, alertId: number, targetId: number, options?: RawAxiosRequestConfig): AxiosPromise<IDeleteAlertTargetResponse> {
+        deleteAlertTarget(accountId: number, alertId: number, targetId: number, options?: RawAxiosRequestConfig): AxiosPromise<DeleteAlertTargetResponse> {
             return localVarFp.deleteAlertTarget(accountId, alertId, targetId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -2685,7 +2869,7 @@ export const AlertTargetsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listAlertTargets(accountId: number, alertId: number, options?: RawAxiosRequestConfig): AxiosPromise<IListAlertTargetsResponse> {
+        listAlertTargets(accountId: number, alertId: number, options?: RawAxiosRequestConfig): AxiosPromise<ListAlertTargetsResponse> {
             return localVarFp.listAlertTargets(accountId, alertId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -2696,7 +2880,7 @@ export const AlertTargetsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        testAlertTarget(accountId: number, alertId: number, targetId: number, options?: RawAxiosRequestConfig): AxiosPromise<ITestAlertTargetResponse> {
+        testAlertTarget(accountId: number, alertId: number, targetId: number, options?: RawAxiosRequestConfig): AxiosPromise<TestAlertTargetResponse> {
             return localVarFp.testAlertTarget(accountId, alertId, targetId, options).then((request) => request(axios, basePath));
         },
     };
@@ -2713,13 +2897,13 @@ export class AlertTargetsApi extends BaseAPI {
      * Create a target for an alert. This is the HTTP endpoint that will be called when an alert is triggered.
      * @param {number} accountId The ID of the account to create the alert target for
      * @param {number} alertId The ID of the alert to create the target for
-     * @param {IAlertTargetConfigBase} iAlertTargetConfigBase Configuration for the alert target
+     * @param {CreateAlertTargetPayload} createAlertTargetPayload Configuration for the alert target
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertTargetsApi
      */
-    public createAlertTarget(accountId: number, alertId: number, iAlertTargetConfigBase: IAlertTargetConfigBase, options?: RawAxiosRequestConfig) {
-        return AlertTargetsApiFp(this.configuration).createAlertTarget(accountId, alertId, iAlertTargetConfigBase, options).then((request) => request(this.axios, this.basePath));
+    public createAlertTarget(accountId: number, alertId: number, createAlertTargetPayload: CreateAlertTargetPayload, options?: RawAxiosRequestConfig) {
+        return AlertTargetsApiFp(this.configuration).createAlertTarget(accountId, alertId, createAlertTargetPayload, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2770,17 +2954,17 @@ export class AlertTargetsApi extends BaseAPI {
 export const AlertsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Create a creator alert. These alerts are used to notify users of a new livestream.
+         * Create a creator alert. These Alerts are used to notify users of a new livestream.
          * @param {number} accountId The ID of the account to create the alert for
-         * @param {IAlertConfigBase} iAlertConfigBase Configuration for the alert
+         * @param {CreateAlertRequest} createAlertRequest Configuration for the alert
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createAlert: async (accountId: number, iAlertConfigBase: IAlertConfigBase, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createAlert: async (accountId: number, createAlertRequest: CreateAlertRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('createAlert', 'accountId', accountId)
-            // verify required parameter 'iAlertConfigBase' is not null or undefined
-            assertParamExists('createAlert', 'iAlertConfigBase', iAlertConfigBase)
+            // verify required parameter 'createAlertRequest' is not null or undefined
+            assertParamExists('createAlert', 'createAlertRequest', createAlertRequest)
             const localVarPath = `/accounts/{account_id}/alerts/create`
                 .replace(`{${"account_id"}}`, encodeURIComponent(String(accountId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2810,7 +2994,7 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(iAlertConfigBase, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(createAlertRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2866,11 +3050,11 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * 
          * @param {number} accountId 
-         * @param {boolean} [includeRoomInfo] 
+         * @param {number} [page] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listAlerts: async (accountId: number, includeRoomInfo?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        listAlerts: async (accountId: number, page?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('listAlerts', 'accountId', accountId)
             const localVarPath = `/accounts/{account_id}/alerts/list`
@@ -2895,8 +3079,8 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
             // authentication api_key_header required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (includeRoomInfo !== undefined) {
-                localVarQueryParameter['include_room_info'] = includeRoomInfo;
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
 
 
@@ -2914,11 +3098,10 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
          * Retrieve a specific alert by its ID
          * @param {number} accountId The account that the alert belongs to
          * @param {number} alertId The ID of the alert to retrieve
-         * @param {boolean} [includeRoomInfo] Whether to include room information in the response
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveAlert: async (accountId: number, alertId: number, includeRoomInfo?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        retrieveAlert: async (accountId: number, alertId: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('retrieveAlert', 'accountId', accountId)
             // verify required parameter 'alertId' is not null or undefined
@@ -2946,10 +3129,6 @@ export const AlertsApiAxiosParamCreator = function (configuration?: Configuratio
             // authentication api_key_header required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
-            if (includeRoomInfo !== undefined) {
-                localVarQueryParameter['include_room_info'] = includeRoomInfo;
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -2972,14 +3151,14 @@ export const AlertsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AlertsApiAxiosParamCreator(configuration)
     return {
         /**
-         * Create a creator alert. These alerts are used to notify users of a new livestream.
+         * Create a creator alert. These Alerts are used to notify users of a new livestream.
          * @param {number} accountId The ID of the account to create the alert for
-         * @param {IAlertConfigBase} iAlertConfigBase Configuration for the alert
+         * @param {CreateAlertRequest} createAlertRequest Configuration for the alert
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createAlert(accountId: number, iAlertConfigBase: IAlertConfigBase, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ICreateAlertResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createAlert(accountId, iAlertConfigBase, options);
+        async createAlert(accountId: number, createAlertRequest: CreateAlertRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateAlertResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createAlert(accountId, createAlertRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AlertsApi.createAlert']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -2991,7 +3170,7 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteAlert(accountId: number, alertId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IDeleteAlertResponse>> {
+        async deleteAlert(accountId: number, alertId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteAlertResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteAlert(accountId, alertId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AlertsApi.deleteAlert']?.[localVarOperationServerIndex]?.url;
@@ -3000,12 +3179,12 @@ export const AlertsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {number} accountId 
-         * @param {boolean} [includeRoomInfo] 
+         * @param {number} [page] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listAlerts(accountId: number, includeRoomInfo?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IListAlertsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.listAlerts(accountId, includeRoomInfo, options);
+        async listAlerts(accountId: number, page?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListAlertsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listAlerts(accountId, page, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AlertsApi.listAlerts']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -3014,12 +3193,11 @@ export const AlertsApiFp = function(configuration?: Configuration) {
          * Retrieve a specific alert by its ID
          * @param {number} accountId The account that the alert belongs to
          * @param {number} alertId The ID of the alert to retrieve
-         * @param {boolean} [includeRoomInfo] Whether to include room information in the response
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveAlert(accountId: number, alertId: number, includeRoomInfo?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IRetrieveAlertResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveAlert(accountId, alertId, includeRoomInfo, options);
+        async retrieveAlert(accountId: number, alertId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RetrieveAlertResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveAlert(accountId, alertId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AlertsApi.retrieveAlert']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -3035,14 +3213,14 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
     const localVarFp = AlertsApiFp(configuration)
     return {
         /**
-         * Create a creator alert. These alerts are used to notify users of a new livestream.
+         * Create a creator alert. These Alerts are used to notify users of a new livestream.
          * @param {number} accountId The ID of the account to create the alert for
-         * @param {IAlertConfigBase} iAlertConfigBase Configuration for the alert
+         * @param {CreateAlertRequest} createAlertRequest Configuration for the alert
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createAlert(accountId: number, iAlertConfigBase: IAlertConfigBase, options?: RawAxiosRequestConfig): AxiosPromise<ICreateAlertResponse> {
-            return localVarFp.createAlert(accountId, iAlertConfigBase, options).then((request) => request(axios, basePath));
+        createAlert(accountId: number, createAlertRequest: CreateAlertRequest, options?: RawAxiosRequestConfig): AxiosPromise<CreateAlertResponse> {
+            return localVarFp.createAlert(accountId, createAlertRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete an alert from the Sign API
@@ -3051,29 +3229,28 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteAlert(accountId: number, alertId: number, options?: RawAxiosRequestConfig): AxiosPromise<IDeleteAlertResponse> {
+        deleteAlert(accountId: number, alertId: number, options?: RawAxiosRequestConfig): AxiosPromise<DeleteAlertResponse> {
             return localVarFp.deleteAlert(accountId, alertId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {number} accountId 
-         * @param {boolean} [includeRoomInfo] 
+         * @param {number} [page] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listAlerts(accountId: number, includeRoomInfo?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<IListAlertsResponse> {
-            return localVarFp.listAlerts(accountId, includeRoomInfo, options).then((request) => request(axios, basePath));
+        listAlerts(accountId: number, page?: number, options?: RawAxiosRequestConfig): AxiosPromise<ListAlertsResponse> {
+            return localVarFp.listAlerts(accountId, page, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a specific alert by its ID
          * @param {number} accountId The account that the alert belongs to
          * @param {number} alertId The ID of the alert to retrieve
-         * @param {boolean} [includeRoomInfo] Whether to include room information in the response
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveAlert(accountId: number, alertId: number, includeRoomInfo?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<IRetrieveAlertResponse> {
-            return localVarFp.retrieveAlert(accountId, alertId, includeRoomInfo, options).then((request) => request(axios, basePath));
+        retrieveAlert(accountId: number, alertId: number, options?: RawAxiosRequestConfig): AxiosPromise<RetrieveAlertResponse> {
+            return localVarFp.retrieveAlert(accountId, alertId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3086,15 +3263,15 @@ export const AlertsApiFactory = function (configuration?: Configuration, basePat
  */
 export class AlertsApi extends BaseAPI {
     /**
-     * Create a creator alert. These alerts are used to notify users of a new livestream.
+     * Create a creator alert. These Alerts are used to notify users of a new livestream.
      * @param {number} accountId The ID of the account to create the alert for
-     * @param {IAlertConfigBase} iAlertConfigBase Configuration for the alert
+     * @param {CreateAlertRequest} createAlertRequest Configuration for the alert
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public createAlert(accountId: number, iAlertConfigBase: IAlertConfigBase, options?: RawAxiosRequestConfig) {
-        return AlertsApiFp(this.configuration).createAlert(accountId, iAlertConfigBase, options).then((request) => request(this.axios, this.basePath));
+    public createAlert(accountId: number, createAlertRequest: CreateAlertRequest, options?: RawAxiosRequestConfig) {
+        return AlertsApiFp(this.configuration).createAlert(accountId, createAlertRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3112,26 +3289,25 @@ export class AlertsApi extends BaseAPI {
     /**
      * 
      * @param {number} accountId 
-     * @param {boolean} [includeRoomInfo] 
+     * @param {number} [page] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public listAlerts(accountId: number, includeRoomInfo?: boolean, options?: RawAxiosRequestConfig) {
-        return AlertsApiFp(this.configuration).listAlerts(accountId, includeRoomInfo, options).then((request) => request(this.axios, this.basePath));
+    public listAlerts(accountId: number, page?: number, options?: RawAxiosRequestConfig) {
+        return AlertsApiFp(this.configuration).listAlerts(accountId, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Retrieve a specific alert by its ID
      * @param {number} accountId The account that the alert belongs to
      * @param {number} alertId The ID of the alert to retrieve
-     * @param {boolean} [includeRoomInfo] Whether to include room information in the response
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AlertsApi
      */
-    public retrieveAlert(accountId: number, alertId: number, includeRoomInfo?: boolean, options?: RawAxiosRequestConfig) {
-        return AlertsApiFp(this.configuration).retrieveAlert(accountId, alertId, includeRoomInfo, options).then((request) => request(this.axios, this.basePath));
+    public retrieveAlert(accountId: number, alertId: number, options?: RawAxiosRequestConfig) {
+        return AlertsApiFp(this.configuration).retrieveAlert(accountId, alertId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -3201,64 +3377,6 @@ export const AnalyticsApiAxiosParamCreator = function (configuration?: Configura
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * Retrieve stats as an SVG
-         * @param {LogRequestMethod} statName Name of the stat to retrieve
-         * @param {string} [labelColour] Specify label colour in SVG
-         * @param {string} [valueColour] Specify value colour in SVG
-         * @param {number} [hours] The number of hours to retrieve the stat for
-         * @param {LiveClient} [client] The client to filter for
-         * @param {boolean} [json] Add the ability to retrieve the pip as JSON
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        pips: async (statName: LogRequestMethod, labelColour?: string, valueColour?: string, hours?: number, client?: LiveClient, json?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'statName' is not null or undefined
-            assertParamExists('pips', 'statName', statName)
-            const localVarPath = `/analytics/pips/{statName}`
-                .replace(`{${"statName"}}`, encodeURIComponent(String(statName)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (labelColour !== undefined) {
-                localVarQueryParameter['labelColour'] = labelColour;
-            }
-
-            if (valueColour !== undefined) {
-                localVarQueryParameter['valueColour'] = valueColour;
-            }
-
-            if (hours !== undefined) {
-                localVarQueryParameter['hours'] = hours;
-            }
-
-            if (client !== undefined) {
-                localVarQueryParameter['client'] = client;
-            }
-
-            if (json !== undefined) {
-                localVarQueryParameter['json'] = json;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
@@ -3274,7 +3392,7 @@ export const AnalyticsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fetchAgents(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IRetrieveAgentHostsResponse>> {
+        async fetchAgents(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RetrieveAgentHostsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.fetchAgents(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AnalyticsApi.fetchAgents']?.[localVarOperationServerIndex]?.url;
@@ -3285,27 +3403,10 @@ export const AnalyticsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getHosts(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IHostsResponse>> {
+        async getHosts(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<HostsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getHosts(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AnalyticsApi.getHosts']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Retrieve stats as an SVG
-         * @param {LogRequestMethod} statName Name of the stat to retrieve
-         * @param {string} [labelColour] Specify label colour in SVG
-         * @param {string} [valueColour] Specify value colour in SVG
-         * @param {number} [hours] The number of hours to retrieve the stat for
-         * @param {LiveClient} [client] The client to filter for
-         * @param {boolean} [json] Add the ability to retrieve the pip as JSON
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async pips(statName: LogRequestMethod, labelColour?: string, valueColour?: string, hours?: number, client?: LiveClient, json?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Pips200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.pips(statName, labelColour, valueColour, hours, client, json, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AnalyticsApi.pips']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -3323,7 +3424,7 @@ export const AnalyticsApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchAgents(options?: RawAxiosRequestConfig): AxiosPromise<IRetrieveAgentHostsResponse> {
+        fetchAgents(options?: RawAxiosRequestConfig): AxiosPromise<RetrieveAgentHostsResponse> {
             return localVarFp.fetchAgents(options).then((request) => request(axios, basePath));
         },
         /**
@@ -3331,22 +3432,8 @@ export const AnalyticsApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getHosts(options?: RawAxiosRequestConfig): AxiosPromise<IHostsResponse> {
+        getHosts(options?: RawAxiosRequestConfig): AxiosPromise<HostsResponse> {
             return localVarFp.getHosts(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Retrieve stats as an SVG
-         * @param {LogRequestMethod} statName Name of the stat to retrieve
-         * @param {string} [labelColour] Specify label colour in SVG
-         * @param {string} [valueColour] Specify value colour in SVG
-         * @param {number} [hours] The number of hours to retrieve the stat for
-         * @param {LiveClient} [client] The client to filter for
-         * @param {boolean} [json] Add the ability to retrieve the pip as JSON
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        pips(statName: LogRequestMethod, labelColour?: string, valueColour?: string, hours?: number, client?: LiveClient, json?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<Pips200Response> {
-            return localVarFp.pips(statName, labelColour, valueColour, hours, client, json, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3376,22 +3463,6 @@ export class AnalyticsApi extends BaseAPI {
      */
     public getHosts(options?: RawAxiosRequestConfig) {
         return AnalyticsApiFp(this.configuration).getHosts(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Retrieve stats as an SVG
-     * @param {LogRequestMethod} statName Name of the stat to retrieve
-     * @param {string} [labelColour] Specify label colour in SVG
-     * @param {string} [valueColour] Specify value colour in SVG
-     * @param {number} [hours] The number of hours to retrieve the stat for
-     * @param {LiveClient} [client] The client to filter for
-     * @param {boolean} [json] Add the ability to retrieve the pip as JSON
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AnalyticsApi
-     */
-    public pips(statName: LogRequestMethod, labelColour?: string, valueColour?: string, hours?: number, client?: LiveClient, json?: boolean, options?: RawAxiosRequestConfig) {
-        return AnalyticsApiFp(this.configuration).pips(statName, labelColour, valueColour, hours, client, json, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -3451,15 +3522,15 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
         /**
          * Create a new API key
          * @param {number} accountId The ID of the account to create the key for
-         * @param {IApiKeyConfigBase} iApiKeyConfigBase The configuration for the new key
+         * @param {CreateKeyPayload} createKeyPayload The configuration for the new key
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createKey: async (accountId: number, iApiKeyConfigBase: IApiKeyConfigBase, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createKey: async (accountId: number, createKeyPayload: CreateKeyPayload, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('createKey', 'accountId', accountId)
-            // verify required parameter 'iApiKeyConfigBase' is not null or undefined
-            assertParamExists('createKey', 'iApiKeyConfigBase', iApiKeyConfigBase)
+            // verify required parameter 'createKeyPayload' is not null or undefined
+            assertParamExists('createKey', 'createKeyPayload', createKeyPayload)
             const localVarPath = `/accounts/{account_id}/api_keys/create`
                 .replace(`{${"account_id"}}`, encodeURIComponent(String(accountId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -3486,7 +3557,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(iApiKeyConfigBase, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(createKeyPayload, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3641,19 +3712,19 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
          * @param {number} accountId The account to update the key for
          * @param {UpdateKeyUpdateByEnum} updateBy The API key field to update by
          * @param {string} updateParam The API key field value to update by
-         * @param {IApiKeyConfigBase} iApiKeyConfigBase The new configuration for the key
+         * @param {UpdateKeyPayload} updateKeyPayload The new configuration for the key
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateKey: async (accountId: number, updateBy: UpdateKeyUpdateByEnum, updateParam: string, iApiKeyConfigBase: IApiKeyConfigBase, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateKey: async (accountId: number, updateBy: UpdateKeyUpdateByEnum, updateParam: string, updateKeyPayload: UpdateKeyPayload, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('updateKey', 'accountId', accountId)
             // verify required parameter 'updateBy' is not null or undefined
             assertParamExists('updateKey', 'updateBy', updateBy)
             // verify required parameter 'updateParam' is not null or undefined
             assertParamExists('updateKey', 'updateParam', updateParam)
-            // verify required parameter 'iApiKeyConfigBase' is not null or undefined
-            assertParamExists('updateKey', 'iApiKeyConfigBase', iApiKeyConfigBase)
+            // verify required parameter 'updateKeyPayload' is not null or undefined
+            assertParamExists('updateKey', 'updateKeyPayload', updateKeyPayload)
             const localVarPath = `/accounts/{account_id}/api_keys/update`
                 .replace(`{${"account_id"}}`, encodeURIComponent(String(accountId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -3688,7 +3759,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(iApiKeyConfigBase, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(updateKeyPayload, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3712,7 +3783,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createJWT(accountId: number, jWTCreateConfig: JWTCreateConfig, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ICreateJWTResponse>> {
+        async createJWT(accountId: number, jWTCreateConfig: JWTCreateConfig, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateJWTResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createJWT(accountId, jWTCreateConfig, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AuthenticationApi.createJWT']?.[localVarOperationServerIndex]?.url;
@@ -3721,12 +3792,12 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
         /**
          * Create a new API key
          * @param {number} accountId The ID of the account to create the key for
-         * @param {IApiKeyConfigBase} iApiKeyConfigBase The configuration for the new key
+         * @param {CreateKeyPayload} createKeyPayload The configuration for the new key
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createKey(accountId: number, iApiKeyConfigBase: IApiKeyConfigBase, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ICreateKeyResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createKey(accountId, iApiKeyConfigBase, options);
+        async createKey(accountId: number, createKeyPayload: CreateKeyPayload, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateKeyResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createKey(accountId, createKeyPayload, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AuthenticationApi.createKey']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -3739,7 +3810,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteKey(accountId: number, deleteBy: DeleteKeyDeleteByEnum, deleteParam: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IDeleteKeyResponse>> {
+        async deleteKey(accountId: number, deleteBy: DeleteKeyDeleteByEnum, deleteParam: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteKeyResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteKey(accountId, deleteBy, deleteParam, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AuthenticationApi.deleteKey']?.[localVarOperationServerIndex]?.url;
@@ -3753,7 +3824,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getKey(accountId: number, retrieveParam: string, retrieveBy?: GetKeyRetrieveByEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IRetrieveKeyResponse>> {
+        async getKey(accountId: number, retrieveParam: string, retrieveBy?: GetKeyRetrieveByEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RetrieveKeyResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getKey(accountId, retrieveParam, retrieveBy, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AuthenticationApi.getKey']?.[localVarOperationServerIndex]?.url;
@@ -3765,7 +3836,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listKeys(accountId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IListKeysResponse>> {
+        async listKeys(accountId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListKeysResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listKeys(accountId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AuthenticationApi.listKeys']?.[localVarOperationServerIndex]?.url;
@@ -3776,12 +3847,12 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {number} accountId The account to update the key for
          * @param {UpdateKeyUpdateByEnum} updateBy The API key field to update by
          * @param {string} updateParam The API key field value to update by
-         * @param {IApiKeyConfigBase} iApiKeyConfigBase The new configuration for the key
+         * @param {UpdateKeyPayload} updateKeyPayload The new configuration for the key
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateKey(accountId: number, updateBy: UpdateKeyUpdateByEnum, updateParam: string, iApiKeyConfigBase: IApiKeyConfigBase, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IUpdateKeyResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateKey(accountId, updateBy, updateParam, iApiKeyConfigBase, options);
+        async updateKey(accountId: number, updateBy: UpdateKeyUpdateByEnum, updateParam: string, updateKeyPayload: UpdateKeyPayload, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateKeyResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateKey(accountId, updateBy, updateParam, updateKeyPayload, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AuthenticationApi.updateKey']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -3803,18 +3874,18 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createJWT(accountId: number, jWTCreateConfig: JWTCreateConfig, options?: RawAxiosRequestConfig): AxiosPromise<ICreateJWTResponse> {
+        createJWT(accountId: number, jWTCreateConfig: JWTCreateConfig, options?: RawAxiosRequestConfig): AxiosPromise<CreateJWTResponse> {
             return localVarFp.createJWT(accountId, jWTCreateConfig, options).then((request) => request(axios, basePath));
         },
         /**
          * Create a new API key
          * @param {number} accountId The ID of the account to create the key for
-         * @param {IApiKeyConfigBase} iApiKeyConfigBase The configuration for the new key
+         * @param {CreateKeyPayload} createKeyPayload The configuration for the new key
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createKey(accountId: number, iApiKeyConfigBase: IApiKeyConfigBase, options?: RawAxiosRequestConfig): AxiosPromise<ICreateKeyResponse> {
-            return localVarFp.createKey(accountId, iApiKeyConfigBase, options).then((request) => request(axios, basePath));
+        createKey(accountId: number, createKeyPayload: CreateKeyPayload, options?: RawAxiosRequestConfig): AxiosPromise<CreateKeyResponse> {
+            return localVarFp.createKey(accountId, createKeyPayload, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete an API key by its key value, name, or ID
@@ -3824,7 +3895,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteKey(accountId: number, deleteBy: DeleteKeyDeleteByEnum, deleteParam: string, options?: RawAxiosRequestConfig): AxiosPromise<IDeleteKeyResponse> {
+        deleteKey(accountId: number, deleteBy: DeleteKeyDeleteByEnum, deleteParam: string, options?: RawAxiosRequestConfig): AxiosPromise<DeleteKeyResponse> {
             return localVarFp.deleteKey(accountId, deleteBy, deleteParam, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3835,7 +3906,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getKey(accountId: number, retrieveParam: string, retrieveBy?: GetKeyRetrieveByEnum, options?: RawAxiosRequestConfig): AxiosPromise<IRetrieveKeyResponse> {
+        getKey(accountId: number, retrieveParam: string, retrieveBy?: GetKeyRetrieveByEnum, options?: RawAxiosRequestConfig): AxiosPromise<RetrieveKeyResponse> {
             return localVarFp.getKey(accountId, retrieveParam, retrieveBy, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3844,7 +3915,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listKeys(accountId: number, options?: RawAxiosRequestConfig): AxiosPromise<IListKeysResponse> {
+        listKeys(accountId: number, options?: RawAxiosRequestConfig): AxiosPromise<ListKeysResponse> {
             return localVarFp.listKeys(accountId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3852,12 +3923,12 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
          * @param {number} accountId The account to update the key for
          * @param {UpdateKeyUpdateByEnum} updateBy The API key field to update by
          * @param {string} updateParam The API key field value to update by
-         * @param {IApiKeyConfigBase} iApiKeyConfigBase The new configuration for the key
+         * @param {UpdateKeyPayload} updateKeyPayload The new configuration for the key
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateKey(accountId: number, updateBy: UpdateKeyUpdateByEnum, updateParam: string, iApiKeyConfigBase: IApiKeyConfigBase, options?: RawAxiosRequestConfig): AxiosPromise<IUpdateKeyResponse> {
-            return localVarFp.updateKey(accountId, updateBy, updateParam, iApiKeyConfigBase, options).then((request) => request(axios, basePath));
+        updateKey(accountId: number, updateBy: UpdateKeyUpdateByEnum, updateParam: string, updateKeyPayload: UpdateKeyPayload, options?: RawAxiosRequestConfig): AxiosPromise<UpdateKeyResponse> {
+            return localVarFp.updateKey(accountId, updateBy, updateParam, updateKeyPayload, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3884,13 +3955,13 @@ export class AuthenticationApi extends BaseAPI {
     /**
      * Create a new API key
      * @param {number} accountId The ID of the account to create the key for
-     * @param {IApiKeyConfigBase} iApiKeyConfigBase The configuration for the new key
+     * @param {CreateKeyPayload} createKeyPayload The configuration for the new key
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    public createKey(accountId: number, iApiKeyConfigBase: IApiKeyConfigBase, options?: RawAxiosRequestConfig) {
-        return AuthenticationApiFp(this.configuration).createKey(accountId, iApiKeyConfigBase, options).then((request) => request(this.axios, this.basePath));
+    public createKey(accountId: number, createKeyPayload: CreateKeyPayload, options?: RawAxiosRequestConfig) {
+        return AuthenticationApiFp(this.configuration).createKey(accountId, createKeyPayload, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3935,13 +4006,13 @@ export class AuthenticationApi extends BaseAPI {
      * @param {number} accountId The account to update the key for
      * @param {UpdateKeyUpdateByEnum} updateBy The API key field to update by
      * @param {string} updateParam The API key field value to update by
-     * @param {IApiKeyConfigBase} iApiKeyConfigBase The new configuration for the key
+     * @param {UpdateKeyPayload} updateKeyPayload The new configuration for the key
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    public updateKey(accountId: number, updateBy: UpdateKeyUpdateByEnum, updateParam: string, iApiKeyConfigBase: IApiKeyConfigBase, options?: RawAxiosRequestConfig) {
-        return AuthenticationApiFp(this.configuration).updateKey(accountId, updateBy, updateParam, iApiKeyConfigBase, options).then((request) => request(this.axios, this.basePath));
+    public updateKey(accountId: number, updateBy: UpdateKeyUpdateByEnum, updateParam: string, updateKeyPayload: UpdateKeyPayload, options?: RawAxiosRequestConfig) {
+        return AuthenticationApiFp(this.configuration).updateKey(accountId, updateBy, updateParam, updateKeyPayload, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -3950,7 +4021,6 @@ export class AuthenticationApi extends BaseAPI {
  */
 export const DeleteKeyDeleteByEnum = {
     Value: 'value',
-    Name: 'name',
     Id: 'id'
 } as const;
 export type DeleteKeyDeleteByEnum = typeof DeleteKeyDeleteByEnum[keyof typeof DeleteKeyDeleteByEnum];
@@ -3959,7 +4029,6 @@ export type DeleteKeyDeleteByEnum = typeof DeleteKeyDeleteByEnum[keyof typeof De
  */
 export const GetKeyRetrieveByEnum = {
     Value: 'value',
-    Name: 'name',
     Id: 'id'
 } as const;
 export type GetKeyRetrieveByEnum = typeof GetKeyRetrieveByEnum[keyof typeof GetKeyRetrieveByEnum];
@@ -3968,34 +4037,33 @@ export type GetKeyRetrieveByEnum = typeof GetKeyRetrieveByEnum[keyof typeof GetK
  */
 export const UpdateKeyUpdateByEnum = {
     Value: 'value',
-    Name: 'name',
     Id: 'id'
 } as const;
 export type UpdateKeyUpdateByEnum = typeof UpdateKeyUpdateByEnum[keyof typeof UpdateKeyUpdateByEnum];
 
 
 /**
- * WebcastApi - axios parameter creator
+ * TikTokLIVEApi - axios parameter creator
  * @export
  */
-export const WebcastApiAxiosParamCreator = function (configuration?: Configuration) {
+export const TikTokLIVEApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Fetch the WebSocket URL & first payload for a TikTok LIVE Room given a Room Id.
-         * @param {string} client The client ID
-         * @param {string} [roomId] The room ID to fetch the webcast URL for
-         * @param {string} [uniqueId] The unique ID of the TikTok user. Only available to Enterprise users.
-         * @param {string} [cursor] The cursor to fetch the webcast URL for
-         * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
-         * @param {string} [userAgent] Override the user agent used in the signature
-         * @param {string} [ttTargetIdc] The target IDC to use for the request
-         * @param {boolean} [clientEnter] Whether the client is entering the room
+         * Fetch the WebSocket URL & first payload for a TikTok LIVE Room given a Room ID.
+         * @param {string} [client] The client library identifier. Used for metrics.
+         * @param {string} [roomId] The room ID to fetch the Webcast URL for.
+         * @param {string} [uniqueId] The unique ID of the TikTok user. Send this instead of a Room ID, if you\&#39;re an Enterprise user.
+         * @param {string} [cursor] Starting cursor for the webcast connection, if any
+         * @param {string} [sessionId] Cookie - The account session ID from TikTok web
+         * @param {string} [userAgent] Override the user agent used for signing and fetching
+         * @param {string} [ttTargetIdc] Cookie - TikTok \&quot;Identity Data Center\&quot; which links a session_id to a region
+         * @param {boolean} [clientEnter] Whether the client enters a room after connecting, or if it\&#39;s done by query parameters
+         * @param {ProxyRegion} [country] Country code to make the request from.
+         * @param {WebcastFetchPlatform} [platform] Platform to connect with
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchWebcastURL: async (client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'client' is not null or undefined
-            assertParamExists('fetchWebcastURL', 'client', client)
+        fetchWebcastURL: async (client?: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, country?: ProxyRegion, platform?: WebcastFetchPlatform, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/webcast/fetch`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4049,40 +4117,13 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['client_enter'] = clientEnter;
             }
 
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieve the currently connected WebSocket clients for your account. Only for paid plans.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getConnectedWebSockets: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/webcast/websockets`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
+            if (country !== undefined) {
+                localVarQueryParameter['country'] = country;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication api_key_query required
-            await setApiKeyToObject(localVarQueryParameter, "apiKey", configuration)
-
-            // authentication api_key_header required
-            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+            if (platform !== undefined) {
+                localVarQueryParameter['platform'] = platform;
+            }
 
 
     
@@ -4176,7 +4217,7 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Fetch Room Id for a given uniqueId & whether that user is live.
+         * Fetch Room ID for a given uniqueId & whether that user is live.
          * @param {string} uniqueId The unique ID of the TikTok user to fetch the data for.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4223,11 +4264,10 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Retrieve TikTok Live Room Information
          * @param {string} uniqueId The unique identifier for the TikTok user or room
-         * @param {boolean} [giftInfo] Optional flag to include gift information in the response
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveRoomInfo: async (uniqueId: string, giftInfo?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        retrieveRoomInfo: async (uniqueId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'uniqueId' is not null or undefined
             assertParamExists('retrieveRoomInfo', 'uniqueId', uniqueId)
             const localVarPath = `/webcast/room_info`;
@@ -4250,10 +4290,6 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
 
             if (uniqueId !== undefined) {
                 localVarQueryParameter['uniqueId'] = uniqueId;
-            }
-
-            if (giftInfo !== undefined) {
-                localVarQueryParameter['giftInfo'] = giftInfo;
             }
 
 
@@ -4319,13 +4355,13 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Send a chat to a TikTok LIVE room.
-         * @param {IWebcastRoomChatPayload} iWebcastRoomChatPayload The payload configuration for sending a chat
+         * @param {WebcastRoomChatPayload} webcastRoomChatPayload The payload configuration for sending a chat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendRoomChat: async (iWebcastRoomChatPayload: IWebcastRoomChatPayload, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'iWebcastRoomChatPayload' is not null or undefined
-            assertParamExists('sendRoomChat', 'iWebcastRoomChatPayload', iWebcastRoomChatPayload)
+        sendRoomChat: async (webcastRoomChatPayload: WebcastRoomChatPayload, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'webcastRoomChatPayload' is not null or undefined
+            assertParamExists('sendRoomChat', 'webcastRoomChatPayload', webcastRoomChatPayload)
             const localVarPath = `/webcast/chat`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4351,7 +4387,7 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(iWebcastRoomChatPayload, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(webcastRoomChatPayload, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4360,13 +4396,14 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {ISignTikTokUrlBody} iSignTikTokUrlBody 
+         * @param {SignTikTokUrlBody} signTikTokUrlBody 
+         * @param {string} [client] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        signWebcastUrl: async (iSignTikTokUrlBody: ISignTikTokUrlBody, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'iSignTikTokUrlBody' is not null or undefined
-            assertParamExists('signWebcastUrl', 'iSignTikTokUrlBody', iSignTikTokUrlBody)
+        signWebcastUrl: async (signTikTokUrlBody: SignTikTokUrlBody, client?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'signTikTokUrlBody' is not null or undefined
+            assertParamExists('signWebcastUrl', 'signTikTokUrlBody', signTikTokUrlBody)
             const localVarPath = `/webcast/sign_url`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4385,6 +4422,10 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
             // authentication api_key_header required
             await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
 
+            if (client !== undefined) {
+                localVarQueryParameter['client'] = client;
+            }
+
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -4392,7 +4433,7 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(iSignTikTokUrlBody, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(signTikTokUrlBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4403,40 +4444,31 @@ export const WebcastApiAxiosParamCreator = function (configuration?: Configurati
 };
 
 /**
- * WebcastApi - functional programming interface
+ * TikTokLIVEApi - functional programming interface
  * @export
  */
-export const WebcastApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = WebcastApiAxiosParamCreator(configuration)
+export const TikTokLIVEApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = TikTokLIVEApiAxiosParamCreator(configuration)
     return {
         /**
-         * Fetch the WebSocket URL & first payload for a TikTok LIVE Room given a Room Id.
-         * @param {string} client The client ID
-         * @param {string} [roomId] The room ID to fetch the webcast URL for
-         * @param {string} [uniqueId] The unique ID of the TikTok user. Only available to Enterprise users.
-         * @param {string} [cursor] The cursor to fetch the webcast URL for
-         * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
-         * @param {string} [userAgent] Override the user agent used in the signature
-         * @param {string} [ttTargetIdc] The target IDC to use for the request
-         * @param {boolean} [clientEnter] Whether the client is entering the room
+         * Fetch the WebSocket URL & first payload for a TikTok LIVE Room given a Room ID.
+         * @param {string} [client] The client library identifier. Used for metrics.
+         * @param {string} [roomId] The room ID to fetch the Webcast URL for.
+         * @param {string} [uniqueId] The unique ID of the TikTok user. Send this instead of a Room ID, if you\&#39;re an Enterprise user.
+         * @param {string} [cursor] Starting cursor for the webcast connection, if any
+         * @param {string} [sessionId] Cookie - The account session ID from TikTok web
+         * @param {string} [userAgent] Override the user agent used for signing and fetching
+         * @param {string} [ttTargetIdc] Cookie - TikTok \&quot;Identity Data Center\&quot; which links a session_id to a region
+         * @param {boolean} [clientEnter] Whether the client enters a room after connecting, or if it\&#39;s done by query parameters
+         * @param {ProxyRegion} [country] Country code to make the request from.
+         * @param {WebcastFetchPlatform} [platform] Platform to connect with
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, ttTargetIdc, clientEnter, options);
+        async fetchWebcastURL(client?: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, country?: ProxyRegion, platform?: WebcastFetchPlatform, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, ttTargetIdc, clientEnter, country, platform, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebcastApi.fetchWebcastURL']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Retrieve the currently connected WebSocket clients for your account. Only for paid plans.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getConnectedWebSockets(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IRetrievedCloudWebSocketsRouteResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getConnectedWebSockets(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebcastApi.getConnectedWebSockets']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['TikTokLIVEApi.fetchWebcastURL']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -4444,10 +4476,10 @@ export const WebcastApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRateLimits(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IGetRateLimits>> {
+        async getRateLimits(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetRateLimits>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRateLimits(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebcastApi.getRateLimits']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['TikTokLIVEApi.getRateLimits']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -4456,35 +4488,34 @@ export const WebcastApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveRoomCover(uniqueId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IJSONResponse>> {
+        async retrieveRoomCover(uniqueId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JSONResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveRoomCover(uniqueId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebcastApi.retrieveRoomCover']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['TikTokLIVEApi.retrieveRoomCover']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Fetch Room Id for a given uniqueId & whether that user is live.
+         * Fetch Room ID for a given uniqueId & whether that user is live.
          * @param {string} uniqueId The unique ID of the TikTok user to fetch the data for.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveRoomId(uniqueId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IWebcastRoomIdRouteResponse>> {
+        async retrieveRoomId(uniqueId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebcastRoomIdRouteResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveRoomId(uniqueId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebcastApi.retrieveRoomId']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['TikTokLIVEApi.retrieveRoomId']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Retrieve TikTok Live Room Information
          * @param {string} uniqueId The unique identifier for the TikTok user or room
-         * @param {boolean} [giftInfo] Optional flag to include gift information in the response
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveRoomInfo(uniqueId: string, giftInfo?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IWebcastRoomInfoRouteResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveRoomInfo(uniqueId, giftInfo, options);
+        async retrieveRoomInfo(uniqueId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebcastRoomInfoRouteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveRoomInfo(uniqueId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebcastApi.retrieveRoomInfo']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['TikTokLIVEApi.retrieveRoomInfo']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -4494,76 +4525,71 @@ export const WebcastApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveRoomVideo(uniqueId: string, streamType?: StreamType, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IJSONResponse>> {
+        async retrieveRoomVideo(uniqueId: string, streamType?: StreamType, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JSONResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveRoomVideo(uniqueId, streamType, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebcastApi.retrieveRoomVideo']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['TikTokLIVEApi.retrieveRoomVideo']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Send a chat to a TikTok LIVE room.
-         * @param {IWebcastRoomChatPayload} iWebcastRoomChatPayload The payload configuration for sending a chat
+         * @param {WebcastRoomChatPayload} webcastRoomChatPayload The payload configuration for sending a chat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendRoomChat(iWebcastRoomChatPayload: IWebcastRoomChatPayload, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IWebcastRoomChatRouteResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendRoomChat(iWebcastRoomChatPayload, options);
+        async sendRoomChat(webcastRoomChatPayload: WebcastRoomChatPayload, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebcastRoomChatRouteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.sendRoomChat(webcastRoomChatPayload, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebcastApi.sendRoomChat']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['TikTokLIVEApi.sendRoomChat']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @param {ISignTikTokUrlBody} iSignTikTokUrlBody 
+         * @param {SignTikTokUrlBody} signTikTokUrlBody 
+         * @param {string} [client] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async signWebcastUrl(iSignTikTokUrlBody: ISignTikTokUrlBody, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SignWebcastUrl200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.signWebcastUrl(iSignTikTokUrlBody, options);
+        async signWebcastUrl(signTikTokUrlBody: SignTikTokUrlBody, client?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SignWebcastUrl200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.signWebcastUrl(signTikTokUrlBody, client, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['WebcastApi.signWebcastUrl']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['TikTokLIVEApi.signWebcastUrl']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
 
 /**
- * WebcastApi - factory interface
+ * TikTokLIVEApi - factory interface
  * @export
  */
-export const WebcastApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = WebcastApiFp(configuration)
+export const TikTokLIVEApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = TikTokLIVEApiFp(configuration)
     return {
         /**
-         * Fetch the WebSocket URL & first payload for a TikTok LIVE Room given a Room Id.
-         * @param {string} client The client ID
-         * @param {string} [roomId] The room ID to fetch the webcast URL for
-         * @param {string} [uniqueId] The unique ID of the TikTok user. Only available to Enterprise users.
-         * @param {string} [cursor] The cursor to fetch the webcast URL for
-         * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
-         * @param {string} [userAgent] Override the user agent used in the signature
-         * @param {string} [ttTargetIdc] The target IDC to use for the request
-         * @param {boolean} [clientEnter] Whether the client is entering the room
+         * Fetch the WebSocket URL & first payload for a TikTok LIVE Room given a Room ID.
+         * @param {string} [client] The client library identifier. Used for metrics.
+         * @param {string} [roomId] The room ID to fetch the Webcast URL for.
+         * @param {string} [uniqueId] The unique ID of the TikTok user. Send this instead of a Room ID, if you\&#39;re an Enterprise user.
+         * @param {string} [cursor] Starting cursor for the webcast connection, if any
+         * @param {string} [sessionId] Cookie - The account session ID from TikTok web
+         * @param {string} [userAgent] Override the user agent used for signing and fetching
+         * @param {string} [ttTargetIdc] Cookie - TikTok \&quot;Identity Data Center\&quot; which links a session_id to a region
+         * @param {boolean} [clientEnter] Whether the client enters a room after connecting, or if it\&#39;s done by query parameters
+         * @param {ProxyRegion} [country] Country code to make the request from.
+         * @param {WebcastFetchPlatform} [platform] Platform to connect with
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, ttTargetIdc, clientEnter, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Retrieve the currently connected WebSocket clients for your account. Only for paid plans.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getConnectedWebSockets(options?: RawAxiosRequestConfig): AxiosPromise<IRetrievedCloudWebSocketsRouteResponse> {
-            return localVarFp.getConnectedWebSockets(options).then((request) => request(axios, basePath));
+        fetchWebcastURL(client?: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, country?: ProxyRegion, platform?: WebcastFetchPlatform, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, ttTargetIdc, clientEnter, country, platform, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve the rate limits for the provided API key (or the unauthenticated limits if no key is provided)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRateLimits(options?: RawAxiosRequestConfig): AxiosPromise<IGetRateLimits> {
+        getRateLimits(options?: RawAxiosRequestConfig): AxiosPromise<GetRateLimits> {
             return localVarFp.getRateLimits(options).then((request) => request(axios, basePath));
         },
         /**
@@ -4572,27 +4598,26 @@ export const WebcastApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveRoomCover(uniqueId: string, options?: RawAxiosRequestConfig): AxiosPromise<IJSONResponse> {
+        retrieveRoomCover(uniqueId: string, options?: RawAxiosRequestConfig): AxiosPromise<JSONResponse> {
             return localVarFp.retrieveRoomCover(uniqueId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetch Room Id for a given uniqueId & whether that user is live.
+         * Fetch Room ID for a given uniqueId & whether that user is live.
          * @param {string} uniqueId The unique ID of the TikTok user to fetch the data for.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveRoomId(uniqueId: string, options?: RawAxiosRequestConfig): AxiosPromise<IWebcastRoomIdRouteResponse> {
+        retrieveRoomId(uniqueId: string, options?: RawAxiosRequestConfig): AxiosPromise<WebcastRoomIdRouteResponse> {
             return localVarFp.retrieveRoomId(uniqueId, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve TikTok Live Room Information
          * @param {string} uniqueId The unique identifier for the TikTok user or room
-         * @param {boolean} [giftInfo] Optional flag to include gift information in the response
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveRoomInfo(uniqueId: string, giftInfo?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<IWebcastRoomInfoRouteResponse> {
-            return localVarFp.retrieveRoomInfo(uniqueId, giftInfo, options).then((request) => request(axios, basePath));
+        retrieveRoomInfo(uniqueId: string, options?: RawAxiosRequestConfig): AxiosPromise<WebcastRoomInfoRouteResponse> {
+            return localVarFp.retrieveRoomInfo(uniqueId, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch TikTok LIVE Stream video given a uniqueId.
@@ -4601,73 +4626,66 @@ export const WebcastApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveRoomVideo(uniqueId: string, streamType?: StreamType, options?: RawAxiosRequestConfig): AxiosPromise<IJSONResponse> {
+        retrieveRoomVideo(uniqueId: string, streamType?: StreamType, options?: RawAxiosRequestConfig): AxiosPromise<JSONResponse> {
             return localVarFp.retrieveRoomVideo(uniqueId, streamType, options).then((request) => request(axios, basePath));
         },
         /**
          * Send a chat to a TikTok LIVE room.
-         * @param {IWebcastRoomChatPayload} iWebcastRoomChatPayload The payload configuration for sending a chat
+         * @param {WebcastRoomChatPayload} webcastRoomChatPayload The payload configuration for sending a chat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendRoomChat(iWebcastRoomChatPayload: IWebcastRoomChatPayload, options?: RawAxiosRequestConfig): AxiosPromise<IWebcastRoomChatRouteResponse> {
-            return localVarFp.sendRoomChat(iWebcastRoomChatPayload, options).then((request) => request(axios, basePath));
+        sendRoomChat(webcastRoomChatPayload: WebcastRoomChatPayload, options?: RawAxiosRequestConfig): AxiosPromise<WebcastRoomChatRouteResponse> {
+            return localVarFp.sendRoomChat(webcastRoomChatPayload, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {ISignTikTokUrlBody} iSignTikTokUrlBody 
+         * @param {SignTikTokUrlBody} signTikTokUrlBody 
+         * @param {string} [client] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        signWebcastUrl(iSignTikTokUrlBody: ISignTikTokUrlBody, options?: RawAxiosRequestConfig): AxiosPromise<SignWebcastUrl200Response> {
-            return localVarFp.signWebcastUrl(iSignTikTokUrlBody, options).then((request) => request(axios, basePath));
+        signWebcastUrl(signTikTokUrlBody: SignTikTokUrlBody, client?: string, options?: RawAxiosRequestConfig): AxiosPromise<SignWebcastUrl200Response> {
+            return localVarFp.signWebcastUrl(signTikTokUrlBody, client, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * WebcastApi - object-oriented interface
+ * TikTokLIVEApi - object-oriented interface
  * @export
- * @class WebcastApi
+ * @class TikTokLIVEApi
  * @extends {BaseAPI}
  */
-export class WebcastApi extends BaseAPI {
+export class TikTokLIVEApi extends BaseAPI {
     /**
-     * Fetch the WebSocket URL & first payload for a TikTok LIVE Room given a Room Id.
-     * @param {string} client The client ID
-     * @param {string} [roomId] The room ID to fetch the webcast URL for
-     * @param {string} [uniqueId] The unique ID of the TikTok user. Only available to Enterprise users.
-     * @param {string} [cursor] The cursor to fetch the webcast URL for
-     * @param {string} [sessionId] The session ID used to fetch a privileged WS connection
-     * @param {string} [userAgent] Override the user agent used in the signature
-     * @param {string} [ttTargetIdc] The target IDC to use for the request
-     * @param {boolean} [clientEnter] Whether the client is entering the room
+     * Fetch the WebSocket URL & first payload for a TikTok LIVE Room given a Room ID.
+     * @param {string} [client] The client library identifier. Used for metrics.
+     * @param {string} [roomId] The room ID to fetch the Webcast URL for.
+     * @param {string} [uniqueId] The unique ID of the TikTok user. Send this instead of a Room ID, if you\&#39;re an Enterprise user.
+     * @param {string} [cursor] Starting cursor for the webcast connection, if any
+     * @param {string} [sessionId] Cookie - The account session ID from TikTok web
+     * @param {string} [userAgent] Override the user agent used for signing and fetching
+     * @param {string} [ttTargetIdc] Cookie - TikTok \&quot;Identity Data Center\&quot; which links a session_id to a region
+     * @param {boolean} [clientEnter] Whether the client enters a room after connecting, or if it\&#39;s done by query parameters
+     * @param {ProxyRegion} [country] Country code to make the request from.
+     * @param {WebcastFetchPlatform} [platform] Platform to connect with
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebcastApi
+     * @memberof TikTokLIVEApi
      */
-    public fetchWebcastURL(client: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, options?: RawAxiosRequestConfig) {
-        return WebcastApiFp(this.configuration).fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, ttTargetIdc, clientEnter, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Retrieve the currently connected WebSocket clients for your account. Only for paid plans.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof WebcastApi
-     */
-    public getConnectedWebSockets(options?: RawAxiosRequestConfig) {
-        return WebcastApiFp(this.configuration).getConnectedWebSockets(options).then((request) => request(this.axios, this.basePath));
+    public fetchWebcastURL(client?: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, country?: ProxyRegion, platform?: WebcastFetchPlatform, options?: RawAxiosRequestConfig) {
+        return TikTokLIVEApiFp(this.configuration).fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, ttTargetIdc, clientEnter, country, platform, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Retrieve the rate limits for the provided API key (or the unauthenticated limits if no key is provided)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebcastApi
+     * @memberof TikTokLIVEApi
      */
     public getRateLimits(options?: RawAxiosRequestConfig) {
-        return WebcastApiFp(this.configuration).getRateLimits(options).then((request) => request(this.axios, this.basePath));
+        return TikTokLIVEApiFp(this.configuration).getRateLimits(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4675,33 +4693,32 @@ export class WebcastApi extends BaseAPI {
      * @param {string} uniqueId The unique ID of the TikTok to fetch the cover for.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebcastApi
+     * @memberof TikTokLIVEApi
      */
     public retrieveRoomCover(uniqueId: string, options?: RawAxiosRequestConfig) {
-        return WebcastApiFp(this.configuration).retrieveRoomCover(uniqueId, options).then((request) => request(this.axios, this.basePath));
+        return TikTokLIVEApiFp(this.configuration).retrieveRoomCover(uniqueId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Fetch Room Id for a given uniqueId & whether that user is live.
+     * Fetch Room ID for a given uniqueId & whether that user is live.
      * @param {string} uniqueId The unique ID of the TikTok user to fetch the data for.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebcastApi
+     * @memberof TikTokLIVEApi
      */
     public retrieveRoomId(uniqueId: string, options?: RawAxiosRequestConfig) {
-        return WebcastApiFp(this.configuration).retrieveRoomId(uniqueId, options).then((request) => request(this.axios, this.basePath));
+        return TikTokLIVEApiFp(this.configuration).retrieveRoomId(uniqueId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Retrieve TikTok Live Room Information
      * @param {string} uniqueId The unique identifier for the TikTok user or room
-     * @param {boolean} [giftInfo] Optional flag to include gift information in the response
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebcastApi
+     * @memberof TikTokLIVEApi
      */
-    public retrieveRoomInfo(uniqueId: string, giftInfo?: boolean, options?: RawAxiosRequestConfig) {
-        return WebcastApiFp(this.configuration).retrieveRoomInfo(uniqueId, giftInfo, options).then((request) => request(this.axios, this.basePath));
+    public retrieveRoomInfo(uniqueId: string, options?: RawAxiosRequestConfig) {
+        return TikTokLIVEApiFp(this.configuration).retrieveRoomInfo(uniqueId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4710,32 +4727,33 @@ export class WebcastApi extends BaseAPI {
      * @param {StreamType} [streamType] The type of video stream to fetch. Default is HLS_SD.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebcastApi
+     * @memberof TikTokLIVEApi
      */
     public retrieveRoomVideo(uniqueId: string, streamType?: StreamType, options?: RawAxiosRequestConfig) {
-        return WebcastApiFp(this.configuration).retrieveRoomVideo(uniqueId, streamType, options).then((request) => request(this.axios, this.basePath));
+        return TikTokLIVEApiFp(this.configuration).retrieveRoomVideo(uniqueId, streamType, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Send a chat to a TikTok LIVE room.
-     * @param {IWebcastRoomChatPayload} iWebcastRoomChatPayload The payload configuration for sending a chat
+     * @param {WebcastRoomChatPayload} webcastRoomChatPayload The payload configuration for sending a chat
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebcastApi
+     * @memberof TikTokLIVEApi
      */
-    public sendRoomChat(iWebcastRoomChatPayload: IWebcastRoomChatPayload, options?: RawAxiosRequestConfig) {
-        return WebcastApiFp(this.configuration).sendRoomChat(iWebcastRoomChatPayload, options).then((request) => request(this.axios, this.basePath));
+    public sendRoomChat(webcastRoomChatPayload: WebcastRoomChatPayload, options?: RawAxiosRequestConfig) {
+        return TikTokLIVEApiFp(this.configuration).sendRoomChat(webcastRoomChatPayload, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {ISignTikTokUrlBody} iSignTikTokUrlBody 
+     * @param {SignTikTokUrlBody} signTikTokUrlBody 
+     * @param {string} [client] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebcastApi
+     * @memberof TikTokLIVEApi
      */
-    public signWebcastUrl(iSignTikTokUrlBody: ISignTikTokUrlBody, options?: RawAxiosRequestConfig) {
-        return WebcastApiFp(this.configuration).signWebcastUrl(iSignTikTokUrlBody, options).then((request) => request(this.axios, this.basePath));
+    public signWebcastUrl(signTikTokUrlBody: SignTikTokUrlBody, client?: string, options?: RawAxiosRequestConfig) {
+        return TikTokLIVEApiFp(this.configuration).signWebcastUrl(signTikTokUrlBody, client, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -12,7 +12,7 @@ All URIs are relative to *https://tiktok.eulerstream.com*
 |[**updateKey**](#updatekey) | **PATCH** /accounts/{account_id}/api_keys/update | |
 
 # **createJWT**
-> ICreateJWTResponse createJWT(jWTCreateConfig)
+> CreateJWTResponse createJWT(jWTCreateConfig)
 
 Create a JWT for a given API key. Note that these JWT keys are only valid for the non-authenticated Webcast endpoints. They function to attach the rate limits of the API key to the request for client-sided applications.
 
@@ -47,7 +47,7 @@ const { status, data } = await apiInstance.createJWT(
 
 ### Return type
 
-**ICreateJWTResponse**
+**CreateJWTResponse**
 
 ### Authorization
 
@@ -67,7 +67,7 @@ const { status, data } = await apiInstance.createJWT(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createKey**
-> ICreateKeyResponse createKey(iApiKeyConfigBase)
+> CreateKeyResponse createKey(createKeyPayload)
 
 Create a new API key
 
@@ -77,18 +77,18 @@ Create a new API key
 import {
     AuthenticationApi,
     Configuration,
-    IApiKeyConfigBase
+    CreateKeyPayload
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new AuthenticationApi(configuration);
 
 let accountId: number; //The ID of the account to create the key for (default to undefined)
-let iApiKeyConfigBase: IApiKeyConfigBase; //The configuration for the new key
+let createKeyPayload: CreateKeyPayload; //The configuration for the new key
 
 const { status, data } = await apiInstance.createKey(
     accountId,
-    iApiKeyConfigBase
+    createKeyPayload
 );
 ```
 
@@ -96,13 +96,13 @@ const { status, data } = await apiInstance.createKey(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **iApiKeyConfigBase** | **IApiKeyConfigBase**| The configuration for the new key | |
+| **createKeyPayload** | **CreateKeyPayload**| The configuration for the new key | |
 | **accountId** | [**number**] | The ID of the account to create the key for | defaults to undefined|
 
 
 ### Return type
 
-**ICreateKeyResponse**
+**CreateKeyResponse**
 
 ### Authorization
 
@@ -122,7 +122,7 @@ const { status, data } = await apiInstance.createKey(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deleteKey**
-> IDeleteKeyResponse deleteKey()
+> DeleteKeyResponse deleteKey()
 
 Delete an API key by its key value, name, or ID
 
@@ -138,7 +138,7 @@ const configuration = new Configuration();
 const apiInstance = new AuthenticationApi(configuration);
 
 let accountId: number; //The ID of the account to delete the key for (default to undefined)
-let deleteBy: 'value' | 'name' | 'id'; //The API key field to delete by (default to undefined)
+let deleteBy: 'value' | 'id'; //The API key field to delete by (default to undefined)
 let deleteParam: string; //The API key field value to delete by (default to undefined)
 
 const { status, data } = await apiInstance.deleteKey(
@@ -153,13 +153,13 @@ const { status, data } = await apiInstance.deleteKey(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | [**number**] | The ID of the account to delete the key for | defaults to undefined|
-| **deleteBy** | [**&#39;value&#39; | &#39;name&#39; | &#39;id&#39;**]**Array<&#39;value&#39; &#124; &#39;name&#39; &#124; &#39;id&#39;>** | The API key field to delete by | defaults to undefined|
+| **deleteBy** | [**&#39;value&#39; | &#39;id&#39;**]**Array<&#39;value&#39; &#124; &#39;id&#39;>** | The API key field to delete by | defaults to undefined|
 | **deleteParam** | [**string**] | The API key field value to delete by | defaults to undefined|
 
 
 ### Return type
 
-**IDeleteKeyResponse**
+**DeleteKeyResponse**
 
 ### Authorization
 
@@ -179,7 +179,7 @@ const { status, data } = await apiInstance.deleteKey(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getKey**
-> IRetrieveKeyResponse getKey()
+> RetrieveKeyResponse getKey()
 
 Retrieve an API key by its key value, name, or ID
 
@@ -196,7 +196,7 @@ const apiInstance = new AuthenticationApi(configuration);
 
 let accountId: number; //The ID of the account to retrieve the key for (default to undefined)
 let retrieveParam: string; //The API key field value to retrieve by (default to undefined)
-let retrieveBy: 'value' | 'name' | 'id'; //The API key field to retrieve by (optional) (default to 'value')
+let retrieveBy: 'value' | 'id'; //The API key field to retrieve by (optional) (default to 'value')
 
 const { status, data } = await apiInstance.getKey(
     accountId,
@@ -211,12 +211,12 @@ const { status, data } = await apiInstance.getKey(
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | [**number**] | The ID of the account to retrieve the key for | defaults to undefined|
 | **retrieveParam** | [**string**] | The API key field value to retrieve by | defaults to undefined|
-| **retrieveBy** | [**&#39;value&#39; | &#39;name&#39; | &#39;id&#39;**]**Array<&#39;value&#39; &#124; &#39;name&#39; &#124; &#39;id&#39;>** | The API key field to retrieve by | (optional) defaults to 'value'|
+| **retrieveBy** | [**&#39;value&#39; | &#39;id&#39;**]**Array<&#39;value&#39; &#124; &#39;id&#39;>** | The API key field to retrieve by | (optional) defaults to 'value'|
 
 
 ### Return type
 
-**IRetrieveKeyResponse**
+**RetrieveKeyResponse**
 
 ### Authorization
 
@@ -236,7 +236,7 @@ const { status, data } = await apiInstance.getKey(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listKeys**
-> IListKeysResponse listKeys()
+> ListKeysResponse listKeys()
 
 Retrieve an API key by its key value, name, or ID
 
@@ -267,7 +267,7 @@ const { status, data } = await apiInstance.listKeys(
 
 ### Return type
 
-**IListKeysResponse**
+**ListKeysResponse**
 
 ### Authorization
 
@@ -287,7 +287,7 @@ const { status, data } = await apiInstance.listKeys(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateKey**
-> IUpdateKeyResponse updateKey(iApiKeyConfigBase)
+> UpdateKeyResponse updateKey(updateKeyPayload)
 
 Update an existing API key
 
@@ -297,22 +297,22 @@ Update an existing API key
 import {
     AuthenticationApi,
     Configuration,
-    IApiKeyConfigBase
+    UpdateKeyPayload
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new AuthenticationApi(configuration);
 
 let accountId: number; //The account to update the key for (default to undefined)
-let updateBy: 'value' | 'name' | 'id'; //The API key field to update by (default to undefined)
+let updateBy: 'value' | 'id'; //The API key field to update by (default to undefined)
 let updateParam: string; //The API key field value to update by (default to undefined)
-let iApiKeyConfigBase: IApiKeyConfigBase; //The new configuration for the key
+let updateKeyPayload: UpdateKeyPayload; //The new configuration for the key
 
 const { status, data } = await apiInstance.updateKey(
     accountId,
     updateBy,
     updateParam,
-    iApiKeyConfigBase
+    updateKeyPayload
 );
 ```
 
@@ -320,15 +320,15 @@ const { status, data } = await apiInstance.updateKey(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **iApiKeyConfigBase** | **IApiKeyConfigBase**| The new configuration for the key | |
+| **updateKeyPayload** | **UpdateKeyPayload**| The new configuration for the key | |
 | **accountId** | [**number**] | The account to update the key for | defaults to undefined|
-| **updateBy** | [**&#39;value&#39; | &#39;name&#39; | &#39;id&#39;**]**Array<&#39;value&#39; &#124; &#39;name&#39; &#124; &#39;id&#39;>** | The API key field to update by | defaults to undefined|
+| **updateBy** | [**&#39;value&#39; | &#39;id&#39;**]**Array<&#39;value&#39; &#124; &#39;id&#39;>** | The API key field to update by | defaults to undefined|
 | **updateParam** | [**string**] | The API key field value to update by | defaults to undefined|
 
 
 ### Return type
 
-**IUpdateKeyResponse**
+**UpdateKeyResponse**
 
 ### Authorization
 

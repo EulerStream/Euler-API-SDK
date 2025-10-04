@@ -1,4 +1,4 @@
-# SignWebcastUrl200Response
+# SignTikTokUrlResponse
 
 
 ## Properties
@@ -12,9 +12,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { SignWebcastUrl200Response } from './api';
+import { SignTikTokUrlResponse } from './api';
 
-const instance: SignWebcastUrl200Response = {
+const instance: SignTikTokUrlResponse = {
     code,
     message,
     response,

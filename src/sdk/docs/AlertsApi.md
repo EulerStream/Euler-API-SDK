@@ -10,9 +10,9 @@ All URIs are relative to *https://tiktok.eulerstream.com*
 |[**retrieveAlert**](#retrievealert) | **GET** /accounts/{account_id}/alerts/{alert_id}/retrieve | |
 
 # **createAlert**
-> ICreateAlertResponse createAlert(iAlertConfigBase)
+> CreateAlertResponse createAlert(createAlertRequest)
 
-Create a creator alert. These alerts are used to notify users of a new livestream.
+Create a creator alert. These Alerts are used to notify users of a new livestream.
 
 ### Example
 
@@ -20,18 +20,18 @@ Create a creator alert. These alerts are used to notify users of a new livestrea
 import {
     AlertsApi,
     Configuration,
-    IAlertConfigBase
+    CreateAlertRequest
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new AlertsApi(configuration);
 
 let accountId: number; //The ID of the account to create the alert for (default to undefined)
-let iAlertConfigBase: IAlertConfigBase; //Configuration for the alert
+let createAlertRequest: CreateAlertRequest; //Configuration for the alert
 
 const { status, data } = await apiInstance.createAlert(
     accountId,
-    iAlertConfigBase
+    createAlertRequest
 );
 ```
 
@@ -39,13 +39,13 @@ const { status, data } = await apiInstance.createAlert(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **iAlertConfigBase** | **IAlertConfigBase**| Configuration for the alert | |
+| **createAlertRequest** | **CreateAlertRequest**| Configuration for the alert | |
 | **accountId** | [**number**] | The ID of the account to create the alert for | defaults to undefined|
 
 
 ### Return type
 
-**ICreateAlertResponse**
+**CreateAlertResponse**
 
 ### Authorization
 
@@ -65,7 +65,7 @@ const { status, data } = await apiInstance.createAlert(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deleteAlert**
-> IDeleteAlertResponse deleteAlert()
+> DeleteAlertResponse deleteAlert()
 
 Delete an alert from the Sign API
 
@@ -99,7 +99,7 @@ const { status, data } = await apiInstance.deleteAlert(
 
 ### Return type
 
-**IDeleteAlertResponse**
+**DeleteAlertResponse**
 
 ### Authorization
 
@@ -119,7 +119,7 @@ const { status, data } = await apiInstance.deleteAlert(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listAlerts**
-> IListAlertsResponse listAlerts()
+> ListAlertsResponse listAlerts()
 
 
 ### Example
@@ -134,11 +134,11 @@ const configuration = new Configuration();
 const apiInstance = new AlertsApi(configuration);
 
 let accountId: number; // (default to undefined)
-let includeRoomInfo: boolean; // (optional) (default to false)
+let page: number; // (optional) (default to 0)
 
 const { status, data } = await apiInstance.listAlerts(
     accountId,
-    includeRoomInfo
+    page
 );
 ```
 
@@ -147,12 +147,12 @@ const { status, data } = await apiInstance.listAlerts(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | [**number**] |  | defaults to undefined|
-| **includeRoomInfo** | [**boolean**] |  | (optional) defaults to false|
+| **page** | [**number**] |  | (optional) defaults to 0|
 
 
 ### Return type
 
-**IListAlertsResponse**
+**ListAlertsResponse**
 
 ### Authorization
 
@@ -172,7 +172,7 @@ const { status, data } = await apiInstance.listAlerts(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **retrieveAlert**
-> IRetrieveAlertResponse retrieveAlert()
+> RetrieveAlertResponse retrieveAlert()
 
 Retrieve a specific alert by its ID
 
@@ -189,12 +189,10 @@ const apiInstance = new AlertsApi(configuration);
 
 let accountId: number; //The account that the alert belongs to (default to undefined)
 let alertId: number; //The ID of the alert to retrieve (default to undefined)
-let includeRoomInfo: boolean; //Whether to include room information in the response (optional) (default to false)
 
 const { status, data } = await apiInstance.retrieveAlert(
     accountId,
-    alertId,
-    includeRoomInfo
+    alertId
 );
 ```
 
@@ -204,12 +202,11 @@ const { status, data } = await apiInstance.retrieveAlert(
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | [**number**] | The account that the alert belongs to | defaults to undefined|
 | **alertId** | [**number**] | The ID of the alert to retrieve | defaults to undefined|
-| **includeRoomInfo** | [**boolean**] | Whether to include room information in the response | (optional) defaults to false|
 
 
 ### Return type
 
-**IRetrieveAlertResponse**
+**RetrieveAlertResponse**
 
 ### Authorization
 

@@ -6,10 +6,11 @@ All URIs are relative to *https://tiktok.eulerstream.com*
 |------------- | ------------- | -------------|
 |[**countSignUsage**](#countsignusage) | **GET** /accounts/{account_id}/usage/sign_usage/page_count | |
 |[**getSignUsage**](#getsignusage) | **GET** /accounts/{account_id}/usage/sign_usage | |
+|[**retrieveAccountSelf**](#retrieveaccountself) | **GET** /accounts/me | |
 |[**retrieveAggregateUsage**](#retrieveaggregateusage) | **GET** /accounts/{account_id}/usage/sign_usage/aggregate | |
 
 # **countSignUsage**
-> ICountSignUsage countSignUsage()
+> CountSignUsage countSignUsage()
 
 Retrieve the usage logs for a specific account
 
@@ -49,7 +50,7 @@ const { status, data } = await apiInstance.countSignUsage(
 
 ### Return type
 
-**ICountSignUsage**
+**CountSignUsage**
 
 ### Authorization
 
@@ -69,7 +70,7 @@ const { status, data } = await apiInstance.countSignUsage(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getSignUsage**
-> IGetSignUsageResponse getSignUsage()
+> GetSignUsageResponse getSignUsage()
 
 Retrieve the usage logs for a specific account
 
@@ -112,7 +113,51 @@ const { status, data } = await apiInstance.getSignUsage(
 
 ### Return type
 
-**IGetSignUsageResponse**
+**GetSignUsageResponse**
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Ok |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **retrieveAccountSelf**
+> RetrieveAccountResponse retrieveAccountSelf()
+
+Retrieve an account from the Sign API
+
+### Example
+
+```typescript
+import {
+    AccountsApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new AccountsApi(configuration);
+
+const { status, data } = await apiInstance.retrieveAccountSelf();
+```
+
+### Parameters
+This endpoint does not have any parameters.
+
+
+### Return type
+
+**RetrieveAccountResponse**
 
 ### Authorization
 
@@ -132,7 +177,7 @@ const { status, data } = await apiInstance.getSignUsage(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **retrieveAggregateUsage**
-> IRetrieveAggregateUsageResponse retrieveAggregateUsage()
+> RetrieveAggregateUsageResponse retrieveAggregateUsage()
 
 Retrieve the usage logs for a specific account
 
@@ -169,7 +214,7 @@ const { status, data } = await apiInstance.retrieveAggregateUsage(
 
 ### Return type
 
-**IRetrieveAggregateUsageResponse**
+**RetrieveAggregateUsageResponse**
 
 ### Authorization
 

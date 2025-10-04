@@ -8,8 +8,9 @@ Name | Type | Description | Notes
 **id** | **string** |  | [default to undefined]
 **expiresAt** | **number** |  | [default to undefined]
 **ttl** | **number** |  | [default to undefined]
-**accountData** | [**JWTConfigAccountData**](JWTConfigAccountData.md) |  | [default to undefined]
-**apiKeyData** | [**JWTConfigApiKeyData**](JWTConfigApiKeyData.md) |  | [default to undefined]
+**accountId** | **number** |  | [default to undefined]
+**apiKeyId** | **number** |  | [default to undefined]
+**limits** | [**AccountsTableRequestLimits**](AccountsTableRequestLimits.md) |  | [default to undefined]
 **webSocketData** | [**WebSocketJWTLimits**](WebSocketJWTLimits.md) |  | [default to undefined]
 **name** | **string** |  | [default to undefined]
 
@@ -22,8 +23,9 @@ const instance: JWTConfig = {
     id,
     expiresAt,
     ttl,
-    accountData,
-    apiKeyData,
+    accountId,
+    apiKeyId,
+    limits,
     webSocketData,
     name,
 };
