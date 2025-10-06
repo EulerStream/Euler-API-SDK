@@ -1,4 +1,4 @@
-import {AccountsApi, AlertsApi, AnalyticsApi, AuthenticationApi, TikTokLIVEApi} from "@/sdk";
+import {AccountsApi, AlertsApi, AlertTargetsApi, AnalyticsApi, AuthenticationApi, TikTokLIVEApi} from "@/sdk";
 import {buildConfig, ClientConfiguration} from "@/utils";
 
 // Exports
@@ -13,7 +13,7 @@ export default class EulerStreamApiClient {
   public readonly authentication: AuthenticationApi;
   public readonly analytics: AnalyticsApi;
   public readonly alerts: AlertsApi;
-  public readonly alertTargets: AlertsApi;
+  public readonly alertTargets: AlertTargetsApi;
   public readonly configuration: ClientConfiguration;
 
   /**
@@ -39,7 +39,7 @@ export default class EulerStreamApiClient {
     this.authentication = new AuthenticationApi(this.configuration);
     this.analytics = new AnalyticsApi(this.configuration);
     this.alerts = new AlertsApi(this.configuration);
-    this.alertTargets = new AlertsApi(this.configuration);
+    this.alertTargets = new AlertTargetsApi(this.configuration);
 
   }
 
