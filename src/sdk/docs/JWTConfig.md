@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **accountId** | **number** |  | [default to undefined]
 **apiKeyId** | **number** |  | [default to undefined]
 **limits** | [**AccountsTableRequestLimits**](AccountsTableRequestLimits.md) |  | [default to undefined]
-**webSocketData** | [**WebSocketJWTLimits**](WebSocketJWTLimits.md) |  | [default to undefined]
+**webSocketData** | [**JWTConfigWebSocketData**](JWTConfigWebSocketData.md) |  | [default to undefined]
 **name** | **string** |  | [default to undefined]
 
 ## Example

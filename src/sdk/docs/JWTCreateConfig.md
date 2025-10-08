@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **limits** | [**AccountsTableRequestLimits**](AccountsTableRequestLimits.md) |  | [optional] [default to undefined]
-**websockets** | [**WebSocketJWTLimits**](WebSocketJWTLimits.md) |  | [optional] [default to undefined]
+**websockets** | [**JWTCreateConfigWebSocketData**](JWTCreateConfigWebSocketData.md) |  | [optional] [default to undefined]
 **expireAfter** | **number** |  | [default to undefined]
 **name** | **string** |  | [optional] [default to undefined]
 

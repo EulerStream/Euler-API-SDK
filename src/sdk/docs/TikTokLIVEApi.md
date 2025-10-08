@@ -6,6 +6,8 @@ All URIs are relative to *https://tiktok.eulerstream.com*
 |------------- | ------------- | -------------|
 |[**fetchWebcastURL**](#fetchwebcasturl) | **GET** /webcast/fetch | |
 |[**getRateLimits**](#getratelimits) | **GET** /webcast/rate_limits | |
+|[**retrieveBulkLiveCheck**](#retrievebulklivecheck) | **POST** /webcast/bulk_live_check | |
+|[**retrieveGiftInfo**](#retrievegiftinfo) | **GET** /webcast/gift_info | |
 |[**retrieveRoomCover**](#retrieveroomcover) | **GET** /webcast/room_cover | |
 |[**retrieveRoomId**](#retrieveroomid) | **GET** /webcast/room_id | |
 |[**retrieveRoomInfo**](#retrieveroominfo) | **GET** /webcast/room_info | |
@@ -117,6 +119,109 @@ This endpoint does not have any parameters.
 ### Return type
 
 **GetRateLimits**
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Ok |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **retrieveBulkLiveCheck**
+> RetrieveBulkLiveCheckResponse retrieveBulkLiveCheck(retrieveBulkLiveCheckPayload)
+
+A bulk-check endpoint to determine if a group of TikTok users (up to 50 at once) are live. It uses a highly optimized job-based system for checking large numbers of users quickly.
+
+### Example
+
+```typescript
+import {
+    TikTokLIVEApi,
+    Configuration,
+    RetrieveBulkLiveCheckPayload
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new TikTokLIVEApi(configuration);
+
+let retrieveBulkLiveCheckPayload: RetrieveBulkLiveCheckPayload; //The body of the request containing user numeric IDs.
+
+const { status, data } = await apiInstance.retrieveBulkLiveCheck(
+    retrieveBulkLiveCheckPayload
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **retrieveBulkLiveCheckPayload** | **RetrieveBulkLiveCheckPayload**| The body of the request containing user numeric IDs. | |
+
+
+### Return type
+
+**RetrieveBulkLiveCheckResponse**
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | A JSON response indicating which users are live and their Room IDs. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **retrieveGiftInfo**
+> WebcastGiftInfoRouteResponse retrieveGiftInfo()
+
+Retrieve TikTok Live Room Gift List
+
+### Example
+
+```typescript
+import {
+    TikTokLIVEApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new TikTokLIVEApi(configuration);
+
+let roomId: string; //The room ID of the TikTok LIVE session (default to undefined)
+
+const { status, data } = await apiInstance.retrieveGiftInfo(
+    roomId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **roomId** | [**string**] | The room ID of the TikTok LIVE session | defaults to undefined|
+
+
+### Return type
+
+**WebcastGiftInfoRouteResponse**
 
 ### Authorization
 

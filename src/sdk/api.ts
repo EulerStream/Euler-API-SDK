@@ -165,7 +165,10 @@ export const AccountScopes = {
     NUMBER_5: 5,
     NUMBER_6: 6,
     NUMBER_7: 7,
-    NUMBER_8: 8
+    NUMBER_8: 8,
+    NUMBER_9: 9,
+    NUMBER_10: 10,
+    NUMBER_11: 11
 } as const;
 
 export type AccountScopes = typeof AccountScopes[keyof typeof AccountScopes];
@@ -1015,16 +1018,47 @@ export interface JWTConfig {
     'limits': AccountsTableRequestLimits;
     /**
      * 
-     * @type {WebSocketJWTLimits}
+     * @type {JWTConfigWebSocketData}
      * @memberof JWTConfig
      */
-    'webSocketData': WebSocketJWTLimits;
+    'webSocketData': JWTConfigWebSocketData;
     /**
      * 
      * @type {string}
      * @memberof JWTConfig
      */
     'name': string | null;
+}
+/**
+ * 
+ * @export
+ * @interface JWTConfigWebSocketData
+ */
+export interface JWTConfigWebSocketData {
+    /**
+     * 
+     * @type {string}
+     * @memberof JWTConfigWebSocketData
+     */
+    'encryptedTtTargetIdc'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JWTConfigWebSocketData
+     */
+    'encryptedSessionId'?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof JWTConfigWebSocketData
+     */
+    'allowedCreators': Array<string> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof JWTConfigWebSocketData
+     */
+    'maxWebSockets': number;
 }
 /**
  * 
@@ -1040,10 +1074,10 @@ export interface JWTCreateConfig {
     'limits'?: AccountsTableRequestLimits | null;
     /**
      * 
-     * @type {WebSocketJWTLimits}
+     * @type {JWTCreateConfigWebSocketData}
      * @memberof JWTCreateConfig
      */
-    'websockets'?: WebSocketJWTLimits | null;
+    'websockets'?: JWTCreateConfigWebSocketData | null;
     /**
      * 
      * @type {number}
@@ -1056,6 +1090,37 @@ export interface JWTCreateConfig {
      * @memberof JWTCreateConfig
      */
     'name'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface JWTCreateConfigWebSocketData
+ */
+export interface JWTCreateConfigWebSocketData {
+    /**
+     * 
+     * @type {string}
+     * @memberof JWTCreateConfigWebSocketData
+     */
+    'ttTargetIdc'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof JWTCreateConfigWebSocketData
+     */
+    'sessionId'?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof JWTCreateConfigWebSocketData
+     */
+    'allowedCreators': Array<string> | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof JWTCreateConfigWebSocketData
+     */
+    'maxWebSockets': number;
 }
 /**
  * 
@@ -1405,8 +1470,7 @@ export const ProxyRegion = {
     Es: 'ES',
     Fr: 'FR',
     Gb: 'GB',
-    Pl: 'PL',
-    Us: 'US'
+    Pl: 'PL'
 } as const;
 
 export type ProxyRegion = typeof ProxyRegion[keyof typeof ProxyRegion];
@@ -1436,6 +1500,25 @@ export interface RateLimitInfo {
      * @memberof RateLimitInfo
      */
     'reset_at': string | null;
+}
+/**
+ * 
+ * @export
+ * @interface RecordStringIsLiveBooleanRoomIdStringOrNullValue
+ */
+export interface RecordStringIsLiveBooleanRoomIdStringOrNullValue {
+    /**
+     * 
+     * @type {string}
+     * @memberof RecordStringIsLiveBooleanRoomIdStringOrNullValue
+     */
+    'room_id': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RecordStringIsLiveBooleanRoomIdStringOrNullValue
+     */
+    'is_live': boolean;
 }
 /**
  * 
@@ -1585,6 +1668,50 @@ export interface RetrieveAlertResponseCreator {
      * @memberof RetrieveAlertResponseCreator
      */
     'unique_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface RetrieveBulkLiveCheckPayload
+ */
+export interface RetrieveBulkLiveCheckPayload {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof RetrieveBulkLiveCheckPayload
+     */
+    'user_numeric_ids': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof RetrieveBulkLiveCheckPayload
+     */
+    'session_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface RetrieveBulkLiveCheckResponse
+ */
+export interface RetrieveBulkLiveCheckResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof RetrieveBulkLiveCheckResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RetrieveBulkLiveCheckResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {WebcastIsLiveOutput}
+     * @memberof RetrieveBulkLiveCheckResponse
+     */
+    'response'?: WebcastIsLiveOutput;
 }
 /**
  * 
@@ -1852,11 +1979,11 @@ export interface TestAlertTargetResponse {
  */
 export interface TikTokLiveUser {
     /**
-     * Construct a type with a set of properties K of type T
-     * @type {{ [key: string]: any; }}
+     * 
+     * @type {TikTokLiveUserRaw}
      * @memberof TikTokLiveUser
      */
-    'raw': { [key: string]: any; };
+    'raw': TikTokLiveUserRaw;
     /**
      * 
      * @type {PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString}
@@ -1875,6 +2002,19 @@ export interface TikTokLiveUser {
      * @memberof TikTokLiveUser
      */
     'unique_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface TikTokLiveUserRaw
+ */
+export interface TikTokLiveUserRaw {
+    /**
+     * 
+     * @type {string}
+     * @memberof TikTokLiveUserRaw
+     */
+    '_note': string;
 }
 /**
  * 
@@ -1978,25 +2118,6 @@ export interface UpdateKeyResponse {
 /**
  * 
  * @export
- * @interface WebSocketJWTLimits
- */
-export interface WebSocketJWTLimits {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof WebSocketJWTLimits
-     */
-    'allowedCreators': Array<string> | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof WebSocketJWTLimits
-     */
-    'maxWebSockets': number;
-}
-/**
- * 
- * @export
  * @enum {string}
  */
 
@@ -2008,6 +2129,57 @@ export const WebcastFetchPlatform = {
 export type WebcastFetchPlatform = typeof WebcastFetchPlatform[keyof typeof WebcastFetchPlatform];
 
 
+/**
+ * 
+ * @export
+ * @interface WebcastGiftInfoOutput
+ */
+export interface WebcastGiftInfoOutput {
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: any; }}
+     * @memberof WebcastGiftInfoOutput
+     */
+    'data': { [key: string]: any; };
+}
+/**
+ * 
+ * @export
+ * @interface WebcastGiftInfoRouteResponse
+ */
+export interface WebcastGiftInfoRouteResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastGiftInfoRouteResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastGiftInfoRouteResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {WebcastGiftInfoOutput}
+     * @memberof WebcastGiftInfoRouteResponse
+     */
+    'response'?: WebcastGiftInfoOutput;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastIsLiveOutput
+ */
+export interface WebcastIsLiveOutput {
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: RecordStringIsLiveBooleanRoomIdStringOrNullValue; }}
+     * @memberof WebcastIsLiveOutput
+     */
+    'data'?: { [key: string]: RecordStringIsLiveBooleanRoomIdStringOrNullValue; };
+}
 /**
  * 
  * @export
@@ -4172,6 +4344,89 @@ export const TikTokLIVEApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
+         * A bulk-check endpoint to determine if a group of TikTok users (up to 50 at once) are live. It uses a highly optimized job-based system for checking large numbers of users quickly.
+         * @param {RetrieveBulkLiveCheckPayload} retrieveBulkLiveCheckPayload The body of the request containing user numeric IDs.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveBulkLiveCheck: async (retrieveBulkLiveCheckPayload: RetrieveBulkLiveCheckPayload, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'retrieveBulkLiveCheckPayload' is not null or undefined
+            assertParamExists('retrieveBulkLiveCheck', 'retrieveBulkLiveCheckPayload', retrieveBulkLiveCheckPayload)
+            const localVarPath = `/webcast/bulk_live_check`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "apiKey", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(retrieveBulkLiveCheckPayload, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve TikTok Live Room Gift List
+         * @param {string} roomId The room ID of the TikTok LIVE session
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveGiftInfo: async (roomId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'roomId' is not null or undefined
+            assertParamExists('retrieveGiftInfo', 'roomId', roomId)
+            const localVarPath = `/webcast/gift_info`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "apiKey", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (roomId !== undefined) {
+                localVarQueryParameter['room_id'] = roomId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Fetch TikTok LIVE Stream Cover URL given a uniqueId.
          * @param {string} uniqueId The unique ID of the TikTok to fetch the cover for.
          * @param {*} [options] Override http request option.
@@ -4483,6 +4738,30 @@ export const TikTokLIVEApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * A bulk-check endpoint to determine if a group of TikTok users (up to 50 at once) are live. It uses a highly optimized job-based system for checking large numbers of users quickly.
+         * @param {RetrieveBulkLiveCheckPayload} retrieveBulkLiveCheckPayload The body of the request containing user numeric IDs.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveBulkLiveCheck(retrieveBulkLiveCheckPayload: RetrieveBulkLiveCheckPayload, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RetrieveBulkLiveCheckResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveBulkLiveCheck(retrieveBulkLiveCheckPayload, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TikTokLIVEApi.retrieveBulkLiveCheck']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieve TikTok Live Room Gift List
+         * @param {string} roomId The room ID of the TikTok LIVE session
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveGiftInfo(roomId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebcastGiftInfoRouteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveGiftInfo(roomId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TikTokLIVEApi.retrieveGiftInfo']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Fetch TikTok LIVE Stream Cover URL given a uniqueId.
          * @param {string} uniqueId The unique ID of the TikTok to fetch the cover for.
          * @param {*} [options] Override http request option.
@@ -4593,6 +4872,24 @@ export const TikTokLIVEApiFactory = function (configuration?: Configuration, bas
             return localVarFp.getRateLimits(options).then((request) => request(axios, basePath));
         },
         /**
+         * A bulk-check endpoint to determine if a group of TikTok users (up to 50 at once) are live. It uses a highly optimized job-based system for checking large numbers of users quickly.
+         * @param {RetrieveBulkLiveCheckPayload} retrieveBulkLiveCheckPayload The body of the request containing user numeric IDs.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveBulkLiveCheck(retrieveBulkLiveCheckPayload: RetrieveBulkLiveCheckPayload, options?: RawAxiosRequestConfig): AxiosPromise<RetrieveBulkLiveCheckResponse> {
+            return localVarFp.retrieveBulkLiveCheck(retrieveBulkLiveCheckPayload, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve TikTok Live Room Gift List
+         * @param {string} roomId The room ID of the TikTok LIVE session
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveGiftInfo(roomId: string, options?: RawAxiosRequestConfig): AxiosPromise<WebcastGiftInfoRouteResponse> {
+            return localVarFp.retrieveGiftInfo(roomId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Fetch TikTok LIVE Stream Cover URL given a uniqueId.
          * @param {string} uniqueId The unique ID of the TikTok to fetch the cover for.
          * @param {*} [options] Override http request option.
@@ -4686,6 +4983,28 @@ export class TikTokLIVEApi extends BaseAPI {
      */
     public getRateLimits(options?: RawAxiosRequestConfig) {
         return TikTokLIVEApiFp(this.configuration).getRateLimits(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * A bulk-check endpoint to determine if a group of TikTok users (up to 50 at once) are live. It uses a highly optimized job-based system for checking large numbers of users quickly.
+     * @param {RetrieveBulkLiveCheckPayload} retrieveBulkLiveCheckPayload The body of the request containing user numeric IDs.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TikTokLIVEApi
+     */
+    public retrieveBulkLiveCheck(retrieveBulkLiveCheckPayload: RetrieveBulkLiveCheckPayload, options?: RawAxiosRequestConfig) {
+        return TikTokLIVEApiFp(this.configuration).retrieveBulkLiveCheck(retrieveBulkLiveCheckPayload, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve TikTok Live Room Gift List
+     * @param {string} roomId The room ID of the TikTok LIVE session
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TikTokLIVEApi
+     */
+    public retrieveGiftInfo(roomId: string, options?: RawAxiosRequestConfig) {
+        return TikTokLIVEApiFp(this.configuration).retrieveGiftInfo(roomId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
