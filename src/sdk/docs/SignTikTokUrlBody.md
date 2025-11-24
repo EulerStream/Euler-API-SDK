@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **method** | **string** |  | [optional] [default to undefined]
 **sessionId** | **string** |  | [optional] [default to undefined]
 **ttTargetIdc** | **string** |  | [optional] [default to undefined]
+**ttwid** | **string** |  | [optional] [default to undefined]
 **payload** | **string** |  | [optional] [default to undefined]
 **type** | **string** |  | [optional] [default to undefined]
 **includeBrowserParams** | **boolean** |  | [optional] [default to undefined]
@@ -26,6 +27,7 @@ const instance: SignTikTokUrlBody = {
     method,
     sessionId,
     ttTargetIdc,
+    ttwid,
     payload,
     type,
     includeBrowserParams,

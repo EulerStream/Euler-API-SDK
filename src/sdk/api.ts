@@ -79,6 +79,18 @@ export interface Account {
     'expires_at': string | null;
     /**
      * 
+     * @type {number}
+     * @memberof Account
+     */
+    'purchased_captcha_credits': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Account
+     */
+    'extra_captcha_credits': number;
+    /**
+     * 
      * @type {string}
      * @memberof Account
      */
@@ -162,13 +174,14 @@ export const AccountScopes = {
     NUMBER_0: 0,
     NUMBER_1: 1,
     NUMBER_3: 3,
-    NUMBER_5: 5,
-    NUMBER_6: 6,
-    NUMBER_7: 7,
-    NUMBER_8: 8,
-    NUMBER_9: 9,
     NUMBER_10: 10,
-    NUMBER_11: 11
+    NUMBER_11: 11,
+    NUMBER_8: 8,
+    NUMBER_6: 6,
+    NUMBER_12: 12,
+    NUMBER_13: 13,
+    NUMBER_14: 14,
+    NUMBER_15: 15
 } as const;
 
 export type AccountScopes = typeof AccountScopes[keyof typeof AccountScopes];
@@ -228,6 +241,18 @@ export interface AccountWithPermissionsSafe {
      * @memberof AccountWithPermissionsSafe
      */
     'expires_at': string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountWithPermissionsSafe
+     */
+    'purchased_captcha_credits': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AccountWithPermissionsSafe
+     */
+    'extra_captcha_credits': number;
     /**
      * 
      * @type {string}
@@ -567,6 +592,37 @@ export interface ApiKeyConfig {
      * @memberof ApiKeyConfig
      */
     'account_id': number;
+}
+/**
+ * 
+ * @export
+ * @interface CaptchaCreditsResponse
+ */
+export interface CaptchaCreditsResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof CaptchaCreditsResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CaptchaCreditsResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CaptchaCreditsResponse
+     */
+    'plan_credits': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CaptchaCreditsResponse
+     */
+    'purchased_credits': number;
 }
 /**
  * 
@@ -958,6 +1014,56 @@ export interface HostsResponse {
 /**
  * 
  * @export
+ * @interface IconCaptchaResponse
+ */
+export interface IconCaptchaResponse {
+    /**
+     * 
+     * @type {IconsResult}
+     * @memberof IconCaptchaResponse
+     */
+    'response': IconsResult | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof IconCaptchaResponse
+     */
+    'cached': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof IconCaptchaResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof IconCaptchaResponse
+     */
+    'message'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface IconsResult
+ */
+export interface IconsResult {
+    /**
+     * 
+     * @type {number}
+     * @memberof IconsResult
+     */
+    'time_ms': number;
+    /**
+     * 
+     * @type {Array<Point>}
+     * @memberof IconsResult
+     */
+    'points': Array<Point>;
+}
+/**
+ * 
+ * @export
  * @interface JSONResponse
  */
 export interface JSONResponse {
@@ -1223,6 +1329,38 @@ export interface LoadShedInfo {
     'chance': number;
 }
 /**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const OxyLabsProxyRegion = {
+    Us: 'US',
+    Gb: 'GB',
+    De: 'DE',
+    Ro: 'RO',
+    Es: 'ES',
+    Be: 'BE',
+    Fr: 'FR',
+    Ca: 'CA',
+    Jp: 'JP',
+    Br: 'BR',
+    Mx: 'MX',
+    Co: 'CO',
+    Ar: 'AR',
+    Cl: 'CL',
+    Au: 'AU',
+    Kr: 'KR',
+    Pe: 'PE',
+    Pl: 'PL',
+    Sg: 'SG',
+    It: 'IT'
+} as const;
+
+export type OxyLabsProxyRegion = typeof OxyLabsProxyRegion[keyof typeof OxyLabsProxyRegion];
+
+
+/**
  * Make all properties in T optional
  * @export
  * @interface PartialAvatarUrlStringNicknameStringSecUidStringNumericUidStringSignatureStringIsVerifiedBooleanFollowingNumberFollowersNumber
@@ -1406,6 +1544,68 @@ export interface PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStri
     'flv_pull_url_ld'?: string;
 }
 /**
+ * Make all properties in T optional
+ * @export
+ * @interface PartialWebcastRegionRankingsOutputRank
+ */
+export interface PartialWebcastRegionRankingsOutputRank {
+    /**
+     * 
+     * @type {number}
+     * @memberof PartialWebcastRegionRankingsOutputRank
+     */
+    'rank'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PartialWebcastRegionRankingsOutputRank
+     */
+    'diamonds'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartialWebcastRegionRankingsOutputRank
+     */
+    'diamonds_description'?: string;
+    /**
+     * 
+     * @type {PartialWebcastRegionRankingsOutputRankUser}
+     * @memberof PartialWebcastRegionRankingsOutputRank
+     */
+    'user'?: PartialWebcastRegionRankingsOutputRankUser;
+}
+/**
+ * 
+ * @export
+ * @interface PartialWebcastRegionRankingsOutputRankUser
+ */
+export interface PartialWebcastRegionRankingsOutputRankUser {
+    /**
+     * 
+     * @type {string}
+     * @memberof PartialWebcastRegionRankingsOutputRankUser
+     */
+    'nickname': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartialWebcastRegionRankingsOutputRankUser
+     */
+    'numeric_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PartialWebcastRegionRankingsOutputRankUser
+     */
+    'unique_id': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof PartialWebcastRegionRankingsOutputRankUser
+     */
+    'avatar_thumb': Array<string>;
+}
+/**
  * 
  * @export
  * @interface PeerPresence
@@ -1460,22 +1660,74 @@ export type PeerRole = typeof PeerRole[keyof typeof PeerRole];
 
 
 /**
+ * Captcha Server No description provided (generated by Openapi Generator https://github.com/openapitools/openapi-generator)  The version of the OpenAPI document: 0.1   NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech). https://openapi-generator.tech Do not edit the class manually.
+ * @export
+ * @interface Point
+ */
+export interface Point {
+    /**
+     * 
+     * @type {number}
+     * @memberof Point
+     */
+    'x': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Point
+     */
+    'y': number;
+}
+/**
  * 
  * @export
- * @enum {string}
+ * @interface PuzzleCaptchaResponse
  */
-
-export const ProxyRegion = {
-    De: 'DE',
-    Es: 'ES',
-    Fr: 'FR',
-    Gb: 'GB',
-    Pl: 'PL'
-} as const;
-
-export type ProxyRegion = typeof ProxyRegion[keyof typeof ProxyRegion];
-
-
+export interface PuzzleCaptchaResponse {
+    /**
+     * 
+     * @type {PuzzleResult}
+     * @memberof PuzzleCaptchaResponse
+     */
+    'response': PuzzleResult | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PuzzleCaptchaResponse
+     */
+    'cached': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PuzzleCaptchaResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PuzzleCaptchaResponse
+     */
+    'message'?: string;
+}
+/**
+ * Captcha Server No description provided (generated by Openapi Generator https://github.com/openapitools/openapi-generator)  The version of the OpenAPI document: 0.1   NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech). https://openapi-generator.tech Do not edit the class manually.
+ * @export
+ * @interface PuzzleResult
+ */
+export interface PuzzleResult {
+    /**
+     * 
+     * @type {number}
+     * @memberof PuzzleResult
+     */
+    'time_ms': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PuzzleResult
+     */
+    'x': number;
+}
 /**
  * 
  * @export
@@ -1500,6 +1752,13 @@ export interface RateLimitInfo {
      * @memberof RateLimitInfo
      */
     'reset_at': string | null;
+}
+/**
+ * 
+ * @export
+ * @interface RecordStringBooleanOrNumberValue
+ */
+export interface RecordStringBooleanOrNumberValue {
 }
 /**
  * 
@@ -1687,6 +1946,12 @@ export interface RetrieveBulkLiveCheckPayload {
      * @memberof RetrieveBulkLiveCheckPayload
      */
     'session_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RetrieveBulkLiveCheckPayload
+     */
+    'tt_target_idc'?: string;
 }
 /**
  * 
@@ -1737,6 +2002,62 @@ export interface RetrieveKeyResponse {
      * @memberof RetrieveKeyResponse
      */
     'key'?: ApiKey;
+}
+/**
+ * 
+ * @export
+ * @interface ShapesCaptchaResponse
+ */
+export interface ShapesCaptchaResponse {
+    /**
+     * 
+     * @type {ShapesResult}
+     * @memberof ShapesCaptchaResponse
+     */
+    'response': ShapesResult | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShapesCaptchaResponse
+     */
+    'cached': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShapesCaptchaResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShapesCaptchaResponse
+     */
+    'message'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ShapesResult
+ */
+export interface ShapesResult {
+    /**
+     * 
+     * @type {number}
+     * @memberof ShapesResult
+     */
+    'time_ms': number;
+    /**
+     * 
+     * @type {Point}
+     * @memberof ShapesResult
+     */
+    'point_1': Point;
+    /**
+     * 
+     * @type {Point}
+     * @memberof ShapesResult
+     */
+    'point_2': Point;
 }
 /**
  * 
@@ -1834,6 +2155,12 @@ export interface SignTikTokUrlBody {
      * @type {string}
      * @memberof SignTikTokUrlBody
      */
+    'ttwid'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignTikTokUrlBody
+     */
     'payload'?: string;
     /**
      * 
@@ -1922,6 +2249,123 @@ export interface SignWebcastUrl200Response {
      * @memberof SignWebcastUrl200Response
      */
     'response'?: PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const SoaxProxyRegion = {
+    De: 'DE',
+    Es: 'ES',
+    Fr: 'FR',
+    Gb: 'GB',
+    Pl: 'PL'
+} as const;
+
+export type SoaxProxyRegion = typeof SoaxProxyRegion[keyof typeof SoaxProxyRegion];
+
+
+/**
+ * 
+ * @export
+ * @interface SolveResponseIconsResult
+ */
+export interface SolveResponseIconsResult {
+    /**
+     * 
+     * @type {IconsResult}
+     * @memberof SolveResponseIconsResult
+     */
+    'response': IconsResult | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SolveResponseIconsResult
+     */
+    'cached': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof SolveResponseIconsResult
+     */
+    'code': number;
+}
+/**
+ * 
+ * @export
+ * @interface SolveResponsePuzzleResult
+ */
+export interface SolveResponsePuzzleResult {
+    /**
+     * 
+     * @type {PuzzleResult}
+     * @memberof SolveResponsePuzzleResult
+     */
+    'response': PuzzleResult | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SolveResponsePuzzleResult
+     */
+    'cached': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof SolveResponsePuzzleResult
+     */
+    'code': number;
+}
+/**
+ * 
+ * @export
+ * @interface SolveResponseShapesResult
+ */
+export interface SolveResponseShapesResult {
+    /**
+     * 
+     * @type {ShapesResult}
+     * @memberof SolveResponseShapesResult
+     */
+    'response': ShapesResult | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SolveResponseShapesResult
+     */
+    'cached': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof SolveResponseShapesResult
+     */
+    'code': number;
+}
+/**
+ * 
+ * @export
+ * @interface SolveResponseWhirlResult
+ */
+export interface SolveResponseWhirlResult {
+    /**
+     * 
+     * @type {WhirlResult}
+     * @memberof SolveResponseWhirlResult
+     */
+    'response': WhirlResult | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SolveResponseWhirlResult
+     */
+    'cached': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof SolveResponseWhirlResult
+     */
+    'code': number;
 }
 /**
  * 
@@ -2118,6 +2562,793 @@ export interface UpdateKeyResponse {
 /**
  * 
  * @export
+ * @interface WebcastFeedResponse
+ */
+export interface WebcastFeedResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponse
+     */
+    'status_code': number;
+    /**
+     * 
+     * @type {WebcastFeedResponseExtra}
+     * @memberof WebcastFeedResponse
+     */
+    'extra': WebcastFeedResponseExtra;
+    /**
+     * 
+     * @type {Array<WebcastFeedResponseItem>}
+     * @memberof WebcastFeedResponse
+     */
+    'data': Array<WebcastFeedResponseItem>;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseExtra
+ */
+export interface WebcastFeedResponseExtra {
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseExtra
+     */
+    'now': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseExtra
+     */
+    'unread_extra': string;
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: any; }}
+     * @memberof WebcastFeedResponseExtra
+     */
+    'banner': { [key: string]: any; };
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseExtra
+     */
+    'total': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseExtra
+     */
+    'max_time': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseExtra
+     */
+    'cost': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseExtra
+     */
+    'is_backup': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WebcastFeedResponseExtra
+     */
+    'has_more': boolean;
+    /**
+     * 
+     * @type {WebcastFeedResponseExtraLogPb}
+     * @memberof WebcastFeedResponseExtra
+     */
+    'log_pb': WebcastFeedResponseExtraLogPb;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseExtraLogPb
+ */
+export interface WebcastFeedResponseExtraLogPb {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseExtraLogPb
+     */
+    'impr_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseHashtag
+ */
+export interface WebcastFeedResponseHashtag {
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseHashtag
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseHashtag
+     */
+    'title': string;
+    /**
+     * 
+     * @type {WebcastFeedResponseRoomDataFeedRoomLabel}
+     * @memberof WebcastFeedResponseHashtag
+     */
+    'image': WebcastFeedResponseRoomDataFeedRoomLabel;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseImage
+ */
+export interface WebcastFeedResponseImage {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof WebcastFeedResponseImage
+     */
+    'url_list': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseImage
+     */
+    'uri': string;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseItem
+ */
+export interface WebcastFeedResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseItem
+     */
+    'type': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseItem
+     */
+    'rid': string;
+    /**
+     * 
+     * @type {WebcastFeedResponseRoomData}
+     * @memberof WebcastFeedResponseItem
+     */
+    'data': WebcastFeedResponseRoomData;
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: any; }}
+     * @memberof WebcastFeedResponseItem
+     */
+    'flare_info': { [key: string]: any; };
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseItem
+     */
+    'room_event_tracking': string;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseRoomData
+ */
+export interface WebcastFeedResponseRoomData {
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'id_str': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'status': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'owner_user_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'title': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'user_count': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'client_version': number;
+    /**
+     * 
+     * @type {WebcastFeedResponseImage}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'cover': WebcastFeedResponseImage;
+    /**
+     * 
+     * @type {WebcastFeedResponseStreamUrl}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'stream_url': WebcastFeedResponseStreamUrl;
+    /**
+     * 
+     * @type {WebcastFeedResponseRoomDataStats}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'stats': WebcastFeedResponseRoomDataStats;
+    /**
+     * 
+     * @type {WebcastFeedResponseRoomDataFeedRoomLabel}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'feed_room_label': WebcastFeedResponseRoomDataFeedRoomLabel;
+    /**
+     * 
+     * @type {WebcastFeedResponseUser}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'owner': WebcastFeedResponseUser;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'live_type_third_party': boolean;
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: RecordStringBooleanOrNumberValue; }}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'room_auth': { [key: string]: RecordStringBooleanOrNumberValue; };
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'like_count': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'anchor_tab_type': number;
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: any; }}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'commerce_info': { [key: string]: any; };
+    /**
+     * 
+     * @type {WebcastFeedResponseHashtag}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'hashtag'?: WebcastFeedResponseHashtag;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'live_room_mode': number;
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: any; }}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'stream_url_filtered_info': { [key: string]: any; };
+    /**
+     * 
+     * @type {WebcastFeedResponseRoomDataSquareCoverImg}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'square_cover_img': WebcastFeedResponseRoomDataSquareCoverImg;
+    /**
+     * 
+     * @type {WebcastFeedResponseRoomDataFeedRoomLabel}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'rectangle_cover_img': WebcastFeedResponseRoomDataFeedRoomLabel;
+    /**
+     * 
+     * @type {WebcastFeedResponseRoomDataSquareCoverImg}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'blurred_cover': WebcastFeedResponseRoomDataSquareCoverImg;
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: any; }}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'multi_stream_url': { [key: string]: any; };
+    /**
+     * 
+     * @type {WebcastFeedResponseRoomDataGameTagDetail}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'game_tag_detail': WebcastFeedResponseRoomDataGameTagDetail;
+    /**
+     * 
+     * @type {WebcastFeedResponseRoomDataTaxonomyTagInfo}
+     * @memberof WebcastFeedResponseRoomData
+     */
+    'taxonomy_tag_info': WebcastFeedResponseRoomDataTaxonomyTagInfo;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseRoomDataFeedRoomLabel
+ */
+export interface WebcastFeedResponseRoomDataFeedRoomLabel {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof WebcastFeedResponseRoomDataFeedRoomLabel
+     */
+    'url_list': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseRoomDataFeedRoomLabel
+     */
+    'uri': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseRoomDataFeedRoomLabel
+     */
+    'avg_color': string;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseRoomDataGameTagDetail
+ */
+export interface WebcastFeedResponseRoomDataGameTagDetail {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseRoomDataGameTagDetail
+     */
+    'display_name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseRoomDataGameTagDetail
+     */
+    'starling_key': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseRoomDataGameTagDetail
+     */
+    'game_tag_name': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseRoomDataGameTagDetail
+     */
+    'game_tag_id': number;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseRoomDataSquareCoverImg
+ */
+export interface WebcastFeedResponseRoomDataSquareCoverImg {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof WebcastFeedResponseRoomDataSquareCoverImg
+     */
+    'url_list': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseRoomDataSquareCoverImg
+     */
+    'uri': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseRoomDataSquareCoverImg
+     */
+    'avg_color': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseRoomDataSquareCoverImg
+     */
+    'width': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseRoomDataSquareCoverImg
+     */
+    'height': number;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseRoomDataStats
+ */
+export interface WebcastFeedResponseRoomDataStats {
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseRoomDataStats
+     */
+    'comment_count': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseRoomDataStats
+     */
+    'enter_count': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseRoomDataStats
+     */
+    'total_user': number;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseRoomDataTaxonomyTagInfo
+ */
+export interface WebcastFeedResponseRoomDataTaxonomyTagInfo {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseRoomDataTaxonomyTagInfo
+     */
+    'level2_tag': string;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseStreamUrl
+ */
+export interface WebcastFeedResponseStreamUrl {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseStreamUrl
+     */
+    'rtmp_pull_url': string;
+    /**
+     * 
+     * @type {WebcastFeedResponseStreamUrlFlvPullUrl}
+     * @memberof WebcastFeedResponseStreamUrl
+     */
+    'flv_pull_url': WebcastFeedResponseStreamUrlFlvPullUrl;
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: string; }}
+     * @memberof WebcastFeedResponseStreamUrl
+     */
+    'flv_pull_url_params'?: { [key: string]: string; };
+    /**
+     * 
+     * @type {WebcastFeedResponseStreamUrlLiveCoreSdkData}
+     * @memberof WebcastFeedResponseStreamUrl
+     */
+    'live_core_sdk_data'?: WebcastFeedResponseStreamUrlLiveCoreSdkData;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseStreamUrl
+     */
+    'stream_size_width': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseStreamUrl
+     */
+    'stream_size_height': number;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseStreamUrlFlvPullUrl
+ */
+export interface WebcastFeedResponseStreamUrlFlvPullUrl {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseStreamUrlFlvPullUrl
+     */
+    'SD1'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseStreamUrlFlvPullUrl
+     */
+    'SD2'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseStreamUrlFlvPullUrl
+     */
+    'HD1'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseStreamUrlLiveCoreSdkData
+ */
+export interface WebcastFeedResponseStreamUrlLiveCoreSdkData {
+    /**
+     * 
+     * @type {WebcastFeedResponseStreamUrlLiveCoreSdkDataPullData}
+     * @memberof WebcastFeedResponseStreamUrlLiveCoreSdkData
+     */
+    'pull_data': WebcastFeedResponseStreamUrlLiveCoreSdkDataPullData;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseStreamUrlLiveCoreSdkDataPullData
+ */
+export interface WebcastFeedResponseStreamUrlLiveCoreSdkDataPullData {
+    /**
+     * 
+     * @type {WebcastFeedResponseStreamUrlLiveCoreSdkDataPullDataOptions}
+     * @memberof WebcastFeedResponseStreamUrlLiveCoreSdkDataPullData
+     */
+    'options': WebcastFeedResponseStreamUrlLiveCoreSdkDataPullDataOptions;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseStreamUrlLiveCoreSdkDataPullData
+     */
+    'stream_data': string;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseStreamUrlLiveCoreSdkDataPullDataOptions
+ */
+export interface WebcastFeedResponseStreamUrlLiveCoreSdkDataPullDataOptions {
+    /**
+     * 
+     * @type {WebcastFeedResponseStreamUrlLiveCoreSdkDataPullDataOptionsDefaultQuality}
+     * @memberof WebcastFeedResponseStreamUrlLiveCoreSdkDataPullDataOptions
+     */
+    'default_quality': WebcastFeedResponseStreamUrlLiveCoreSdkDataPullDataOptionsDefaultQuality;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseStreamUrlLiveCoreSdkDataPullDataOptionsDefaultQuality
+ */
+export interface WebcastFeedResponseStreamUrlLiveCoreSdkDataPullDataOptionsDefaultQuality {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseStreamUrlLiveCoreSdkDataPullDataOptionsDefaultQuality
+     */
+    'sdk_key': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseStreamUrlLiveCoreSdkDataPullDataOptionsDefaultQuality
+     */
+    'name': string;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseUser
+ */
+export interface WebcastFeedResponseUser {
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseUser
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseUser
+     */
+    'nickname': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseUser
+     */
+    'bio_description': string;
+    /**
+     * 
+     * @type {WebcastFeedResponseImage}
+     * @memberof WebcastFeedResponseUser
+     */
+    'avatar_thumb': WebcastFeedResponseImage;
+    /**
+     * 
+     * @type {WebcastFeedResponseImage}
+     * @memberof WebcastFeedResponseUser
+     */
+    'avatar_medium': WebcastFeedResponseImage;
+    /**
+     * 
+     * @type {WebcastFeedResponseImage}
+     * @memberof WebcastFeedResponseUser
+     */
+    'avatar_large': WebcastFeedResponseImage;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseUser
+     */
+    'status': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseUser
+     */
+    'modify_time': number;
+    /**
+     * 
+     * @type {WebcastFeedResponseUserFollowInfo}
+     * @memberof WebcastFeedResponseUser
+     */
+    'follow_info': WebcastFeedResponseUserFollowInfo;
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: any; }}
+     * @memberof WebcastFeedResponseUser
+     */
+    'pay_grade': { [key: string]: any; };
+    /**
+     * Construct a type with a set of properties K of type T
+     * @type {{ [key: string]: any; }}
+     * @memberof WebcastFeedResponseUser
+     */
+    'user_attr': { [key: string]: any; };
+    /**
+     * 
+     * @type {WebcastFeedResponseUserOwnRoom}
+     * @memberof WebcastFeedResponseUser
+     */
+    'own_room': WebcastFeedResponseUserOwnRoom;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseUser
+     */
+    'display_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseUser
+     */
+    'sec_uid': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedResponseUser
+     */
+    'id_str': string;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseUserFollowInfo
+ */
+export interface WebcastFeedResponseUserFollowInfo {
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseUserFollowInfo
+     */
+    'follower_count': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedResponseUserFollowInfo
+     */
+    'following_count': number;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedResponseUserOwnRoom
+ */
+export interface WebcastFeedResponseUserOwnRoom {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof WebcastFeedResponseUserOwnRoom
+     */
+    'room_ids_str': Array<string>;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof WebcastFeedResponseUserOwnRoom
+     */
+    'room_ids': Array<number>;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedRouteOutput
+ */
+export interface WebcastFeedRouteOutput {
+    /**
+     * 
+     * @type {WebcastFeedResponse}
+     * @memberof WebcastFeedRouteOutput
+     */
+    'data': WebcastFeedResponse;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastFeedRouteResponse
+ */
+export interface WebcastFeedRouteResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastFeedRouteResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastFeedRouteResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {WebcastFeedRouteOutput}
+     * @memberof WebcastFeedRouteResponse
+     */
+    'response'?: WebcastFeedRouteOutput;
+    /**
+     * 
+     * @type {OxyLabsProxyRegion}
+     * @memberof WebcastFeedRouteResponse
+     */
+    'region': OxyLabsProxyRegion;
+}
+
+
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
@@ -2180,6 +3411,76 @@ export interface WebcastIsLiveOutput {
      */
     'data'?: { [key: string]: RecordStringIsLiveBooleanRoomIdStringOrNullValue; };
 }
+/**
+ * 
+ * @export
+ * @interface WebcastRegionRankingsOutput
+ */
+export interface WebcastRegionRankingsOutput {
+    /**
+     * 
+     * @type {Array<PartialWebcastRegionRankingsOutputRank>}
+     * @memberof WebcastRegionRankingsOutput
+     */
+    'ranks': Array<PartialWebcastRegionRankingsOutputRank>;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastRegionRankingsOutput
+     */
+    'rank_title': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastRegionRankingsOutput
+     */
+    'rank_type': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastRegionRankingsOutput
+     */
+    'resets_at': string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastRegionRankingsOutput
+     */
+    'resets_in': number | null;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastRegionRankingsResponse
+ */
+export interface WebcastRegionRankingsResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastRegionRankingsResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastRegionRankingsResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {WebcastRegionRankingsOutput}
+     * @memberof WebcastRegionRankingsResponse
+     */
+    'response'?: WebcastRegionRankingsOutput;
+    /**
+     * 
+     * @type {OxyLabsProxyRegion}
+     * @memberof WebcastRegionRankingsResponse
+     */
+    'region': OxyLabsProxyRegion;
+}
+
+
 /**
  * 
  * @export
@@ -2315,6 +3616,150 @@ export interface WebcastRoomInfoRouteResponse {
      * @memberof WebcastRoomInfoRouteResponse
      */
     'data': TikTokLiveUser | null;
+}
+/**
+ * 
+ * @export
+ * @interface WebcastUserEarningsOutput
+ */
+export interface WebcastUserEarningsOutput {
+    /**
+     * 
+     * @type {TikTokLiveUser}
+     * @memberof WebcastUserEarningsOutput
+     */
+    'user': TikTokLiveUser;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastUserEarningsOutput
+     */
+    'earnings_estimate_currency': WebcastUserEarningsOutputEarningsEstimateCurrencyEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastUserEarningsOutput
+     */
+    'earnings_estimate': number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastUserEarningsOutput
+     */
+    'diamonds': number | null;
+    /**
+     * 
+     * @type {WebcastUserEarningsOutputPeriod}
+     * @memberof WebcastUserEarningsOutput
+     */
+    'period': WebcastUserEarningsOutputPeriod;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastUserEarningsOutput
+     */
+    'resets_at': string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastUserEarningsOutput
+     */
+    'resets_in': number | null;
+}
+
+export const WebcastUserEarningsOutputEarningsEstimateCurrencyEnum = {
+    Usd: 'USD'
+} as const;
+
+export type WebcastUserEarningsOutputEarningsEstimateCurrencyEnum = typeof WebcastUserEarningsOutputEarningsEstimateCurrencyEnum[keyof typeof WebcastUserEarningsOutputEarningsEstimateCurrencyEnum];
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const WebcastUserEarningsOutputPeriod = {
+    Daily: 'daily'
+} as const;
+
+export type WebcastUserEarningsOutputPeriod = typeof WebcastUserEarningsOutputPeriod[keyof typeof WebcastUserEarningsOutputPeriod];
+
+
+/**
+ * 
+ * @export
+ * @interface WebcastUserEarningsResponse
+ */
+export interface WebcastUserEarningsResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof WebcastUserEarningsResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebcastUserEarningsResponse
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {WebcastUserEarningsOutput}
+     * @memberof WebcastUserEarningsResponse
+     */
+    'response'?: WebcastUserEarningsOutput;
+}
+/**
+ * 
+ * @export
+ * @interface WhirlCaptchaResponse
+ */
+export interface WhirlCaptchaResponse {
+    /**
+     * 
+     * @type {WhirlResult}
+     * @memberof WhirlCaptchaResponse
+     */
+    'response': WhirlResult | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WhirlCaptchaResponse
+     */
+    'cached': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof WhirlCaptchaResponse
+     */
+    'code': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WhirlCaptchaResponse
+     */
+    'message'?: string;
+}
+/**
+ * Captcha Server No description provided (generated by Openapi Generator https://github.com/openapitools/openapi-generator)  The version of the OpenAPI document: 0.1   NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech). https://openapi-generator.tech Do not edit the class manually.
+ * @export
+ * @interface WhirlResult
+ */
+export interface WhirlResult {
+    /**
+     * 
+     * @type {number}
+     * @memberof WhirlResult
+     */
+    'time_ms': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WhirlResult
+     */
+    'angle': number;
 }
 
 /**
@@ -4215,6 +5660,451 @@ export type UpdateKeyUpdateByEnum = typeof UpdateKeyUpdateByEnum[keyof typeof Up
 
 
 /**
+ * CaptchasApi - axios parameter creator
+ * @export
+ */
+export const CaptchasApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * ## ⚠️ Warning: Requires Business plan or higher  The icons captcha requires just one image & a prompt string.  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/icon.png\" alt=\"Icons Captcha Example\" width=\"480\" />  ## Usage  The `prompt` is the text prompt provided by TikTok. The Icon captcha solution is provided as a list of points, where each point marks a location on the image that needs to be clicked. These points are expressed as ratios relative to the image\'s width and height. A point of (0.0, 0.0) corresponds to the image’s upper-left corner, while (1.0, 1.0) represents the lower-right corner. For reference, (0.5, 0.5) sits at the exact center.  The captcha image selector is `.captcha-verify-image`
+         * @param {string} prompt The prompt string provided by TikTok
+         * @param {File} captchaImage The uploaded image file
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        completeIconCaptcha: async (prompt: string, captchaImage: File, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'prompt' is not null or undefined
+            assertParamExists('completeIconCaptcha', 'prompt', prompt)
+            // verify required parameter 'captchaImage' is not null or undefined
+            assertParamExists('completeIconCaptcha', 'captchaImage', captchaImage)
+            const localVarPath = `/tiktok/captchas/icons`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "apiKey", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (prompt !== undefined) {
+                localVarQueryParameter['prompt'] = prompt;
+            }
+
+
+            if (captchaImage !== undefined) { 
+                localVarFormParams.append('captchaImage', captchaImage as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * The puzzle captcha requires two images  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/puzzle.png\" alt=\"Puzzle Piece Example\" width=\"480\" />  ## Usage  The solution to the puzzle captcha is the distance to move the slider to fit the puzzle piece into the background.  The `backgroundImage` is the full background image with the missing piece. The `pieceImage` is the small puzzle piece that needs to be fit into the background.  The captcha image selectors are: - Background: `.captcha-verify-image` - Piece: `#captcha-verify-image ~ div.cap-absolute > img`  The solution is the `x` proportion (0-1) of the width of the background image where the piece fits. It is 1:1 with the slider distance proportion.
+         * @param {File} backgroundImage The uploaded background image file
+         * @param {File} pieceImage The uploaded puzzle piece image file
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        completePuzzleCaptcha: async (backgroundImage: File, pieceImage: File, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'backgroundImage' is not null or undefined
+            assertParamExists('completePuzzleCaptcha', 'backgroundImage', backgroundImage)
+            // verify required parameter 'pieceImage' is not null or undefined
+            assertParamExists('completePuzzleCaptcha', 'pieceImage', pieceImage)
+            const localVarPath = `/tiktok/captchas/puzzle`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "apiKey", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+            if (backgroundImage !== undefined) { 
+                localVarFormParams.append('backgroundImage', backgroundImage as any);
+            }
+    
+            if (pieceImage !== undefined) { 
+                localVarFormParams.append('pieceImage', pieceImage as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * The shapes captcha requires just one image.  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/threed.png\" alt=\"Shapes Captcha Example\" width=\"480\" />  ## Usage  The solution to the shapes captcha are two points that need to be clicked. To use it in the GUI, convert the proportions to pixel values based on the image size.  The `points` are returned as `x` and `y` proportions (0-1) of the width and height of the source image. The captcha image selector is `.captcha-verify-image`
+         * @param {File} shapesCaptchaImage The uploaded image file
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        completeShapesCaptcha: async (shapesCaptchaImage: File, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'shapesCaptchaImage' is not null or undefined
+            assertParamExists('completeShapesCaptcha', 'shapesCaptchaImage', shapesCaptchaImage)
+            const localVarPath = `/tiktok/captchas/shapes`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "apiKey", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+            if (shapesCaptchaImage !== undefined) { 
+                localVarFormParams.append('shapesCaptchaImage', shapesCaptchaImage as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * The whirl captcha requires two images: the outer image and the inner image.  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/rotate.png\" alt=\"Whirl Captcha Example\" width=\"480\" />  ## Usage  The solution to the whirl captcha is an angle from 0-360. To use it in the GUI, it must be converted to a slider distance:  `px = ((sidebar_length - icon_length) * angle) / 360`  - `sidebar_length` is the width of `.captcha_verify_slide--slidebar` - `icon_length` is the width of `.secsdk-captcha-drag-icon`
+         * @param {File} outerImage The outer image file
+         * @param {File} innerImage The inner image file
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        completeWhirlCaptcha: async (outerImage: File, innerImage: File, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'outerImage' is not null or undefined
+            assertParamExists('completeWhirlCaptcha', 'outerImage', outerImage)
+            // verify required parameter 'innerImage' is not null or undefined
+            assertParamExists('completeWhirlCaptcha', 'innerImage', innerImage)
+            const localVarPath = `/tiktok/captchas/whirl`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "apiKey", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+            if (outerImage !== undefined) { 
+                localVarFormParams.append('outerImage', outerImage as any);
+            }
+    
+            if (innerImage !== undefined) { 
+                localVarFormParams.append('innerImage', innerImage as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve the rate limits for the provided API key
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveCaptchaCredits: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/tiktok/captchas/credits`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "apiKey", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * CaptchasApi - functional programming interface
+ * @export
+ */
+export const CaptchasApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = CaptchasApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * ## ⚠️ Warning: Requires Business plan or higher  The icons captcha requires just one image & a prompt string.  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/icon.png\" alt=\"Icons Captcha Example\" width=\"480\" />  ## Usage  The `prompt` is the text prompt provided by TikTok. The Icon captcha solution is provided as a list of points, where each point marks a location on the image that needs to be clicked. These points are expressed as ratios relative to the image\'s width and height. A point of (0.0, 0.0) corresponds to the image’s upper-left corner, while (1.0, 1.0) represents the lower-right corner. For reference, (0.5, 0.5) sits at the exact center.  The captcha image selector is `.captcha-verify-image`
+         * @param {string} prompt The prompt string provided by TikTok
+         * @param {File} captchaImage The uploaded image file
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async completeIconCaptcha(prompt: string, captchaImage: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IconCaptchaResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.completeIconCaptcha(prompt, captchaImage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CaptchasApi.completeIconCaptcha']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * The puzzle captcha requires two images  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/puzzle.png\" alt=\"Puzzle Piece Example\" width=\"480\" />  ## Usage  The solution to the puzzle captcha is the distance to move the slider to fit the puzzle piece into the background.  The `backgroundImage` is the full background image with the missing piece. The `pieceImage` is the small puzzle piece that needs to be fit into the background.  The captcha image selectors are: - Background: `.captcha-verify-image` - Piece: `#captcha-verify-image ~ div.cap-absolute > img`  The solution is the `x` proportion (0-1) of the width of the background image where the piece fits. It is 1:1 with the slider distance proportion.
+         * @param {File} backgroundImage The uploaded background image file
+         * @param {File} pieceImage The uploaded puzzle piece image file
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async completePuzzleCaptcha(backgroundImage: File, pieceImage: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PuzzleCaptchaResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.completePuzzleCaptcha(backgroundImage, pieceImage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CaptchasApi.completePuzzleCaptcha']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * The shapes captcha requires just one image.  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/threed.png\" alt=\"Shapes Captcha Example\" width=\"480\" />  ## Usage  The solution to the shapes captcha are two points that need to be clicked. To use it in the GUI, convert the proportions to pixel values based on the image size.  The `points` are returned as `x` and `y` proportions (0-1) of the width and height of the source image. The captcha image selector is `.captcha-verify-image`
+         * @param {File} shapesCaptchaImage The uploaded image file
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async completeShapesCaptcha(shapesCaptchaImage: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShapesCaptchaResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.completeShapesCaptcha(shapesCaptchaImage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CaptchasApi.completeShapesCaptcha']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * The whirl captcha requires two images: the outer image and the inner image.  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/rotate.png\" alt=\"Whirl Captcha Example\" width=\"480\" />  ## Usage  The solution to the whirl captcha is an angle from 0-360. To use it in the GUI, it must be converted to a slider distance:  `px = ((sidebar_length - icon_length) * angle) / 360`  - `sidebar_length` is the width of `.captcha_verify_slide--slidebar` - `icon_length` is the width of `.secsdk-captcha-drag-icon`
+         * @param {File} outerImage The outer image file
+         * @param {File} innerImage The inner image file
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async completeWhirlCaptcha(outerImage: File, innerImage: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WhirlCaptchaResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.completeWhirlCaptcha(outerImage, innerImage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CaptchasApi.completeWhirlCaptcha']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieve the rate limits for the provided API key
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveCaptchaCredits(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CaptchaCreditsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveCaptchaCredits(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CaptchasApi.retrieveCaptchaCredits']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * CaptchasApi - factory interface
+ * @export
+ */
+export const CaptchasApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = CaptchasApiFp(configuration)
+    return {
+        /**
+         * ## ⚠️ Warning: Requires Business plan or higher  The icons captcha requires just one image & a prompt string.  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/icon.png\" alt=\"Icons Captcha Example\" width=\"480\" />  ## Usage  The `prompt` is the text prompt provided by TikTok. The Icon captcha solution is provided as a list of points, where each point marks a location on the image that needs to be clicked. These points are expressed as ratios relative to the image\'s width and height. A point of (0.0, 0.0) corresponds to the image’s upper-left corner, while (1.0, 1.0) represents the lower-right corner. For reference, (0.5, 0.5) sits at the exact center.  The captcha image selector is `.captcha-verify-image`
+         * @param {string} prompt The prompt string provided by TikTok
+         * @param {File} captchaImage The uploaded image file
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        completeIconCaptcha(prompt: string, captchaImage: File, options?: RawAxiosRequestConfig): AxiosPromise<IconCaptchaResponse> {
+            return localVarFp.completeIconCaptcha(prompt, captchaImage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * The puzzle captcha requires two images  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/puzzle.png\" alt=\"Puzzle Piece Example\" width=\"480\" />  ## Usage  The solution to the puzzle captcha is the distance to move the slider to fit the puzzle piece into the background.  The `backgroundImage` is the full background image with the missing piece. The `pieceImage` is the small puzzle piece that needs to be fit into the background.  The captcha image selectors are: - Background: `.captcha-verify-image` - Piece: `#captcha-verify-image ~ div.cap-absolute > img`  The solution is the `x` proportion (0-1) of the width of the background image where the piece fits. It is 1:1 with the slider distance proportion.
+         * @param {File} backgroundImage The uploaded background image file
+         * @param {File} pieceImage The uploaded puzzle piece image file
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        completePuzzleCaptcha(backgroundImage: File, pieceImage: File, options?: RawAxiosRequestConfig): AxiosPromise<PuzzleCaptchaResponse> {
+            return localVarFp.completePuzzleCaptcha(backgroundImage, pieceImage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * The shapes captcha requires just one image.  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/threed.png\" alt=\"Shapes Captcha Example\" width=\"480\" />  ## Usage  The solution to the shapes captcha are two points that need to be clicked. To use it in the GUI, convert the proportions to pixel values based on the image size.  The `points` are returned as `x` and `y` proportions (0-1) of the width and height of the source image. The captcha image selector is `.captcha-verify-image`
+         * @param {File} shapesCaptchaImage The uploaded image file
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        completeShapesCaptcha(shapesCaptchaImage: File, options?: RawAxiosRequestConfig): AxiosPromise<ShapesCaptchaResponse> {
+            return localVarFp.completeShapesCaptcha(shapesCaptchaImage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * The whirl captcha requires two images: the outer image and the inner image.  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/rotate.png\" alt=\"Whirl Captcha Example\" width=\"480\" />  ## Usage  The solution to the whirl captcha is an angle from 0-360. To use it in the GUI, it must be converted to a slider distance:  `px = ((sidebar_length - icon_length) * angle) / 360`  - `sidebar_length` is the width of `.captcha_verify_slide--slidebar` - `icon_length` is the width of `.secsdk-captcha-drag-icon`
+         * @param {File} outerImage The outer image file
+         * @param {File} innerImage The inner image file
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        completeWhirlCaptcha(outerImage: File, innerImage: File, options?: RawAxiosRequestConfig): AxiosPromise<WhirlCaptchaResponse> {
+            return localVarFp.completeWhirlCaptcha(outerImage, innerImage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve the rate limits for the provided API key
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveCaptchaCredits(options?: RawAxiosRequestConfig): AxiosPromise<CaptchaCreditsResponse> {
+            return localVarFp.retrieveCaptchaCredits(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * CaptchasApi - object-oriented interface
+ * @export
+ * @class CaptchasApi
+ * @extends {BaseAPI}
+ */
+export class CaptchasApi extends BaseAPI {
+    /**
+     * ## ⚠️ Warning: Requires Business plan or higher  The icons captcha requires just one image & a prompt string.  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/icon.png\" alt=\"Icons Captcha Example\" width=\"480\" />  ## Usage  The `prompt` is the text prompt provided by TikTok. The Icon captcha solution is provided as a list of points, where each point marks a location on the image that needs to be clicked. These points are expressed as ratios relative to the image\'s width and height. A point of (0.0, 0.0) corresponds to the image’s upper-left corner, while (1.0, 1.0) represents the lower-right corner. For reference, (0.5, 0.5) sits at the exact center.  The captcha image selector is `.captcha-verify-image`
+     * @param {string} prompt The prompt string provided by TikTok
+     * @param {File} captchaImage The uploaded image file
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CaptchasApi
+     */
+    public completeIconCaptcha(prompt: string, captchaImage: File, options?: RawAxiosRequestConfig) {
+        return CaptchasApiFp(this.configuration).completeIconCaptcha(prompt, captchaImage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * The puzzle captcha requires two images  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/puzzle.png\" alt=\"Puzzle Piece Example\" width=\"480\" />  ## Usage  The solution to the puzzle captcha is the distance to move the slider to fit the puzzle piece into the background.  The `backgroundImage` is the full background image with the missing piece. The `pieceImage` is the small puzzle piece that needs to be fit into the background.  The captcha image selectors are: - Background: `.captcha-verify-image` - Piece: `#captcha-verify-image ~ div.cap-absolute > img`  The solution is the `x` proportion (0-1) of the width of the background image where the piece fits. It is 1:1 with the slider distance proportion.
+     * @param {File} backgroundImage The uploaded background image file
+     * @param {File} pieceImage The uploaded puzzle piece image file
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CaptchasApi
+     */
+    public completePuzzleCaptcha(backgroundImage: File, pieceImage: File, options?: RawAxiosRequestConfig) {
+        return CaptchasApiFp(this.configuration).completePuzzleCaptcha(backgroundImage, pieceImage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * The shapes captcha requires just one image.  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/threed.png\" alt=\"Shapes Captcha Example\" width=\"480\" />  ## Usage  The solution to the shapes captcha are two points that need to be clicked. To use it in the GUI, convert the proportions to pixel values based on the image size.  The `points` are returned as `x` and `y` proportions (0-1) of the width and height of the source image. The captcha image selector is `.captcha-verify-image`
+     * @param {File} shapesCaptchaImage The uploaded image file
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CaptchasApi
+     */
+    public completeShapesCaptcha(shapesCaptchaImage: File, options?: RawAxiosRequestConfig) {
+        return CaptchasApiFp(this.configuration).completeShapesCaptcha(shapesCaptchaImage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * The whirl captcha requires two images: the outer image and the inner image.  ## Example Image <img src=\"https://www.eulerstream.com/_static/captchas/rotate.png\" alt=\"Whirl Captcha Example\" width=\"480\" />  ## Usage  The solution to the whirl captcha is an angle from 0-360. To use it in the GUI, it must be converted to a slider distance:  `px = ((sidebar_length - icon_length) * angle) / 360`  - `sidebar_length` is the width of `.captcha_verify_slide--slidebar` - `icon_length` is the width of `.secsdk-captcha-drag-icon`
+     * @param {File} outerImage The outer image file
+     * @param {File} innerImage The inner image file
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CaptchasApi
+     */
+    public completeWhirlCaptcha(outerImage: File, innerImage: File, options?: RawAxiosRequestConfig) {
+        return CaptchasApiFp(this.configuration).completeWhirlCaptcha(outerImage, innerImage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve the rate limits for the provided API key
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CaptchasApi
+     */
+    public retrieveCaptchaCredits(options?: RawAxiosRequestConfig) {
+        return CaptchasApiFp(this.configuration).retrieveCaptchaCredits(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
  * TikTokLIVEApi - axios parameter creator
  * @export
  */
@@ -4230,12 +6120,12 @@ export const TikTokLIVEApiAxiosParamCreator = function (configuration?: Configur
          * @param {string} [userAgent] Override the user agent used for signing and fetching
          * @param {string} [ttTargetIdc] Cookie - TikTok \&quot;Identity Data Center\&quot; which links a session_id to a region
          * @param {boolean} [clientEnter] Whether the client enters a room after connecting, or if it\&#39;s done by query parameters
-         * @param {ProxyRegion} [country] Country code to make the request from.
+         * @param {SoaxProxyRegion} [country] Country code to make the request from.
          * @param {WebcastFetchPlatform} [platform] Platform to connect with
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchWebcastURL: async (client?: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, country?: ProxyRegion, platform?: WebcastFetchPlatform, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchWebcastURL: async (client?: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, country?: SoaxProxyRegion, platform?: WebcastFetchPlatform, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/webcast/fetch`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4344,7 +6234,7 @@ export const TikTokLIVEApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * A bulk-check endpoint to determine if a group of TikTok users (up to 50 at once) are live. It uses a highly optimized job-based system for checking large numbers of users quickly.
+         * Premium Route - A bulk-check endpoint to determine if a group of TikTok users (up to 50 at once) are live. It uses a highly optimized job-based system for checking large numbers of users quickly.
          * @param {RetrieveBulkLiveCheckPayload} retrieveBulkLiveCheckPayload The body of the request containing user numeric IDs.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4387,10 +6277,11 @@ export const TikTokLIVEApiAxiosParamCreator = function (configuration?: Configur
         /**
          * Retrieve TikTok Live Room Gift List
          * @param {string} roomId The room ID of the TikTok LIVE session
+         * @param {string} [webcastLanguage] Webcast language for locale-based fields
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveGiftInfo: async (roomId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        retrieveGiftInfo: async (roomId: string, webcastLanguage?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'roomId' is not null or undefined
             assertParamExists('retrieveGiftInfo', 'roomId', roomId)
             const localVarPath = `/webcast/gift_info`;
@@ -4413,6 +6304,10 @@ export const TikTokLIVEApiAxiosParamCreator = function (configuration?: Configur
 
             if (roomId !== undefined) {
                 localVarQueryParameter['room_id'] = roomId;
+            }
+
+            if (webcastLanguage !== undefined) {
+                localVarQueryParameter['webcast_language'] = webcastLanguage;
             }
 
 
@@ -4517,7 +6412,7 @@ export const TikTokLIVEApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Retrieve TikTok Live Room Information
+         * Premium Route - Retrieve TikTok Live Room Information
          * @param {string} uniqueId The unique identifier for the TikTok user or room
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4609,7 +6504,176 @@ export const TikTokLIVEApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Send a chat to a TikTok LIVE room.
+         * Premium Route - Fetch the TikTok LIVE webcast feed for a specific region. Gets a random sampling of creators for a region.
+         * @param {OxyLabsProxyRegion} region The region (country) with which to fetch a feed from.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveWebcastFeed: async (region: OxyLabsProxyRegion, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'region' is not null or undefined
+            assertParamExists('retrieveWebcastFeed', 'region', region)
+            const localVarPath = `/webcast/feed`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "apiKey", configuration)
+
+            // authentication jwt_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "x-jwt-key", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (region !== undefined) {
+                localVarQueryParameter['region'] = region;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Premium Route - Retrieve TikTok LIVE rankings for a specific region.
+         * @param {OxyLabsProxyRegion} region The region (country) with which to fetch a feed from.
+         * @param {string} sessionId The session ID cookie from TikTok, used to access the feed.
+         * @param {string} ttTargetIdc The tt-target-idc cookie from TikTok, used to access the feed.
+         * @param {RetrieveWebcastRankingsRankTypeEnum} rankType The type of ranking to fetch. See documentation for more details.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveWebcastRankings: async (region: OxyLabsProxyRegion, sessionId: string, ttTargetIdc: string, rankType: RetrieveWebcastRankingsRankTypeEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'region' is not null or undefined
+            assertParamExists('retrieveWebcastRankings', 'region', region)
+            // verify required parameter 'sessionId' is not null or undefined
+            assertParamExists('retrieveWebcastRankings', 'sessionId', sessionId)
+            // verify required parameter 'ttTargetIdc' is not null or undefined
+            assertParamExists('retrieveWebcastRankings', 'ttTargetIdc', ttTargetIdc)
+            // verify required parameter 'rankType' is not null or undefined
+            assertParamExists('retrieveWebcastRankings', 'rankType', rankType)
+            const localVarPath = `/webcast/rankings`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "apiKey", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (region !== undefined) {
+                localVarQueryParameter['region'] = region;
+            }
+
+            if (sessionId !== undefined) {
+                localVarQueryParameter['session_id'] = sessionId;
+            }
+
+            if (ttTargetIdc !== undefined) {
+                localVarQueryParameter['tt_target_idc'] = ttTargetIdc;
+            }
+
+            if (rankType !== undefined) {
+                localVarQueryParameter['rank_type'] = rankType;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Premium Route - Retrieve TikTok LIVE earnings for a specific user.
+         * @param {string} uniqueId The unique ID (username) of the user to fetch earnings for.
+         * @param {string} sessionId The session ID cookie from TikTok, used to access the feed.
+         * @param {string} ttTargetIdc The tt-target-idc cookie from TikTok, used to access the feed.
+         * @param {WebcastUserEarningsOutputPeriod} [period] Earnings period
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveWebcastUserEarnings: async (uniqueId: string, sessionId: string, ttTargetIdc: string, period?: WebcastUserEarningsOutputPeriod, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'uniqueId' is not null or undefined
+            assertParamExists('retrieveWebcastUserEarnings', 'uniqueId', uniqueId)
+            // verify required parameter 'sessionId' is not null or undefined
+            assertParamExists('retrieveWebcastUserEarnings', 'sessionId', sessionId)
+            // verify required parameter 'ttTargetIdc' is not null or undefined
+            assertParamExists('retrieveWebcastUserEarnings', 'ttTargetIdc', ttTargetIdc)
+            const localVarPath = `/webcast/user_earnings`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication api_key_query required
+            await setApiKeyToObject(localVarQueryParameter, "apiKey", configuration)
+
+            // authentication api_key_header required
+            await setApiKeyToObject(localVarHeaderParameter, "x-api-key", configuration)
+
+            if (uniqueId !== undefined) {
+                localVarQueryParameter['unique_id'] = uniqueId;
+            }
+
+            if (sessionId !== undefined) {
+                localVarQueryParameter['session_id'] = sessionId;
+            }
+
+            if (ttTargetIdc !== undefined) {
+                localVarQueryParameter['tt_target_idc'] = ttTargetIdc;
+            }
+
+            if (period !== undefined) {
+                localVarQueryParameter['period'] = period;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Premium Route - Send a chat to a TikTok LIVE room.
          * @param {WebcastRoomChatPayload} webcastRoomChatPayload The payload configuration for sending a chat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4715,12 +6779,12 @@ export const TikTokLIVEApiFp = function(configuration?: Configuration) {
          * @param {string} [userAgent] Override the user agent used for signing and fetching
          * @param {string} [ttTargetIdc] Cookie - TikTok \&quot;Identity Data Center\&quot; which links a session_id to a region
          * @param {boolean} [clientEnter] Whether the client enters a room after connecting, or if it\&#39;s done by query parameters
-         * @param {ProxyRegion} [country] Country code to make the request from.
+         * @param {SoaxProxyRegion} [country] Country code to make the request from.
          * @param {WebcastFetchPlatform} [platform] Platform to connect with
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fetchWebcastURL(client?: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, country?: ProxyRegion, platform?: WebcastFetchPlatform, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+        async fetchWebcastURL(client?: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, country?: SoaxProxyRegion, platform?: WebcastFetchPlatform, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, ttTargetIdc, clientEnter, country, platform, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TikTokLIVEApi.fetchWebcastURL']?.[localVarOperationServerIndex]?.url;
@@ -4738,7 +6802,7 @@ export const TikTokLIVEApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * A bulk-check endpoint to determine if a group of TikTok users (up to 50 at once) are live. It uses a highly optimized job-based system for checking large numbers of users quickly.
+         * Premium Route - A bulk-check endpoint to determine if a group of TikTok users (up to 50 at once) are live. It uses a highly optimized job-based system for checking large numbers of users quickly.
          * @param {RetrieveBulkLiveCheckPayload} retrieveBulkLiveCheckPayload The body of the request containing user numeric IDs.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4752,11 +6816,12 @@ export const TikTokLIVEApiFp = function(configuration?: Configuration) {
         /**
          * Retrieve TikTok Live Room Gift List
          * @param {string} roomId The room ID of the TikTok LIVE session
+         * @param {string} [webcastLanguage] Webcast language for locale-based fields
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveGiftInfo(roomId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebcastGiftInfoRouteResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveGiftInfo(roomId, options);
+        async retrieveGiftInfo(roomId: string, webcastLanguage?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebcastGiftInfoRouteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveGiftInfo(roomId, webcastLanguage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TikTokLIVEApi.retrieveGiftInfo']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4786,7 +6851,7 @@ export const TikTokLIVEApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Retrieve TikTok Live Room Information
+         * Premium Route - Retrieve TikTok Live Room Information
          * @param {string} uniqueId The unique identifier for the TikTok user or room
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4811,7 +6876,49 @@ export const TikTokLIVEApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Send a chat to a TikTok LIVE room.
+         * Premium Route - Fetch the TikTok LIVE webcast feed for a specific region. Gets a random sampling of creators for a region.
+         * @param {OxyLabsProxyRegion} region The region (country) with which to fetch a feed from.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveWebcastFeed(region: OxyLabsProxyRegion, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebcastFeedRouteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveWebcastFeed(region, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TikTokLIVEApi.retrieveWebcastFeed']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Premium Route - Retrieve TikTok LIVE rankings for a specific region.
+         * @param {OxyLabsProxyRegion} region The region (country) with which to fetch a feed from.
+         * @param {string} sessionId The session ID cookie from TikTok, used to access the feed.
+         * @param {string} ttTargetIdc The tt-target-idc cookie from TikTok, used to access the feed.
+         * @param {RetrieveWebcastRankingsRankTypeEnum} rankType The type of ranking to fetch. See documentation for more details.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveWebcastRankings(region: OxyLabsProxyRegion, sessionId: string, ttTargetIdc: string, rankType: RetrieveWebcastRankingsRankTypeEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebcastRegionRankingsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveWebcastRankings(region, sessionId, ttTargetIdc, rankType, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TikTokLIVEApi.retrieveWebcastRankings']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Premium Route - Retrieve TikTok LIVE earnings for a specific user.
+         * @param {string} uniqueId The unique ID (username) of the user to fetch earnings for.
+         * @param {string} sessionId The session ID cookie from TikTok, used to access the feed.
+         * @param {string} ttTargetIdc The tt-target-idc cookie from TikTok, used to access the feed.
+         * @param {WebcastUserEarningsOutputPeriod} [period] Earnings period
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveWebcastUserEarnings(uniqueId: string, sessionId: string, ttTargetIdc: string, period?: WebcastUserEarningsOutputPeriod, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebcastUserEarningsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retrieveWebcastUserEarnings(uniqueId, sessionId, ttTargetIdc, period, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TikTokLIVEApi.retrieveWebcastUserEarnings']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Premium Route - Send a chat to a TikTok LIVE room.
          * @param {WebcastRoomChatPayload} webcastRoomChatPayload The payload configuration for sending a chat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4855,12 +6962,12 @@ export const TikTokLIVEApiFactory = function (configuration?: Configuration, bas
          * @param {string} [userAgent] Override the user agent used for signing and fetching
          * @param {string} [ttTargetIdc] Cookie - TikTok \&quot;Identity Data Center\&quot; which links a session_id to a region
          * @param {boolean} [clientEnter] Whether the client enters a room after connecting, or if it\&#39;s done by query parameters
-         * @param {ProxyRegion} [country] Country code to make the request from.
+         * @param {SoaxProxyRegion} [country] Country code to make the request from.
          * @param {WebcastFetchPlatform} [platform] Platform to connect with
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fetchWebcastURL(client?: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, country?: ProxyRegion, platform?: WebcastFetchPlatform, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+        fetchWebcastURL(client?: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, country?: SoaxProxyRegion, platform?: WebcastFetchPlatform, options?: RawAxiosRequestConfig): AxiosPromise<object> {
             return localVarFp.fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, ttTargetIdc, clientEnter, country, platform, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4872,7 +6979,7 @@ export const TikTokLIVEApiFactory = function (configuration?: Configuration, bas
             return localVarFp.getRateLimits(options).then((request) => request(axios, basePath));
         },
         /**
-         * A bulk-check endpoint to determine if a group of TikTok users (up to 50 at once) are live. It uses a highly optimized job-based system for checking large numbers of users quickly.
+         * Premium Route - A bulk-check endpoint to determine if a group of TikTok users (up to 50 at once) are live. It uses a highly optimized job-based system for checking large numbers of users quickly.
          * @param {RetrieveBulkLiveCheckPayload} retrieveBulkLiveCheckPayload The body of the request containing user numeric IDs.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4883,11 +6990,12 @@ export const TikTokLIVEApiFactory = function (configuration?: Configuration, bas
         /**
          * Retrieve TikTok Live Room Gift List
          * @param {string} roomId The room ID of the TikTok LIVE session
+         * @param {string} [webcastLanguage] Webcast language for locale-based fields
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveGiftInfo(roomId: string, options?: RawAxiosRequestConfig): AxiosPromise<WebcastGiftInfoRouteResponse> {
-            return localVarFp.retrieveGiftInfo(roomId, options).then((request) => request(axios, basePath));
+        retrieveGiftInfo(roomId: string, webcastLanguage?: string, options?: RawAxiosRequestConfig): AxiosPromise<WebcastGiftInfoRouteResponse> {
+            return localVarFp.retrieveGiftInfo(roomId, webcastLanguage, options).then((request) => request(axios, basePath));
         },
         /**
          * Fetch TikTok LIVE Stream Cover URL given a uniqueId.
@@ -4908,7 +7016,7 @@ export const TikTokLIVEApiFactory = function (configuration?: Configuration, bas
             return localVarFp.retrieveRoomId(uniqueId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve TikTok Live Room Information
+         * Premium Route - Retrieve TikTok Live Room Information
          * @param {string} uniqueId The unique identifier for the TikTok user or room
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4927,7 +7035,40 @@ export const TikTokLIVEApiFactory = function (configuration?: Configuration, bas
             return localVarFp.retrieveRoomVideo(uniqueId, streamType, options).then((request) => request(axios, basePath));
         },
         /**
-         * Send a chat to a TikTok LIVE room.
+         * Premium Route - Fetch the TikTok LIVE webcast feed for a specific region. Gets a random sampling of creators for a region.
+         * @param {OxyLabsProxyRegion} region The region (country) with which to fetch a feed from.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveWebcastFeed(region: OxyLabsProxyRegion, options?: RawAxiosRequestConfig): AxiosPromise<WebcastFeedRouteResponse> {
+            return localVarFp.retrieveWebcastFeed(region, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Premium Route - Retrieve TikTok LIVE rankings for a specific region.
+         * @param {OxyLabsProxyRegion} region The region (country) with which to fetch a feed from.
+         * @param {string} sessionId The session ID cookie from TikTok, used to access the feed.
+         * @param {string} ttTargetIdc The tt-target-idc cookie from TikTok, used to access the feed.
+         * @param {RetrieveWebcastRankingsRankTypeEnum} rankType The type of ranking to fetch. See documentation for more details.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveWebcastRankings(region: OxyLabsProxyRegion, sessionId: string, ttTargetIdc: string, rankType: RetrieveWebcastRankingsRankTypeEnum, options?: RawAxiosRequestConfig): AxiosPromise<WebcastRegionRankingsResponse> {
+            return localVarFp.retrieveWebcastRankings(region, sessionId, ttTargetIdc, rankType, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Premium Route - Retrieve TikTok LIVE earnings for a specific user.
+         * @param {string} uniqueId The unique ID (username) of the user to fetch earnings for.
+         * @param {string} sessionId The session ID cookie from TikTok, used to access the feed.
+         * @param {string} ttTargetIdc The tt-target-idc cookie from TikTok, used to access the feed.
+         * @param {WebcastUserEarningsOutputPeriod} [period] Earnings period
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveWebcastUserEarnings(uniqueId: string, sessionId: string, ttTargetIdc: string, period?: WebcastUserEarningsOutputPeriod, options?: RawAxiosRequestConfig): AxiosPromise<WebcastUserEarningsResponse> {
+            return localVarFp.retrieveWebcastUserEarnings(uniqueId, sessionId, ttTargetIdc, period, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Premium Route - Send a chat to a TikTok LIVE room.
          * @param {WebcastRoomChatPayload} webcastRoomChatPayload The payload configuration for sending a chat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4965,13 +7106,13 @@ export class TikTokLIVEApi extends BaseAPI {
      * @param {string} [userAgent] Override the user agent used for signing and fetching
      * @param {string} [ttTargetIdc] Cookie - TikTok \&quot;Identity Data Center\&quot; which links a session_id to a region
      * @param {boolean} [clientEnter] Whether the client enters a room after connecting, or if it\&#39;s done by query parameters
-     * @param {ProxyRegion} [country] Country code to make the request from.
+     * @param {SoaxProxyRegion} [country] Country code to make the request from.
      * @param {WebcastFetchPlatform} [platform] Platform to connect with
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TikTokLIVEApi
      */
-    public fetchWebcastURL(client?: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, country?: ProxyRegion, platform?: WebcastFetchPlatform, options?: RawAxiosRequestConfig) {
+    public fetchWebcastURL(client?: string, roomId?: string, uniqueId?: string, cursor?: string, sessionId?: string, userAgent?: string, ttTargetIdc?: string, clientEnter?: boolean, country?: SoaxProxyRegion, platform?: WebcastFetchPlatform, options?: RawAxiosRequestConfig) {
         return TikTokLIVEApiFp(this.configuration).fetchWebcastURL(client, roomId, uniqueId, cursor, sessionId, userAgent, ttTargetIdc, clientEnter, country, platform, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4986,7 +7127,7 @@ export class TikTokLIVEApi extends BaseAPI {
     }
 
     /**
-     * A bulk-check endpoint to determine if a group of TikTok users (up to 50 at once) are live. It uses a highly optimized job-based system for checking large numbers of users quickly.
+     * Premium Route - A bulk-check endpoint to determine if a group of TikTok users (up to 50 at once) are live. It uses a highly optimized job-based system for checking large numbers of users quickly.
      * @param {RetrieveBulkLiveCheckPayload} retrieveBulkLiveCheckPayload The body of the request containing user numeric IDs.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4999,12 +7140,13 @@ export class TikTokLIVEApi extends BaseAPI {
     /**
      * Retrieve TikTok Live Room Gift List
      * @param {string} roomId The room ID of the TikTok LIVE session
+     * @param {string} [webcastLanguage] Webcast language for locale-based fields
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TikTokLIVEApi
      */
-    public retrieveGiftInfo(roomId: string, options?: RawAxiosRequestConfig) {
-        return TikTokLIVEApiFp(this.configuration).retrieveGiftInfo(roomId, options).then((request) => request(this.axios, this.basePath));
+    public retrieveGiftInfo(roomId: string, webcastLanguage?: string, options?: RawAxiosRequestConfig) {
+        return TikTokLIVEApiFp(this.configuration).retrieveGiftInfo(roomId, webcastLanguage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5030,7 +7172,7 @@ export class TikTokLIVEApi extends BaseAPI {
     }
 
     /**
-     * Retrieve TikTok Live Room Information
+     * Premium Route - Retrieve TikTok Live Room Information
      * @param {string} uniqueId The unique identifier for the TikTok user or room
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5053,7 +7195,46 @@ export class TikTokLIVEApi extends BaseAPI {
     }
 
     /**
-     * Send a chat to a TikTok LIVE room.
+     * Premium Route - Fetch the TikTok LIVE webcast feed for a specific region. Gets a random sampling of creators for a region.
+     * @param {OxyLabsProxyRegion} region The region (country) with which to fetch a feed from.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TikTokLIVEApi
+     */
+    public retrieveWebcastFeed(region: OxyLabsProxyRegion, options?: RawAxiosRequestConfig) {
+        return TikTokLIVEApiFp(this.configuration).retrieveWebcastFeed(region, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Premium Route - Retrieve TikTok LIVE rankings for a specific region.
+     * @param {OxyLabsProxyRegion} region The region (country) with which to fetch a feed from.
+     * @param {string} sessionId The session ID cookie from TikTok, used to access the feed.
+     * @param {string} ttTargetIdc The tt-target-idc cookie from TikTok, used to access the feed.
+     * @param {RetrieveWebcastRankingsRankTypeEnum} rankType The type of ranking to fetch. See documentation for more details.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TikTokLIVEApi
+     */
+    public retrieveWebcastRankings(region: OxyLabsProxyRegion, sessionId: string, ttTargetIdc: string, rankType: RetrieveWebcastRankingsRankTypeEnum, options?: RawAxiosRequestConfig) {
+        return TikTokLIVEApiFp(this.configuration).retrieveWebcastRankings(region, sessionId, ttTargetIdc, rankType, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Premium Route - Retrieve TikTok LIVE earnings for a specific user.
+     * @param {string} uniqueId The unique ID (username) of the user to fetch earnings for.
+     * @param {string} sessionId The session ID cookie from TikTok, used to access the feed.
+     * @param {string} ttTargetIdc The tt-target-idc cookie from TikTok, used to access the feed.
+     * @param {WebcastUserEarningsOutputPeriod} [period] Earnings period
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TikTokLIVEApi
+     */
+    public retrieveWebcastUserEarnings(uniqueId: string, sessionId: string, ttTargetIdc: string, period?: WebcastUserEarningsOutputPeriod, options?: RawAxiosRequestConfig) {
+        return TikTokLIVEApiFp(this.configuration).retrieveWebcastUserEarnings(uniqueId, sessionId, ttTargetIdc, period, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Premium Route - Send a chat to a TikTok LIVE room.
      * @param {WebcastRoomChatPayload} webcastRoomChatPayload The payload configuration for sending a chat
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5076,5 +7257,13 @@ export class TikTokLIVEApi extends BaseAPI {
     }
 }
 
+/**
+ * @export
+ */
+export const RetrieveWebcastRankingsRankTypeEnum = {
+    FansTeamRank: 'FANS_TEAM_RANK',
+    DailyRank: 'DAILY_RANK'
+} as const;
+export type RetrieveWebcastRankingsRankTypeEnum = typeof RetrieveWebcastRankingsRankTypeEnum[keyof typeof RetrieveWebcastRankingsRankTypeEnum];
 
 

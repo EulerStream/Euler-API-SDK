@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **max_alerts** | **number** |  | [default to undefined]
 **max_websockets** | **number** |  | [default to undefined]
 **expires_at** | **string** |  | [default to undefined]
+**purchased_captcha_credits** | **number** |  | [default to undefined]
+**extra_captcha_credits** | **number** |  | [default to undefined]
 **updated_at** | **string** |  | [default to undefined]
 **created_at** | **string** |  | [default to undefined]
 **id** | **number** |  | [default to undefined]
@@ -32,6 +34,8 @@ const instance: AccountWithPermissionsSafe = {
     max_alerts,
     max_websockets,
     expires_at,
+    purchased_captcha_credits,
+    extra_captcha_credits,
     updated_at,
     created_at,
     id,

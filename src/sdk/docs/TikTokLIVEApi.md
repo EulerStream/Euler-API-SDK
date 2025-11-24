@@ -12,6 +12,9 @@ All URIs are relative to *https://tiktok.eulerstream.com*
 |[**retrieveRoomId**](#retrieveroomid) | **GET** /webcast/room_id | |
 |[**retrieveRoomInfo**](#retrieveroominfo) | **GET** /webcast/room_info | |
 |[**retrieveRoomVideo**](#retrieveroomvideo) | **GET** /webcast/room_video | |
+|[**retrieveWebcastFeed**](#retrievewebcastfeed) | **GET** /webcast/feed | |
+|[**retrieveWebcastRankings**](#retrievewebcastrankings) | **GET** /webcast/rankings | |
+|[**retrieveWebcastUserEarnings**](#retrievewebcastuserearnings) | **GET** /webcast/user_earnings | |
 |[**sendRoomChat**](#sendroomchat) | **POST** /webcast/chat | |
 |[**signWebcastUrl**](#signwebcasturl) | **POST** /webcast/sign_url | |
 
@@ -39,7 +42,7 @@ let sessionId: string; //Cookie - The account session ID from TikTok web (option
 let userAgent: string; //Override the user agent used for signing and fetching (optional) (default to undefined)
 let ttTargetIdc: string; //Cookie - TikTok \"Identity Data Center\" which links a session_id to a region (optional) (default to undefined)
 let clientEnter: boolean; //Whether the client enters a room after connecting, or if it\'s done by query parameters (optional) (default to true)
-let country: ProxyRegion; //Country code to make the request from. (optional) (default to undefined)
+let country: SoaxProxyRegion; //Country code to make the request from. (optional) (default to undefined)
 let platform: WebcastFetchPlatform; //Platform to connect with (optional) (default to undefined)
 
 const { status, data } = await apiInstance.fetchWebcastURL(
@@ -68,7 +71,7 @@ const { status, data } = await apiInstance.fetchWebcastURL(
 | **userAgent** | [**string**] | Override the user agent used for signing and fetching | (optional) defaults to undefined|
 | **ttTargetIdc** | [**string**] | Cookie - TikTok \&quot;Identity Data Center\&quot; which links a session_id to a region | (optional) defaults to undefined|
 | **clientEnter** | [**boolean**] | Whether the client enters a room after connecting, or if it\&#39;s done by query parameters | (optional) defaults to true|
-| **country** | **ProxyRegion** | Country code to make the request from. | (optional) defaults to undefined|
+| **country** | **SoaxProxyRegion** | Country code to make the request from. | (optional) defaults to undefined|
 | **platform** | **WebcastFetchPlatform** | Platform to connect with | (optional) defaults to undefined|
 
 
@@ -140,7 +143,7 @@ This endpoint does not have any parameters.
 # **retrieveBulkLiveCheck**
 > RetrieveBulkLiveCheckResponse retrieveBulkLiveCheck(retrieveBulkLiveCheckPayload)
 
-A bulk-check endpoint to determine if a group of TikTok users (up to 50 at once) are live. It uses a highly optimized job-based system for checking large numbers of users quickly.
+Premium Route - A bulk-check endpoint to determine if a group of TikTok users (up to 50 at once) are live. It uses a highly optimized job-based system for checking large numbers of users quickly.
 
 ### Example
 
@@ -206,9 +209,11 @@ const configuration = new Configuration();
 const apiInstance = new TikTokLIVEApi(configuration);
 
 let roomId: string; //The room ID of the TikTok LIVE session (default to undefined)
+let webcastLanguage: string; //Webcast language for locale-based fields (optional) (default to 'en')
 
 const { status, data } = await apiInstance.retrieveGiftInfo(
-    roomId
+    roomId,
+    webcastLanguage
 );
 ```
 
@@ -217,6 +222,7 @@ const { status, data } = await apiInstance.retrieveGiftInfo(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **roomId** | [**string**] | The room ID of the TikTok LIVE session | defaults to undefined|
+| **webcastLanguage** | [**string**] | Webcast language for locale-based fields | (optional) defaults to 'en'|
 
 
 ### Return type
@@ -345,7 +351,7 @@ const { status, data } = await apiInstance.retrieveRoomId(
 # **retrieveRoomInfo**
 > WebcastRoomInfoRouteResponse retrieveRoomInfo()
 
-Retrieve TikTok Live Room Information
+Premium Route - Retrieve TikTok Live Room Information
 
 ### Example
 
@@ -447,10 +453,181 @@ const { status, data } = await apiInstance.retrieveRoomVideo(
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **retrieveWebcastFeed**
+> WebcastFeedRouteResponse retrieveWebcastFeed()
+
+Premium Route - Fetch the TikTok LIVE webcast feed for a specific region. Gets a random sampling of creators for a region.
+
+### Example
+
+```typescript
+import {
+    TikTokLIVEApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new TikTokLIVEApi(configuration);
+
+let region: OxyLabsProxyRegion; //The region (country) with which to fetch a feed from. (default to undefined)
+
+const { status, data } = await apiInstance.retrieveWebcastFeed(
+    region
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **region** | **OxyLabsProxyRegion** | The region (country) with which to fetch a feed from. | defaults to undefined|
+
+
+### Return type
+
+**WebcastFeedRouteResponse**
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [jwt_key_header](../README.md#jwt_key_header), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Ok |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **retrieveWebcastRankings**
+> WebcastRegionRankingsResponse retrieveWebcastRankings()
+
+Premium Route - Retrieve TikTok LIVE rankings for a specific region.
+
+### Example
+
+```typescript
+import {
+    TikTokLIVEApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new TikTokLIVEApi(configuration);
+
+let region: OxyLabsProxyRegion; //The region (country) with which to fetch a feed from. (default to undefined)
+let sessionId: string; //The session ID cookie from TikTok, used to access the feed. (default to undefined)
+let ttTargetIdc: string; //The tt-target-idc cookie from TikTok, used to access the feed. (default to undefined)
+let rankType: 'FANS_TEAM_RANK' | 'DAILY_RANK'; //The type of ranking to fetch. See documentation for more details. (default to undefined)
+
+const { status, data } = await apiInstance.retrieveWebcastRankings(
+    region,
+    sessionId,
+    ttTargetIdc,
+    rankType
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **region** | **OxyLabsProxyRegion** | The region (country) with which to fetch a feed from. | defaults to undefined|
+| **sessionId** | [**string**] | The session ID cookie from TikTok, used to access the feed. | defaults to undefined|
+| **ttTargetIdc** | [**string**] | The tt-target-idc cookie from TikTok, used to access the feed. | defaults to undefined|
+| **rankType** | [**&#39;FANS_TEAM_RANK&#39; | &#39;DAILY_RANK&#39;**]**Array<&#39;FANS_TEAM_RANK&#39; &#124; &#39;DAILY_RANK&#39;>** | The type of ranking to fetch. See documentation for more details. | defaults to undefined|
+
+
+### Return type
+
+**WebcastRegionRankingsResponse**
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Ok |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **retrieveWebcastUserEarnings**
+> WebcastUserEarningsResponse retrieveWebcastUserEarnings()
+
+Premium Route - Retrieve TikTok LIVE earnings for a specific user.
+
+### Example
+
+```typescript
+import {
+    TikTokLIVEApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new TikTokLIVEApi(configuration);
+
+let uniqueId: string; //The unique ID (username) of the user to fetch earnings for. (default to undefined)
+let sessionId: string; //The session ID cookie from TikTok, used to access the feed. (default to undefined)
+let ttTargetIdc: string; //The tt-target-idc cookie from TikTok, used to access the feed. (default to undefined)
+let period: WebcastUserEarningsOutputPeriod; //Earnings period (optional) (default to undefined)
+
+const { status, data } = await apiInstance.retrieveWebcastUserEarnings(
+    uniqueId,
+    sessionId,
+    ttTargetIdc,
+    period
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **uniqueId** | [**string**] | The unique ID (username) of the user to fetch earnings for. | defaults to undefined|
+| **sessionId** | [**string**] | The session ID cookie from TikTok, used to access the feed. | defaults to undefined|
+| **ttTargetIdc** | [**string**] | The tt-target-idc cookie from TikTok, used to access the feed. | defaults to undefined|
+| **period** | **WebcastUserEarningsOutputPeriod** | Earnings period | (optional) defaults to undefined|
+
+
+### Return type
+
+**WebcastUserEarningsResponse**
+
+### Authorization
+
+[api_key_query](../README.md#api_key_query), [api_key_header](../README.md#api_key_header)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Ok |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **sendRoomChat**
 > WebcastRoomChatRouteResponse sendRoomChat(webcastRoomChatPayload)
 
-Send a chat to a TikTok LIVE room.
+Premium Route - Send a chat to a TikTok LIVE room.
 
 ### Example
 
