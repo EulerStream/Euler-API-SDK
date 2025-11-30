@@ -1,0 +1,8 @@
+{
+  "name": "@eulerstream/base",
+  "private": true,
+  "version": "0.0.1",
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.25.2"
+  }
+}

@@ -47,7 +47,6 @@
     "@babel/cli": "^7.17.0",
     "@babel/core": "^7.17.2",
     "@babel/preset-env": "^7.16.11",
-    "@openapitools/openapi-generator-cli": "^2.20.0",
     "@types/node": "^22.15.3",
     "dotenv": "^16.5.0",
     "prettier": "2.5.1",

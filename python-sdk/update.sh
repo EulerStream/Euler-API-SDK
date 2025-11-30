@@ -1,0 +1,12 @@
+echo "Fetching latest OpenAPI spec from EulerStream..."
+
+# Get the spec
+wget -O ./build/openapi.json https://tiktok.eulerstream.com/dashboard/openapi
+
+# Generate Python
+openapi-python-client generate \
+  --url https://tiktok.eulerstream.com/dashboard/openapi \
+  --custom-template-path ./build/openapi.json \
+  --output-path ./ \
+  --overwrite \
+  --config config.yaml

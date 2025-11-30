@@ -7,3 +7,5 @@ build
 .venv
 openapitools.json
 **/docs/**
+test.py
+publish.sh
