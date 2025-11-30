@@ -4,7 +4,7 @@ This is an API wrapper for the Euler Stream API written in TypeScript.
 With this API you can access any Euler Stream public endpoint. 
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&style=flat-square)](https://www.linkedin.com/in/isaackogan/)
-[![Patrons](https://www.eulerstream.com/api/pips?v=002)](https://www.eulerstream.com/)
+[![Patrons](https://www.eulerstream.com/api/pips/patrons?v=002)](https://www.eulerstream.com/)
 ![Downloads](https://img.shields.io/npm/dy/@eulerstream/euler-api-sdk)
 ![Stars](https://img.shields.io/github/stars/EulerStream/EulerApiSdk?style=flat&color=0274b5&alt=1)
 ![Issues](https://img.shields.io/github/issues/EulerStream/EulerApiSdk)
