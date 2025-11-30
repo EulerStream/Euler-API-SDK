@@ -13,7 +13,7 @@
   "scripts": {
     "test": "tsx ./test/test.ts",
     "format": "prettier --write src/**/*.js",
-    "build": "sh build.sh && tsc && tsc-alias"
+    "build": "tsc && tsc-alias"
   },
   "repository": {
     "type": "git",
