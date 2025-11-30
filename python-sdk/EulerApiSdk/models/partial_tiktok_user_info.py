@@ -8,14 +8,11 @@ from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-T = TypeVar(
-    "T",
-    bound="PartialAvatarUrlStringNicknameStringSecUidStringNumericUidStringSignatureStringIsVerifiedBooleanFollowingNumberFollowersNumber",
-)
+T = TypeVar("T", bound="PartialTikTokUserInfo")
 
 
 @_attrs_define
-class PartialAvatarUrlStringNicknameStringSecUidStringNumericUidStringSignatureStringIsVerifiedBooleanFollowingNumberFollowersNumber:
+class PartialTikTokUserInfo:
     """Make all properties in T optional
 
     Attributes:
@@ -97,7 +94,7 @@ class PartialAvatarUrlStringNicknameStringSecUidStringNumericUidStringSignatureS
 
         followers = d.pop("followers", UNSET)
 
-        partial_avatar_url_string_nickname_string_sec_uid_string_numeric_uid_string_signature_string_is_verified_boolean_following_number_followers_number = cls(
+        partial_tiktok_user_info = cls(
             avatar_url=avatar_url,
             nickname=nickname,
             sec_uid=sec_uid,
@@ -108,8 +105,8 @@ class PartialAvatarUrlStringNicknameStringSecUidStringNumericUidStringSignatureS
             followers=followers,
         )
 
-        partial_avatar_url_string_nickname_string_sec_uid_string_numeric_uid_string_signature_string_is_verified_boolean_following_number_followers_number.additional_properties = d
-        return partial_avatar_url_string_nickname_string_sec_uid_string_numeric_uid_string_signature_string_is_verified_boolean_following_number_followers_number
+        partial_tiktok_user_info.additional_properties = d
+        return partial_tiktok_user_info
 
     @property
     def additional_keys(self) -> list[str]:

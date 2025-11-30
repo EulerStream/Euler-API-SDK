@@ -12,14 +12,11 @@ if TYPE_CHECKING:
     from ..models.record_string_string import RecordStringString
 
 
-T = TypeVar(
-    "T",
-    bound="PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray",
-)
+T = TypeVar("T", bound="PartialSignedUrlInfo")
 
 
 @_attrs_define
-class PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionStringTokensRecordStringStringRequestHeadersRecordStringStringCookiesRecordStringStringArray:
+class PartialSignedUrlInfo:
     """Make all properties in T optional
 
     Attributes:
@@ -121,7 +118,7 @@ class PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionString
 
                 cookies.append(cookies_item)
 
-        partial_signed_url_string_user_agent_string_browser_name_string_browser_version_string_tokens_record_string_string_request_headers_record_string_string_cookies_record_string_string_array = cls(
+        partial_signed_url_info = cls(
             signed_url=signed_url,
             user_agent=user_agent,
             browser_name=browser_name,
@@ -131,8 +128,8 @@ class PartialSignedUrlStringUserAgentStringBrowserNameStringBrowserVersionString
             cookies=cookies,
         )
 
-        partial_signed_url_string_user_agent_string_browser_name_string_browser_version_string_tokens_record_string_string_request_headers_record_string_string_cookies_record_string_string_array.additional_properties = d
-        return partial_signed_url_string_user_agent_string_browser_name_string_browser_version_string_tokens_record_string_string_request_headers_record_string_string_cookies_record_string_string_array
+        partial_signed_url_info.additional_properties = d
+        return partial_signed_url_info
 
     @property
     def additional_keys(self) -> list[str]:

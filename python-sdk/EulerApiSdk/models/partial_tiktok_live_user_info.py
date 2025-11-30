@@ -8,14 +8,11 @@ from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-T = TypeVar(
-    "T",
-    bound="PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString",
-)
+T = TypeVar("T", bound="PartialTikTokLiveUserInfo")
 
 
 @_attrs_define
-class PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString:
+class PartialTikTokLiveUserInfo:
     """Make all properties in T optional
 
     Attributes:
@@ -129,7 +126,7 @@ class PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTime
 
         flv_pull_url_ld = d.pop("flv_pull_url_ld", UNSET)
 
-        partial_status_number_is_live_boolean_id_string_cover_url_string_title_string_start_time_number_current_viewers_number_total_viewers_number_hls_pull_url_string_flv_pull_url_string_hls_pull_url_ld_string_flv_pull_url_ld_string = cls(
+        partial_tiktok_live_user_info = cls(
             status=status,
             is_live=is_live,
             id=id,
@@ -144,8 +141,8 @@ class PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTime
             flv_pull_url_ld=flv_pull_url_ld,
         )
 
-        partial_status_number_is_live_boolean_id_string_cover_url_string_title_string_start_time_number_current_viewers_number_total_viewers_number_hls_pull_url_string_flv_pull_url_string_hls_pull_url_ld_string_flv_pull_url_ld_string.additional_properties = d
-        return partial_status_number_is_live_boolean_id_string_cover_url_string_title_string_start_time_number_current_viewers_number_total_viewers_number_hls_pull_url_string_flv_pull_url_string_hls_pull_url_ld_string_flv_pull_url_ld_string
+        partial_tiktok_live_user_info.additional_properties = d
+        return partial_tiktok_live_user_info
 
     @property
     def additional_keys(self) -> list[str]:

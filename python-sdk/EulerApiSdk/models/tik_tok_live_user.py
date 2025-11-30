@@ -9,9 +9,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.partial_status_number_is_live_boolean_id_string_cover_url_string_title_string_start_time_number_current_viewers_number_total_viewers_number_hls_pull_url_string_flv_pull_url_string_hls_pull_url_ld_string_flv_pull_url_ld_string import (
-        PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString,
-    )
+    from ..models.partial_tiktok_live_user_info import PartialTikTokLiveUserInfo
     from ..models.tik_tok_live_user_raw import TikTokLiveUserRaw
     from ..models.tik_tok_live_user_user import TikTokLiveUserUser
 
@@ -25,18 +23,13 @@ class TikTokLiveUser:
     Attributes:
         raw (TikTokLiveUserRaw):
         unique_id (str):
-        room_info (PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberT
-            otalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString | Unset): Make all
-            properties in T optional
+        room_info (PartialTikTokLiveUserInfo | Unset): Make all properties in T optional
         user (TikTokLiveUserUser | Unset):
     """
 
     raw: TikTokLiveUserRaw
     unique_id: str
-    room_info: (
-        PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString
-        | Unset
-    ) = UNSET
+    room_info: PartialTikTokLiveUserInfo | Unset = UNSET
     user: TikTokLiveUserUser | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -70,9 +63,7 @@ class TikTokLiveUser:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.partial_status_number_is_live_boolean_id_string_cover_url_string_title_string_start_time_number_current_viewers_number_total_viewers_number_hls_pull_url_string_flv_pull_url_string_hls_pull_url_ld_string_flv_pull_url_ld_string import (
-            PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString,
-        )
+        from ..models.partial_tiktok_live_user_info import PartialTikTokLiveUserInfo
         from ..models.tik_tok_live_user_raw import TikTokLiveUserRaw
         from ..models.tik_tok_live_user_user import TikTokLiveUserUser
 
@@ -82,16 +73,11 @@ class TikTokLiveUser:
         unique_id = d.pop("unique_id")
 
         _room_info = d.pop("room_info", UNSET)
-        room_info: (
-            PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString
-            | Unset
-        )
+        room_info: PartialTikTokLiveUserInfo | Unset
         if isinstance(_room_info, Unset):
             room_info = UNSET
         else:
-            room_info = PartialStatusNumberIsLiveBooleanIdStringCoverUrlStringTitleStringStartTimeNumberCurrentViewersNumberTotalViewersNumberHlsPullUrlStringFlvPullUrlStringHlsPullUrlLdStringFlvPullUrlLdString.from_dict(
-                _room_info
-            )
+            room_info = PartialTikTokLiveUserInfo.from_dict(_room_info)
 
         _user = d.pop("user", UNSET)
         user: TikTokLiveUserUser | Unset
