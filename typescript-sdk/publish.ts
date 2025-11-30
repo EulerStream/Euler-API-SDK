@@ -1,6 +1,6 @@
 import 'dotenv/config';
-import { execSync } from 'child_process';
-import readline from 'readline';
+import {execSync} from 'child_process';
+import * as readline from "node:readline";
 
 // Load .env (already done via dotenv/config import)
 
